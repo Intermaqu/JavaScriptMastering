@@ -109,7 +109,7 @@ function cipherPair(toCipher, cols, rows, hashmap){
     } else if (firstCoords.x === secondCoords.x && firstCoords.y !== secondCoords.y){
         //Same Col
         x1 = firstCoords.x
-        y1 = (firstCoords.x + 1) % cols
+        y1 = (firstCoords.y + 1) % cols
         x2 = secondCoords.x
         y2 = (secondCoords.y + 1) % rows
 
