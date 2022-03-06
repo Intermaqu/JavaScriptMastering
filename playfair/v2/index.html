@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel='stylesheet' type='text/css' href='style.css'>
+</head>
+<body>
+    <div class='container'>
+        <form id='myForm' class='form'>
+            <div>
+                <label>Insert Your Cipher Code</label>
+                <input name='cipherCode' type='text' id='cipherCode'>
+            </div>
+            <button type='submit' id='submit'>Submit</button>
+        </form>
+        <div class='matrix-position'>
+            <table class='matrix'>
+                <tr>
+                    <td id="td00"></td>
+                    <td id="td01"></td>
+                    <td id="td02"></td>
+                    <td id="td03"></td>
+                    <td id="td04"></td>
+                </tr>
+                <tr>
+                    <td id="td10"></td>
+                    <td id="td11"></td>
+                    <td id="td12"></td>
+                    <td id="td13"></td>
+                    <td id="td14"></td>
+                </tr>
+                <tr>
+                    <td id="td20"></td>
+                    <td id="td21"></td>
+                    <td id="td22"></td>
+                    <td id="td23"></td>
+                    <td id="td24"></td>
+                </tr>
+                <tr>
+                    <td id="td30"></td>
+                    <td id="td31"></td>
+                    <td id="td32"></td>
+                    <td id="td33"></td>
+                    <td id="td34"></td>
+                </tr>
+                <tr>
+                    <td id="td40"></td>
+                    <td id="td41"></td>
+                    <td id="td42"></td>
+                    <td id="td43"></td>
+                    <td id="td44"></td>
+                </tr>
+            </table>
+        </div>
+        <form id='myForm2' method='GET'>
+            <label for='message'>Write Message To Cipher</label>
+            <textarea id='message' name=message rows='25' cols='50'></textarea>
+            <button type='submit' id='submit2'>Cipher</button>
+        </form>
+        <div id='ciphered'></div>
+    </div>    
+</body>
+<script src="script.js"></script>
+</html>

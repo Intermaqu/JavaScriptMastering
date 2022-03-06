@@ -1,0 +1,36 @@
+*{
+    padding: 0;
+}
+
+#ciphered{
+    width: 500px;
+    height: 400px;
+    white-space: normal;
+    word-break: break-all;
+}
+
+table{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+td{
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid black;
+    background: black;
+    color: white;
+}
+
+.container{
+    padding: 20px;
+    width: 500px;
+    background: grey;
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%)
+}
