@@ -1,15 +1,6 @@
 let matrix
 let hashmap
 
-
-function changeJToI(array){
-    for(let i=0; i<array.length;i++){
-        if(array[i] === 'J')
-        array[i] = 'I'
-    }
-    return array
-}
-
 function init2dArray(cols, rows){
     let matrix = []
     for(let i=0;i<rows; i++){
@@ -182,15 +173,17 @@ function unCipherMain(text, cols, rows, hashmap){
         let tmp = uncipherPair(text[i], cols, rows, hashmap)
         message.push(...tmp)
     }
+    for(let i=1;i<message.length-1;i++){
+        if(message[i] == 'X' && message[i-1] == message[i+1]){
+            message.splice(i,1)
+            i--
+        }  
+    }
     return message
 }
 
 function prepereKey(key){
-    key = key.toUpperCase().split("")
-    key = key.filter(char => /[A-Z]/.test(char))
-    key = changeJToI(key)
-    key = key.filter(distinct)
-    return key
+    return key.toUpperCase().replace('J','I').split("").filter(char => /[A-Z]/.test(char)).filter(distinct)
 }
 
 function prepereMatrix(key){
@@ -203,16 +196,10 @@ function prepereMatrix(key){
 }
 
 function prepareText(text){ 
-    text = text.toUpperCase().split('')
-    text = changeJToI(text)
-    text = text.filter(char => /[A-Z]/.test(char))
-
+    text = text.toUpperCase().replace('J','I').split('').filter(char => /[A-Z]/.test(char))
     text = addXBetweenTheSameLetters(text)
-
     text = suplementArray(text)
-
     let textPairs = makePairs(text)
-    console.log(textPairs)
     return textPairs
 }
 
@@ -251,7 +238,6 @@ function mainCipher(key, matrix, hashmap){
     cip = prepereKey(cip)
     matrix = prepereMatrix(cip)
     hashmap = buildHashmapForMatrix(matrix)
-
     let message = document.getElementById('message').value
     console.log(message)
     let x = document.getElementById('ciphered')
