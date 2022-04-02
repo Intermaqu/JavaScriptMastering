@@ -1,0 +1,22 @@
+body {
+  width: 100%;
+}
+body table {
+  width: 60%;
+}
+body table tr:nth-child(even) td {
+  background: lightgrey;
+}
+body table tr:nth-child(1) td {
+  text-align: center;
+  font-weight: bold;
+}
+body table tr {
+  width: 100%;
+}
+body table tr td {
+  width: 33.3333333333%;
+  height: 30px;
+}
+
+/*# sourceMappingURL=output.css.map */

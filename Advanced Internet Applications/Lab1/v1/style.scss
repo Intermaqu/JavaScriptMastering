@@ -51,7 +51,16 @@ $fontSize: 16px;
 
                         .navItem{
                             margin: 1em;
+
+                            a{
+                                text-decoration: none;
+                                color: black;
+                            }
                         }
+                    }
+
+                    .navIcon{
+                        display: none;
                     }
                 }
             }
@@ -111,7 +120,7 @@ $fontSize: 16px;
             text-align: center;
             width: 100%;
             padding: 30px;
-            border: 3px solid black;
+            border-top: 3px solid black;
             background-color:antiquewhite;
             margin: 0px;
 
@@ -128,7 +137,7 @@ $fontSize: 16px;
 
 
 
-@media all and (min-width: 600px) and (max-width: 1024px) {
+@media all and (max-width: 1024px) {
     body .wraper{
         margin-bottom: 50px;
         .main{
@@ -158,17 +167,28 @@ $fontSize: 16px;
                     }
                 }
                 
-                .navContent:after{
-                    content:"";
+                .navIcon{
                     width: 50px;
-                    height: 50px;
+                    aspect-ratio: 1;
+                    display: inline;
+                    position: absolute;
                     background: antiquewhite;
                     border: 1px solid black;
                     border-radius: 25%;
-                    position: absolute;
+                    right: 0;
                     top: 50%;
-                    right: 0%;
                     transform: translateY(-50%);
+                    justify-content: center;
+                    display:flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap:0.5em;
+
+                    div{
+                        width: 60%;
+                        // height: 20%;
+                        border-bottom: 2px solid black;
+                    }
                 }
             }
         }
@@ -202,19 +222,6 @@ $fontSize: 16px;
                     .navItem{
                         display: none;
                     }
-                }
-                
-                .navContent:after{
-                    content:"";
-                    width: 50px;
-                    height: 50px;
-                    background: antiquewhite;
-                    border: 1px solid black;
-                    border-radius: 25%;
-                    position: absolute;
-                    top: 50%;
-                    right: 0%;
-                    transform: translateY(-50%);
                 }
             }
         }
