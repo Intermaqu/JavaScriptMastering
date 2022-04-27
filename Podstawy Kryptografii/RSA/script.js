@@ -3,7 +3,9 @@ const q = 19
 const n = q * p
 const phi = (q-1)*(p-1)
 const alphabet = "abcdefghijklmnopqrstuvwxyz"
-
+let message = "Politechnika"
+let e
+let d = 2
 
 
 function is_prime(num){
@@ -25,7 +27,6 @@ function gcd(num1, num2){
     return num1
 }
 
-let e
 
 for(let i = 2; i < phi; i++){
     if(is_prime(i) && gcd(phi,i) == 1){
@@ -34,7 +35,15 @@ for(let i = 2; i < phi; i++){
     }
 }
 
-let d = 2
+function powerAndModulo(base, exponent, modulo){
+    let c = 1
+    for(let i=0;i<exponent;i++){
+        c = (c*base) % modulo
+    }
+    return c
+}
+
+
 
 while(true){
     if((e*d-1)%phi === 0){
@@ -46,15 +55,17 @@ while(true){
 
 console.log(`d: ${d}, e: ${e}`)
 
-let m = 8
-/*
-let tmp1 = bigInt(Math.pow(m,e))
-let c = tmp1 % n
+message = message.toLowerCase().split('')
+let crypted = []
+for(letter of message){
+    crypted.push(powerAndModulo(alphabet.indexOf(letter), e, n))
+}
 
-let tmp2 = bigInt(Math.pow(c,d))
-let M = tmp2 % n
+console.log(message, crypted.join(' '))
 
-console.log(`c: ${c}, M: ${M}`)
+let decrypted = []
+for(cryptedNumber of crypted){
+    decrypted.push(alphabet[powerAndModulo(cryptedNumber, d, n)])
+}
 
-console.log(Math.pow(c,d))
-*/
+console.log(decrypted.join(''))
