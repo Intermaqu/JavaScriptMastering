@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript"
+        src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script defer>
+        
+        $.getJSON("Guitars.json", (data) =>{
+            for(let i of data.Guitars.Guitar){
+                //tab.append(`<tr><td>${i.Brand}</td><td>${i.Model}</td></tr>`)
+                console.log(i.Brand, i.Model)
+                console.log(i)
+                $("ul").append(`<li>${i.Brand} ${i.Model}</li>`)
+            }
+        })
+    </script>
+</head>
+<body>
+    <ul style="list-style: none"></ul>
+</body>
+</html>
