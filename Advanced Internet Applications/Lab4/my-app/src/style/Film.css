@@ -1,0 +1,13 @@
+.film{
+    background: #7286a7;
+    display: flex;
+    height: 50px;
+    padding: 50px;
+    align-items: center;
+    border-radius: 1em;
+}
+
+.film > img {
+    width: 100px;
+    height: 100px;
+}
