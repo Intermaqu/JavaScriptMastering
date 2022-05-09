@@ -1,3 +1,8 @@
+
+import data from "./9.200-40.json"
+
+console.log(data.data)
+
 const A = "ACTGCTGA"
 const B = "CTGAGCTA"
 const Data = [A,B]
