@@ -1,24 +1,25 @@
-import React from "react"
+import React, { useEffect } from "react"
 import "../styles/film.css"
-import Stars from "./Stars"
+import StarsRating from "./StarsRating"
 
 const Film = (props) => {
 
     const [rating, setRating] = React.useState(props.rating)
 
+    function changeRating(rate){
+        setRating(rate)
+        props.updateRating(rate)
+    }
+    
+
     console.log(props.title, props.rating)
-    const handleRating = (rate) =>{
-        return(
-            setRating(rate)
-        )
-    } 
 
     return(
         <div className="film">
             <img src={`/images/${props.image}`} alt = "Something went wrong"/>
             <span>
                 <h1>{props.id} {props.title}</h1>
-                <Stars onClick={handleRating} ratingValue={rating}/> 
+                <StarsRating ratingValue={rating} changeRating={(rate) => changeRating(rate)}/> 
             </span>
             <button onClick={()=>props.removeFilm(props.id)}>REMOVE</button>
         </div>
