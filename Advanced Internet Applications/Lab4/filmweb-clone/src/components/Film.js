@@ -20,6 +20,7 @@ const Film = (props) => {
                 <h1>{props.id} {props.title}</h1>
                 <Stars onClick={handleRating} ratingValue={rating}/> 
             </span>
+            <button onClick={()=>props.removeFilm(props.id)}>REMOVE</button>
         </div>
     )
 }

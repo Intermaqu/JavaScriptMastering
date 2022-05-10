@@ -11,3 +11,7 @@
     margin-right: 50px;
     width: 150px;
 }
+
+.film > span {
+    margin-right: auto;
+}
