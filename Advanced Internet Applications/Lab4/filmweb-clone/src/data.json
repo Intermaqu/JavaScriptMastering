@@ -4,48 +4,56 @@
             "id":1,
             "title":"Harry Potter i Kamień Filozoficzny",
             "image": "hp_kf.jpg",
+            "description": "Weird stone",
             "rating": 4
         },
         {
             "id":2,
             "title":"Harry Potter i Komnata Tajemnic",
             "image": "hp_kt.jpg",
+            "description": "Weird toilet",
             "rating": 4
         },
         {
             "id":3,
             "title":"Harry Potter i Więzień Azkabanu",
             "image": "hp_wa.jpg",
+            "description": "Weird rat",
             "rating": 3
         },
         {
             "id":4,
             "title":"Harry Potter i Czara Ognia",
             "image": "hp_co.jpg",
+            "description": "Weird goblet",
             "rating": 4
         },
         {
             "id":5,
             "title":"Harry Potter i Zakon Feniksa",
             "image": "hp_zf.jpg",
+            "description": "Weird room",
             "rating": 5
         },
         {
             "id":6,
             "title":"Harry Potter i Książe Półkrwi",
             "image": "hp_kp.jpg",
+            "description": "Weird book",
             "rating": 4
         },
         {
             "id":7,
             "title":"Harry Potter i Insygnia Śmierci cz. 1",
             "image": "hp_is1.jpg",
+            "description": "Weird adventure",
             "rating": 4
         },
         {
             "id":8,
             "title":"Harry Potter i Insygnia Śmierci cz. 2",
             "image": "hp_is2.jpg",
+            "description": "Weird battle",
             "rating": 4
         }
     ]

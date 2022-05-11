@@ -34,6 +34,7 @@ function App() {
         "id": nextId,
         "title": name,
         "image": "hp_kf.jpg",
+        "description": "Weird Film???",
         rating: 1
       }]
     })
@@ -96,10 +97,12 @@ function App() {
   
   return (
     <>
-      <input type="text" placeholder="Search..." onChange={e=>{setSearchFilm(e.target.value)}}/>
-      <button onClick={addFilm}>Add Film</button>
-      <button onClick={sortAsc}>Sort ASC by rating</button>
-      <button onClick={sortDesc}>Sort DESC by rating</button>
+      <nav>
+        <input type="text" placeholder="Search..." onChange={e=>{setSearchFilm(e.target.value)}}/>
+        <button onClick={addFilm}>Add Film</button>
+        <button onClick={sortAsc}>Sort ASC by rating</button>
+        <button onClick={sortDesc}>Sort DESC by rating</button>
+      </nav>
       {makeComponent(filmsList.filter(film =>{
         if(searchFilm === ""){
           return film

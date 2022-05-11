@@ -19,6 +19,7 @@ const Film = (props) => {
             <img src={`/images/${props.image}`} alt = "Something went wrong"/>
             <span>
                 <h1>{props.id} {props.title}</h1>
+                <h3>{props.description}</h3>
                 <StarsRating ratingValue={rating} changeRating={(rate) => changeRating(rate)}/> 
             </span>
             <button onClick={()=>props.removeFilm(props.id)}>REMOVE</button>
