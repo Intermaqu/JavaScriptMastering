@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import films from "./data.json"
 import Film from "./components/Film"
-
+import "./styles/button.css"
 
 function App() {
   
   const [filmsList, setFilmsList] = useState(films.films)
   const [searchFilm, setSearchFilm] = useState('')
+  const [sorting, setSorting] = useState()
 
   function removeFilm(id){
     setFilmsList(prevFilms => {
@@ -22,11 +23,18 @@ function App() {
 
   function addFilm(){
     setFilmsList(prevFilms => {
+      let nextId=0
+      for(let i = 0; i< prevFilms.length; i++){
+        if(prevFilms[i].id > nextId) nextId = prevFilms[i].id
+      }
+      nextId += 1
+      
+      const name = window.prompt("What is the title of the film?")
       return [...prevFilms, {
-        "id":prevFilms.length+1,
-        "title": "Added",
+        "id": nextId,
+        "title": name,
         "image": "hp_kf.jpg",
-        rating: 4
+        rating: 1
       }]
     })
   }
@@ -35,18 +43,31 @@ function App() {
     setFilmsList(prevFilms =>{
       const newFilms = [...prevFilms]
       newFilms.sort((a,b) => (a.rating > b.rating) ? 1 : -1)
-      console.table(newFilms)
+      // console.table(newFilms)
       return newFilms
     })
+    
+    setSorting("Asc")
   }
 
   function sortDesc(){
     setFilmsList(prevFilms =>{
       const newFilms = [...prevFilms]
       newFilms.sort((a,b) => (a.rating > b.rating) ? -1 : 1)
-      console.table(newFilms)
+      // console.table(newFilms)
       return newFilms
     })
+    setSorting("Desc")
+  }
+
+
+  function sortFilms(){
+    if(sorting === null)
+      return
+    if(sorting === "Asc")
+      sortAsc()
+    if(sorting === "Desc")
+      sortDesc()
   }
 
   function updateRating(id, rate){
@@ -55,6 +76,7 @@ function App() {
         return film.id === id ? {...film, rating: rate} : film
       })
     })
+    sortFilms()
   }
 
   function makeComponent(array){
