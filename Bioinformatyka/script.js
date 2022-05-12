@@ -1,13 +1,9 @@
+import jsonData from "./x.json" assert {type: 'json'}
 
-import data from "./9.200-40.json"
+const data = jsonData.data;
+const CUT_OFF = 1;
 
-console.log(data.data)
 
-const A = "ACTGCTGA"
-const B = "CTGAGCTA"
-const Data = [A,B]
-
-let Matrix = generate2DArray(Data.length)
 
 function generate2DArray(size){
     let matrix = new Array(size)
@@ -17,13 +13,15 @@ function generate2DArray(size){
     return matrix
 }
 
-function unMatch(a,b){
+function match(a,b){
     let len = 0
-    for(let i = 1; i < b.length; i++){
-        if(a.slice(a.length-i) === b.slice(0,i))
+    for(let i = CUT_OFF; i < b.length; i++){
+        // console.log(a.slice(0,i), b.slice(b.length-i))
+        if(a.slice(0,i) === b.slice(b.length-i)){
             len = i
+        }    
     }
-    return a.length - len
+    return len
 }
 
 function fillMatrix(data){
@@ -32,14 +30,15 @@ function fillMatrix(data){
             if(i === j){
                 Matrix[i][j] = "X"
             } else {
-                Matrix[i][j] = unMatch(data[i], data[j])
+                Matrix[i][j] = match(data[i], data[j])
             }
         }
     }
 }    
 
 
-console.log(unMatch(B,A))
-fillMatrix([A,B])
+// console.log(match('AAGGCCGGCT','ACACCCGCCG'))
+let Matrix = generate2DArray(data.length)
+fillMatrix(data)
 console.table(Matrix)
 
