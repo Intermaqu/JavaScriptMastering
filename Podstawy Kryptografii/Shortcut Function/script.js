@@ -1,5 +1,5 @@
-const text = "ABCD"
-const text2 = "aBCD"
+const text = "AbcD"
+const text2 = "aBCd"
 let startTime, endTime, duration;
 
 function start(){
@@ -22,7 +22,7 @@ function countOnes(binStr){
 function xorStrings(str1, str2){
     let result = []
     for(let i=0;i<str1.length;i++){
-        result[i] = parseInt(str1[i]) ^ parseInt(str2[i])
+        result[i] = parseInt(str1[i]) ^  parseInt(str2[i])
     }
     return result.join('')
 }
@@ -53,9 +53,14 @@ console.log(sha3)
 const md5Text1 = CryptoJS.MD5(text).toString()
 const md5Text2 = CryptoJS.MD5(text2).toString()
 
+
 const md5Text1bin = hexToBin(md5Text1)
 const md5Text2bin = hexToBin(md5Text2)
 
+
+
+console.log(md5Text1)
+console.log(md5Text2)
 console.log(md5Text1bin)
 console.log(md5Text2bin)
 
