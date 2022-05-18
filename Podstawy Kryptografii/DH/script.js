@@ -76,7 +76,7 @@ function findPrimitiveRoot(number){
 
 
 
-const N = findHugePrime(12000)
+const N = findHugePrime(10000)
 const G = findPrimitiveRoot(N)
 const x = parseInt(N / 2)
 const X = powerAndModulo(G, x, N)
