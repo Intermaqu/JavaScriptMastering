@@ -12,6 +12,7 @@
     "babel-preset-react": "*"
   },
   "scripts": {
+    "start": "node index.pack.js",
     "build": "webpack",
     "watch": "webpack -w"
   }
