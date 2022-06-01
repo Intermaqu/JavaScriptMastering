@@ -2,6 +2,7 @@ import React, {useState} from "react"
 import StartQuiz from "./components/StartQuiz"
 import QuizQuestion from "./components/QuizQuestion"
 import {nanoid} from 'nanoid'
+import "./style.css"
 
 
 function App() {
@@ -74,11 +75,13 @@ function App() {
     setStart(true)
   }
   return (
-    <div className="App">
+    <div className="app">
+      <img src="./images/dark_blob.svg" className="dark_blob"/>
+      <img src="./images/light_blob.svg" className="light_blob"/>
       {
         !start ? 
         <StartQuiz startQuiz={handleStartQuiz}/> :
-        <div>
+        <div className="main">
          { questions.map(question => {
           return(
             <QuizQuestion
@@ -93,14 +96,15 @@ function App() {
               finished = {question.finished}
             />
           )
-        })}
-        {
+          })}
+          {
           !quizFinished ?
-          <button onClick={checkAnswers}>Check Answers</button> :
-          <button onClick={handleNewQuiz}>Roll New Questions</button>
-        }
+          <button onClick={checkAnswers} className="dark_button dark_button_check">Check Answers</button> :
+          <button onClick={handleNewQuiz} className="dark_button dark_button_check ">Roll New Questions</button>
+          }
         </div>
       }
+      
     </div>
   );
 }
