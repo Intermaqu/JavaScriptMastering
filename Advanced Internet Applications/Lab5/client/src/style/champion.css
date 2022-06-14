@@ -1,0 +1,42 @@
+h1,h2,h3,h4,p{
+    margin: 0;
+}
+
+.champion{
+    width: 200px;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    background: #f2f2f2;
+    gap: 10px;
+    text-align: center;
+    border-radius: 16px;
+}
+
+.champion > img{
+    border-radius: 16px;
+}
+
+.champion > span {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.champion--price{
+    color:#2896CC;
+}
+
+.champion > button {
+    padding: 10px;
+    border-radius: 16px;
+    border: none;
+    background: linear-gradient(90deg, #44A3D3 0%, #44A3D3 100%);
+    font-weight: 700;
+    font-size: 16px;
+    color: white;
+    outline:none;
+}
+
