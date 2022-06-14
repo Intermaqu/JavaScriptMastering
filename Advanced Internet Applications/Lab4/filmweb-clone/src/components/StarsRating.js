@@ -3,10 +3,11 @@ import Star from "./Star"
 import "../styles/star.css"
 
 const StarRating = (props) => {
+    const NumberOfStars = 5
 
     return(
         <div className="star-rating">
-            {[...Array(5)].map((item, index) => {
+            {[...Array(NumberOfStars)].map((item, index) => {
                 const ratingValue = index + 1
                 return(
                     <label key={index}>
