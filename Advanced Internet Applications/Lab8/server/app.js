@@ -13,6 +13,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 let users = [];
 let messages = [];
+let usersAndId = {};
 
 const http = require("http").Server(app);
 const io = require("socket.io")(http, {
@@ -24,7 +25,11 @@ const io = require("socket.io")(http, {
 
 io.on("connection", (socket) => {
   console.log("Connected");
+  // console.log(socket.id)
   socket.on("nickname", (nick) => {
+    usersAndId[socket.id] = nick
+    console.log(usersAndId)
+
     users.push(nick);
     messages.push({
       nick: nick,
@@ -54,7 +59,17 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnect", (reason) => {
-    console.log(reason);
+    console.log(usersAndId);
+    let nick = usersAndId[socket.id];
+    users.splice(users.indexOf(nick), 1);
+    messages.push({
+      nick: nick,
+      message: `${nick} has left chat`,
+    });
+    socket.broadcast.emit("usersAndMessages", {
+      users: users,
+      messages: messages,
+    });
   });
 });
 
