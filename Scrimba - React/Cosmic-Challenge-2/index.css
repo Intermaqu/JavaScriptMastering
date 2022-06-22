@@ -1,0 +1,29 @@
+:root {
+    --pink: #fbe6f4ff;
+    --yellow: #fffad1ff;
+    --green: #e1f0e5ff;
+    --blue: #b5caf9ff;
+    --orange: #f5e6db;
+    --raisin: #2b283aff;
+    --grey: #d4d4d4;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#galaxy{
+    display: flex;
+    flex-wrap: wrap;  
+}
+
+body {
+    background-color: var(--raisin);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 2em;
+}
