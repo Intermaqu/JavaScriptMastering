@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import "../style/calculator.css";
 
 const Calc = () => {
-  const [current, setCurrent] = React.useState("21");
+  const [current, setCurrent] = React.useState("");
   const [memory, setMemory] = React.useState("");
   const [operator, setOperator] = React.useState("");
-
+  const [update, setUpdate] = React.useState(1);
 
   const clearCurrent = () => {
     setCurrent("")
@@ -42,7 +42,12 @@ const Calc = () => {
             setOperator(e.target.innerHTML)
     }
     if(current !== "")
+      if(memory === ""){
         moveValueToMemory()
+      } else {
+        solveWithoutClearingOperator()
+        setUpdate(prev => prev + 1)
+      }
   }
 
   const pushNumber = (e) => {
@@ -59,6 +64,15 @@ const Calc = () => {
     clearMemory();
     clearOperator();
   }
+
+  const solveWithoutClearingOperator = () => {
+    setCurrent(eval(memory+operator+current).toString().slice(0,8));
+    clearMemory();
+  }
+
+  React.useEffect(() => {
+    moveValueToMemory();
+  }, [update])
 
   return (
     <div className="calculator">
