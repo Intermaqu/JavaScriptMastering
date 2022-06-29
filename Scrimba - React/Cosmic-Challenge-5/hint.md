@@ -1,0 +1,4 @@
+Check out:
+
+- pop()
+- unshift()
