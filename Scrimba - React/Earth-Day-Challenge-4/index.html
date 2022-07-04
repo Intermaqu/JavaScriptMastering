@@ -1,0 +1,43 @@
+<html>
+    <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <h1>My climate pledge 🌳</h1>
+        <form id="form">
+            <label for="name">Name:</label>
+            <input id="name" type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input id="email" type="email" id="email" name="email" required>
+                <div id="checkboxes-container" class="checkboxes-container">
+                    <p>I pledge to...</p>
+                    <div>
+                        <input type="checkbox" class="checkbox" id="plant-tree" name="plant-tree">
+                        <label for="plant-tree">Plant a tree</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="checkbox" id="shop-locally" name="shop-locally">
+                        <label for="shop-locally">Shop locally</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="checkbox" id="recycle" name="recycle">
+                        <label for="recycle">Recycle more</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="checkbox" id="reduce-driving" name="reduce-driving">
+                        <label for="reduce-driving">Reduce car journeys</label>
+                    </div>
+                    <div>
+                        <input type="checkbox"  class="checkbox" id="reduce-flying" name="reduce-flying">
+                        <label for="reduce-flying">Reduce flying</label>                    
+                    </div>
+                </div>
+            <input id="form-submit" type="submit" value="Sign the pledge" disabled></input>
+         </form>
+        <script src="index.pack.js"></script>
+    </body>
+</html>
