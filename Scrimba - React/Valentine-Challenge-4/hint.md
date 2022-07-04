@@ -1,0 +1,2 @@
+- Use a JavaScript set.
+- Render the emojis with a for loop.
