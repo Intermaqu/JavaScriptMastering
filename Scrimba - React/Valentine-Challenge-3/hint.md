@@ -1,0 +1,3 @@
+    - Grab the message with .textContent
+    - Separate it into 'firstChar' and 'remainder'
+    - Use toUpCase and toLowerCase
