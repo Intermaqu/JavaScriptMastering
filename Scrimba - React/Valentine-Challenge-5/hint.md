@@ -1,0 +1,2 @@
+- Make sure you are only retrieving one color at a time from the API: https://apis.scrimba.com/hexcolors/?count=1
+- Update the background color by using setProperty.
