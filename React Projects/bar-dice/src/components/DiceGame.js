@@ -3,10 +3,13 @@ import { nanoid } from "nanoid";
 import Die from "./Die";
 
 const DiceGame = () => {
-  const [dice, setDice] = React.useState([]);
-  const [startGame, setStartGame] = React.useState(false);
-  const [numberOfRolls, setNumberOfRolls] = React.useState(3);
-  const [score, setScore] = React.useState(0);
+  const [dice, setDice] =  useState([]);
+  const [startGame, setStartGame] =  useState(false);
+  const [numberOfRolls, setNumberOfRolls] =  useState(3);
+  const [score, setScore] =  useState(0);
+  const [gameFinished, setGameFinished] =  useState(false);
+  const [round, setRound] = useState(-2)
+  const [historyOfMatches, setHistoryOfMatches] = useState([])
 
   const handleStartGame = () => {
     setStartGame(true);
@@ -28,8 +31,11 @@ const DiceGame = () => {
         key: nano,
       });
     }
-    setDice(init);
+    setDice(init)
     setScore(sumScore())
+    setGameFinished(false)
+    setNumberOfRolls(3)
+    setRound(round => round += 1)
   };
 
   const holdDie = (id) => {
@@ -43,14 +49,13 @@ const DiceGame = () => {
   const rollDice = () => {
     setDice(
       dice.map((die) => {
-        return die.isHeld === false ? { ...die, value: randomNumber() } : die;
+        return die.isHeld === false ? { ...die, value: randomNumber() } : {...die};
       })
     );
     setNumberOfRolls((prev) => prev - 1);
-    setDice(sumScore)
+    setScore(sumScore)
   };
 
-  // Array.Prototype.reduce
   const sumScore = () => {
     let sum = 0
     for (let item of dice) {
@@ -59,15 +64,31 @@ const DiceGame = () => {
     return sum
   };
 
-  //   React.useEffect(() => {
-  //     if(numberOfRolls === 0){
+  useEffect(() => {
+    if(round > 0){
+      const newHist = [...historyOfMatches, {"round": round, "score": score}]
+      newHist.sort((a,b) => {
+        return a.score <= b.score ? 1 : -1
+      })
+      setHistoryOfMatches(newHist)
+    }
+  }, [round])
 
-  //     }
-  //   }, [numberOfRolls])
+  useEffect(() => {
+    console.log(historyOfMatches)
+  }, [historyOfMatches])
 
-  React.useEffect(() => {
+  useEffect(() => {
+    numberOfRolls === 0 && setGameFinished(true)
+  }, [numberOfRolls])
+
+  useEffect(() => {
     initializeDice();
   }, []);
+ 
+  useEffect(() => {
+    setScore(sumScore)
+  }, [gameFinished])
 
   return (
     <div className="dice-game">
@@ -84,9 +105,23 @@ const DiceGame = () => {
               />
             );
           })}
-          <button onClick={rollDice}>ROLL</button>
+          <button onClick={gameFinished ? initializeDice : rollDice}>{gameFinished ? "RESTART" : "ROLL"}</button>
+          <h1>Game number: {round}</h1>
           <h1>Number Of Remaining Rolls: {numberOfRolls}</h1>
           <h1>Number Of Points: {score}</h1>
+          <table>
+            <thead>
+              <tr><td>ROUND</td><td>SCORE</td></tr>
+            </thead>
+            <tbody>
+              {historyOfMatches.map((match) => {
+                return <tr key={match.round}>
+                  <td>{match.round}</td>
+                  <td>{match.score}</td>
+                </tr>
+              })}
+            </tbody>
+          </table>
         </div>
       ) : (
         <div className="start-dice-game">
