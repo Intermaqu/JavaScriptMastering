@@ -1,0 +1,29 @@
+.bar{
+    width: 40px;
+    text-align: center;
+    position: relative;
+    color: var(--medium-brown)
+}
+
+.bar--colored{
+    margin-bottom: 5px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.bar--colored--hover{
+    position: absolute;
+    background: var(--dark-brown);
+    top: -30px;
+    left: -5px;
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    visibility: hidden;
+}
+
+.bar--colored:hover .bar--colored--hover{
+    visibility: visible;
+}

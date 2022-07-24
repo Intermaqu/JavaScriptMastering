@@ -1,0 +1,29 @@
+.navbar{
+    width: 100%;
+    background: var(--soft-red);
+    display: flex;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.navbar--span{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: var(--very-pale-orange);
+    margin-right: auto;
+}
+
+.navbar--span > p {
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.navbar--span > h1{
+    font-size: 24px;
+}
+
+.navbar > img{
+    width: 50px;
+}
+

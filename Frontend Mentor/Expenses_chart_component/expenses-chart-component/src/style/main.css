@@ -1,0 +1,40 @@
+.main{
+    width: 100%;
+    background: var(--very-pale-orange);
+    margin-top: 20px;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.main > h1{
+    font-size: 24px;
+}
+
+.main--bars{
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    height: 150px;
+    border-bottom: 1px solid var(--cream);
+}
+
+.main--footer{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main--footer > span  > p {
+    font-weight: 400;
+    font-size: 12px;
+    color: var(--medium-brown)
+}
+
+.main--footer--right{
+    text-align: right;    
+    display: inline-flex;
+    flex-direction: column;
+    align-self: flex-end;
+}
+    
