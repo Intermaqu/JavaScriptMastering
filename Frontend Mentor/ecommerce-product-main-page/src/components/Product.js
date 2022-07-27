@@ -1,10 +1,16 @@
 import React, { useState } from "react"
 import "../styles/product.css"
+import ProductInspectPhotos from "./ProductInspectPhotos"
 
 const Product = (props) => {
 
     // const [choosenImageURL, setChoosenImageURL] = useState(props.images[0])
     const [quantity, setQuantity] = useState(0); 
+    const [isGaleryShown, setIsGaleryShown] = useState(false);
+
+    const handleGalery = () => {
+        setIsGaleryShown(prev => !prev)
+    }
 
     const increment = () => {
         setQuantity(prev => prev+1)
@@ -17,11 +23,11 @@ const Product = (props) => {
     return (
         <div className="product">
             <div className="product--galery">
-                <img src="images/image-product-1.jpg" className="product--galery--main-photo border-radius"/>
-                <img src="images/image-product-1.jpg" className="product--galery--small-image border-radius" id="photo1"/>
-                <img src="images/image-product-1.jpg" className="product--galery--small-image border-radius" id="photo2"/>
-                <img src="images/image-product-1.jpg" className="product--galery--small-image border-radius" id="photo3"/>
-                <img src="images/image-product-1.jpg" className="product--galery--small-image border-radius" id="photo4"/>
+                <img src="images/image-product-1.jpg" className="product--galery--main-photo border-radius" onClick={handleGalery}/>
+                <img src="images/image-product-1.jpg" className="galery--small-image border-radius" id="photo1"/>
+                <img src="images/image-product-1.jpg" className="galery--small-image border-radius" id="photo2"/>
+                <img src="images/image-product-1.jpg" className="galery--small-image border-radius" id="photo3"/>
+                <img src="images/image-product-1.jpg" className="galery--small-image border-radius" id="photo4"/>
             </div>
             <div className="product--informations">
                 <p className="product--informations--brand">sneaker company</p>
@@ -47,6 +53,7 @@ const Product = (props) => {
                     </button>
                 </div>
             </div>
+            {isGaleryShown && <ProductInspectPhotos closeGalery={handleGalery}/>}
         </div>
         
     )

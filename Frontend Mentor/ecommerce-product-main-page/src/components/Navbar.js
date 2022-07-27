@@ -9,8 +9,6 @@ const Navbar = (props) => {
         setCartShown(prevCartShown => !prevCartShown)
     }
 
-    useEffect(()=>{console.log(cartShown)},[cartShown])
-
     return (
         <nav className="navbar">
             <ul className="navbar--list">

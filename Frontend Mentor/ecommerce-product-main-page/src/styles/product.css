@@ -2,6 +2,7 @@
     margin-top: 20px;
     display: flex;
     gap: 2rem;
+    position: relative;
 }
 
 .product--galery{
@@ -19,13 +20,13 @@
     grid-column: 1 / 5;
 }
 
-.product--galery--small-image{
+.galery--small-image{
     width: 100%;
     grid-row: 2;
     border: 2px solid transparent;
 }
 
-.product--galery--small-image:hover{
+.galery--small-image:hover{
     opacity: 60%;
     transition: 0.5s;
 }
@@ -116,3 +117,92 @@
     fill: white;
     margin-right: 10px;
 }
+
+.product-inspect-photos{
+    position: absolute;
+    width: 500px;
+    height: fit-content;
+    border: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;  
+}
+
+.product-inspect-photos--close{
+    width: 20px;
+    height: 20px;
+    margin-left: calc(100% - 20px);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 100;
+}
+
+.product-inspect-photos--close:hover{
+    color: white;
+    background-color: red;
+}
+
+.product-inspect-photos--main{
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 100;
+}
+
+.navigate-button{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--light-grayish-blue);
+    position: absolute;
+    border: none;
+    background-repeat: no-repeat;
+    background-position: 50%;   
+    z-index: 102;
+}
+
+.navigate-previous{
+    left: -25px;
+    background-image: url("../../public/images/icon-previous.svg");
+}
+
+.navigate-next{
+    background-image: url("../../public/images/icon-next.svg");
+    right: -25px;
+}
+
+.navigate-next:hover{
+    background-image: url("../../public/images/icon-next-orange.svg");;
+}
+
+.navigate-previous:hover{
+    background-image: url("../../public/images/icon-previous-orange.svg");;
+}
+
+.product-inspect-photos--main-photo{
+    width: 100%;
+    z-index: 99;
+}
+
+.product-inspect-photos--galery{
+    position: relative;
+    display: flex;
+    width: 100%;
+    z-index: 1000;
+    gap:calc(100px / 3);
+    margin-top:calc(100px / 3);
+}
+
+.inspect-galery--small-image{
+    width: 100px;
+}
+
+.shadow{
+    position: absolute;
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+    top: 50%;
+    left: 50%;
+    z-index: 10;
+}
+
