@@ -25,9 +25,9 @@ const Product = (props) => {
             <div className="product--galery">
                 <img src="images/image-product-1.jpg" className="product--galery--main-photo border-radius" onClick={handleGalery}/>
                 <img src="images/image-product-1.jpg" className="galery--small-image border-radius" id="photo1"/>
-                <img src="images/image-product-1.jpg" className="galery--small-image border-radius" id="photo2"/>
-                <img src="images/image-product-1.jpg" className="galery--small-image border-radius" id="photo3"/>
-                <img src="images/image-product-1.jpg" className="galery--small-image border-radius" id="photo4"/>
+                <img src="images/image-product-2.jpg" className="galery--small-image border-radius" id="photo2"/>
+                <img src="images/image-product-3.jpg" className="galery--small-image border-radius" id="photo3"/>
+                <img src="images/image-product-4.jpg" className="galery--small-image border-radius" id="photo4"/>
             </div>
             <div className="product--informations">
                 <p className="product--informations--brand">sneaker company</p>

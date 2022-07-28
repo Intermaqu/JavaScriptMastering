@@ -136,11 +136,16 @@
     margin-bottom: 20px;
     position: relative;
     z-index: 100;
+    background-image: url("../../public/images/icon-close.svg");
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 100%;
+    background-color: inherit;
+    border: 0;
 }
 
 .product-inspect-photos--close:hover{
-    color: white;
-    background-color: red;
+    background-image: url("../../public/images/icon-close-orange.svg");
 }
 
 .product-inspect-photos--main{
@@ -196,6 +201,12 @@
 
 .inspect-galery--small-image{
     width: 100px;
+    border: 2px solid transparent;
+}
+
+.inspect-galery--small-image:hover{
+    filter: contrast(0.4);
+    border: 2px solid var(--orange);
 }
 
 .shadow{
