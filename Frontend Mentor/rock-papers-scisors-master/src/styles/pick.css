@@ -1,0 +1,47 @@
+
+
+.small-pick{
+    width: 150px;
+    height:150px;
+}
+
+.pick-container{
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.pick-image-container{
+    width: 75%;
+    height: 75%;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:  inset 0px 5px 0px lightgray;
+}
+
+.rock-container{
+    background: var(--rock-gradient);
+    box-shadow: 0 7px 0  hsl(349, 70%, 40%);
+}
+
+.paper-container{
+    background: var(--paper-gradient);
+    box-shadow: 0 7px 0  hsl(234, 70%, 40%);
+
+}
+
+.scissors-container{
+    background: var(--scissors-gradient);
+    box-shadow: 0 10px 0  hsl(38, 99%, 37%);
+}
+
+.two-column-pick{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}

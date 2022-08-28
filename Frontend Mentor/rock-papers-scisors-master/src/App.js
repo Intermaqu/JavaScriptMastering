@@ -1,40 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import ChoosePick from "./components/ChoosePick";
+import Header from "./components/Header";
 import "./styles/app.css";
 import "./styles/general.css";
 
 function App() {
   const [currentScore, setCurrentScore] = useState(0);
+  const [pick, setPick] = useState();
+  const [isPicked, setIsPicked] = useState(false);
+
+  const handlePick = (myPick) => {
+    setIsPicked(true);
+    setPick(myPick);
+  };
+
+  const callValue = (val) => {
+    console.log(val)
+  }
+
+  const handleResult = (result) => {
+    // if result === true player won
+    // increment his score
+    // otherwise decrement his score
+    result
+      ? setCurrentScore((prev) => prev + 1)
+      : setCurrentScore((prev) => prev - 1);
+  };
+
+  useEffect(() => {
+    console.log(pick);
+  }, [pick]);
 
   return (
     <div className="app">
-      <div className="app--score">
-        <div>
-          <p className="app--score--pick">Rock</p>
-          <p className="app--score--pick">Paper</p>
-          <p className="app--score--pick">Scissors</p>
-        </div>
-        <div className="app--score--score">
-          <p>score</p>
-          <h1>{currentScore}</h1>
-        </div>
-      </div>
-      <div className="app--picks">
-        <div className="pick-container paper-container">
-          <div className="pick-image-container">
-            <img src="./images/icon-paper.svg" className="paper-icon" />
-          </div>
-        </div>
-        <div className="pick-container scissors-container">
-          <div className="pick-image-container">
-            <img src="./images/icon-scissors.svg" className="scissors-icon" />
-          </div>
-        </div>
-        <div className="pick-container rock-container">
-          <div className="pick-image-container">
-            <img src="./images/icon-rock.svg" className="rock-icon" />
-          </div>
-        </div>
-      </div>
+      <Header currentScore={currentScore} />
+      <ChoosePick handlePick = {(val)=>handlePick(val)}/>
       <div className="app--rules-container">
         <p>Rules</p>
       </div>

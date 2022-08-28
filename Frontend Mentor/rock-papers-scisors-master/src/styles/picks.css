@@ -1,0 +1,15 @@
+
+.picks{
+    border: 1px solid green;
+    display: grid;
+    grid-template-columns: 150px 150px;
+    grid-template-rows: 150px 150px;
+    grid-column-gap: 70px;
+    grid-row-gap: 50px;
+    background-image:url("../../public/images/bg-triangle.svg");
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: 65px;
+    background-size: 70%;
+    justify-items: center;
+}
