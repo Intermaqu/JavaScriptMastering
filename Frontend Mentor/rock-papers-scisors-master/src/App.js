@@ -6,32 +6,31 @@ import "./styles/app.css";
 import "./styles/general.css";
 
 function App() {
-  const [currentScore, setCurrentScore] = useState(0)
-  const [pick, setPick] = useState()
-  const [isPicked, setIsPicked] = useState(false)
-  const [generated, setGenerated] = useState(undefined)
-  const [isFinished, setIsFinished] = useState(false)
-  const [result, setResult] = useState("waiting")
+  const [currentScore, setCurrentScore] = useState(0);
+  const [pick, setPick] = useState();
+  const [isPicked, setIsPicked] = useState(false);
+  const [generated, setGenerated] = useState(undefined);
+  const [result, setResult] = useState("waiting");
 
   const handlePick = (myPick) => {
-    setIsPicked(true)
-    setPick(myPick)
+    setIsPicked(true);
+    setPick(myPick);
   };
 
   const handleResult = () => {
-    if (!isFinished) return "waiting";
-    console.log("handleResult:", pick, generated)
-    const winning = {
-      "scissors": "paper",
-      "rock": "scissors",
-      "paper": "rock"
+    if(pick && generated){
+      console.log("handleResult:", pick, generated);
+      const winning = {
+        scissors: "paper",
+        rock: "scissors",
+        paper: "rock",
+      };
+      
+      if (pick === generated) return "draw";
+  
+      if (winning[pick] === generated) return "won";
+      return "lose";
     }
-    if (pick === generated)
-      return "draw"
-    
-    if(winning[pick] === generated)
-      return "won"
-    return "lose"
   };
 
   const generateRandomPick = () => {
@@ -41,17 +40,24 @@ function App() {
       generate = picks[Math.floor(Math.random() * picks.length)];
     }
     setGenerated(generate);
-    setIsFinished(true)
   };
-  
+
+// ADD handleFinishGame
+// ADD gameResult
+// ADD timeout fo finish game
+
+  useEffect(() => {
+    generateRandomPick();
+  }, [isPicked]);
+
+  useEffect(() => {
+    setResult(handleResult())   
+  }, [generated]);
 
   useEffect(()=>{
-    generateRandomPick()
-  },[isPicked])
-
-  useEffect(()=>{
-    console.log(handleResult())
-  },[isFinished])
+    if(generated && pick)
+      console.log(result)
+  }, [result])
 
   return (
     <div className="app">
@@ -59,7 +65,7 @@ function App() {
       {!isPicked ? (
         <ChoosePick handlePick={(val) => handlePick(val)} />
       ) : (
-        <Skirmish pick={pick} generated={generated} />
+        <Skirmish pick={pick} generated={generated} isFinished={true} />
       )}
       <div className="app--rules-container">
         <p>Rules</p>

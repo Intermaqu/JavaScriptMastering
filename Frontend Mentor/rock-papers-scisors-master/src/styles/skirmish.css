@@ -3,5 +3,6 @@
     justify-content: center;
     border: 1px solid red;
     width: 800px;
+    height: 352px; /* + border*/
     gap: 50px;
 }
