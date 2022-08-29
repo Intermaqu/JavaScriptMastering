@@ -5,6 +5,11 @@
     height:150px;
 }
 
+.big-pick{
+    width: 250px;
+    height: 250px;
+}
+
 .pick-container{
     background: #fff;
     border-radius: 50%;
@@ -23,6 +28,10 @@
     align-items: center;
     justify-content: center;
     box-shadow:  inset 0px 5px 0px lightgray;
+}
+
+.pick-image-container > img{
+    width: 45%;
 }
 
 .rock-container{

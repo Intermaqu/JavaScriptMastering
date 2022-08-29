@@ -1,0 +1,7 @@
+.skirmish{
+    display: flex;
+    justify-content: center;
+    border: 1px solid red;
+    width: 800px;
+    gap: 50px;
+}

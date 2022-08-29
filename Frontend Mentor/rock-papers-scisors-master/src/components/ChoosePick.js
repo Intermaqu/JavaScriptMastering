@@ -8,16 +8,16 @@ const ChoosePick = (props) => {
     <div className="picks">
       <Pick
         size="small-pick"
-        value="paper"
+        pick="paper"
         handlePick={(val) => props.handlePick(val)}
         />
       <Pick
-        value="scissors"
+        pick="scissors"
         size="small-pick"
         handlePick={(val) => props.handlePick(val)}
         />
       <Pick
-        value="rock"
+        pick="rock"
         size="small-pick"
         additionalClass="two-column-pick"
         handlePick={(val) => props.handlePick(val)}
