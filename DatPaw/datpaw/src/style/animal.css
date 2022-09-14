@@ -1,0 +1,35 @@
+.animal{
+    width: 250px;
+    height: 400px;
+    border-radius: 10px;
+    display: flex;
+    padding: 20px;
+    background-color: rgb(111, 173, 224);
+    border: 2px solid #d2d2d2;
+    flex-wrap: wrap;
+}
+
+.animal--image{
+    width: 250px;
+    height: 250px;
+}
+
+.animal--info{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 30px;
+    border: 1px solid black;
+}
+
+.animal--name{
+    font-size: 24px;
+    font-weight: 700;
+    align-items: center;
+}
+
+.animal--gender{
+    height: 15px;
+    margin-left: 5px;
+    margin-right: auto;
+}
