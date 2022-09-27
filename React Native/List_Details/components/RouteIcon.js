@@ -6,7 +6,7 @@ import rusalka from "../images/rusalka.jpg";
 import wartostrada from "../images/wartostrada.jpg";
 import zoo from "../images/zoo.jpg";
 
-const RouteIcon = ({ name, path, navigation, distance, description }) => {
+const RouteIcon = ({ name, path, navigation, distance, description, id }) => {
   return (
     <Pressable
       style={styles.container}
@@ -17,6 +17,7 @@ const RouteIcon = ({ name, path, navigation, distance, description }) => {
           path,
           distance,
           description,
+          id,
         });
       }}
     >

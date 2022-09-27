@@ -103,6 +103,7 @@ const HomeScreen = ({ navigation }) => {
                 navigation={navigation}
                 description={description}
                 distance={distance}
+                id={id}
               />
             </View>
           ))}
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   firstTitle: {
-    marginTop: 100,
+    marginTop: 50,
   },
   title: {
     fontSize: 36,
