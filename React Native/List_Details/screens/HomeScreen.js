@@ -92,6 +92,7 @@ const HomeScreen = ({ navigation }) => {
     <ScrollView style={styles.container}>
       <Text style={[styles.title, styles.firstTitle]}>Jogging</Text>
       <Text style={styles.title}>Training</Text>
+      <Text style={styles.title}>Tracking</Text>
       <Text style={styles.title}>App</Text>
       <View style={styles.grid}>
         {routes &&
@@ -126,7 +127,7 @@ const styles = StyleSheet.create({
     fontSize: 36,
     fontWeight: "bold",
     textAlign: "center",
-    color: "#c29",
+    color: "#B266FF",
   },
   grid: {
     flex: 1,

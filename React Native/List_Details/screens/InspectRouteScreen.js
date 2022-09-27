@@ -7,9 +7,11 @@ import {
   ScrollView,
   LogBox,
   ToastAndroid,
+  TouchableOpacity,
 } from "react-native";
 import CustomButton from "../components/CustomButton";
 import * as SQLite from "expo-sqlite";
+import stoper from "../images/stoper.png";
 
 LogBox.ignoreAllLogs();
 
@@ -25,6 +27,7 @@ const InspectRouteScreen = ({
   const [isStart, setIsStart] = useState(false);
   const [bestTime, setBestTime] = useState({});
   const [lastTime, setLastTime] = useState({});
+  const [toggleStoper, setToggleStoper] = useState(true);
 
   let timer;
 
@@ -87,7 +90,7 @@ const InspectRouteScreen = ({
           setBestTime(_array[0]);
         },
         () => {
-          console.log("error");
+          console.log("Best Time Error");
         }
       )
     );
@@ -102,16 +105,51 @@ const InspectRouteScreen = ({
           setLastTime(_array[0]);
         },
         () => {
-          console.log("error");
+          console.log("Last Time Error");
         }
       )
     );
   };
 
+  const getAllData = () => {
+    db.transaction((tx) =>
+      tx.executeSql(
+        "SELECT * FROM timers",
+        null,
+        (txtObj, { rows: { _array } }) => {
+          console.log(_array);
+        },
+        () => {
+          console.log("Get All error");
+        }
+      )
+    );
+  };
+
+  const clearData = () => {
+    db.transaction((tx) =>
+      tx.executeSql(
+        "DELETE FROM timers",
+        null,
+        (txtObj, { rows: { _array } }) => {
+          console.log("DELETE ALL SUCCESS");
+        },
+        () => {
+          console.log("DELETE DATA ERROR");
+        }
+      )
+    );
+  };
   // 23 => 0023 => 23      7 => 007 => 07
 
   const formatNumber = (num) => {
     return ("00" + num).slice(-2);
+  };
+
+  const formatNumberToTimer = (num) => {
+    return `${formatNumber(parseInt(num / 3600))}:${formatNumber(
+      parseInt((num / 60) % 60)
+    )}:${formatNumber(num % 60)}`;
   };
 
   useEffect(() => {
@@ -129,48 +167,78 @@ const InspectRouteScreen = ({
     createTable();
     getBestTime();
     getLastTime();
+    // getAllData();
   }, []);
 
   return (
-    <ScrollView
-      className={styles.container}
-      contentContainerStyle={{
-        justifyContent: "center",
-        alignItems: "center",
-        padding: 20,
-      }}
-    >
-      <Image source={path} style={styles.image} />
-      <Text style={styles.name}>{name}</Text>
-      <Text>
-        Aktualny czas: {formatNumber(parseInt(seconds / 3600))}:
-        {formatNumber(parseInt((seconds / 60) % 60))}:
-        {formatNumber(seconds % 60)}
-      </Text>
-      <View style={styles.buttonView}>
-        <CustomButton
-          text="START"
-          onPress={() => {
-            setIsStart(true);
-            !isStart &&
-              ToastAndroid.show(
-                "Rozpoczęto Liczenie Czasu",
-                ToastAndroid.SHORT
-              );
-          }}
-        />
-        <CustomButton text="PAUSE" onPress={stopTimer} />
-      </View>
-      <View style={styles.buttonView}>
-        <CustomButton text="RESTART" onPress={restartTimer} />
-        <CustomButton text="SAVE" onPress={saveTimer} />
-      </View>
-      <CustomButton text="get best" onPress={getBestTime} />
-      <Text> Najlepszy czas na trasie: {bestTime?.timer || 0}</Text>
-      <Text> Ostatni czas na trasie: {lastTime?.timer || 0}</Text>
-      <Text style={styles.distance}>Długość Trasy: {distance} Km</Text>
-      <Text style={styles.description}>{description}</Text>
-    </ScrollView>
+    <>
+      <ScrollView
+        className={styles.container}
+        contentContainerStyle={{
+          justifyContent: "center",
+          alignItems: "center",
+          padding: 20,
+        }}
+      >
+        <Image source={path} style={styles.image} />
+        <Text style={styles.name}>{name}</Text>
+        {toggleStoper && (
+          <Text>Aktualny czas: {formatNumberToTimer(seconds)}</Text>
+        )}
+        {toggleStoper && (
+          <View style={styles.buttonView}>
+            <CustomButton
+              text="START"
+              onPress={() => {
+                setIsStart(true);
+                !isStart &&
+                  ToastAndroid.show(
+                    "Rozpoczęto Liczenie Czasu",
+                    ToastAndroid.SHORT
+                  );
+              }}
+            />
+            <CustomButton text="PAUSE" onPress={stopTimer} />
+          </View>
+        )}
+        {toggleStoper && (
+          <View style={styles.buttonView}>
+            <CustomButton text="RESTART" onPress={restartTimer} />
+            <CustomButton text="SAVE" onPress={saveTimer} />
+          </View>
+        )}
+        {toggleStoper && (
+          <Text>
+            {`Najlepszy czas na trasie - ${
+              (bestTime?.timer && formatNumberToTimer(bestTime?.timer)) ||
+              formatNumberToTimer(0)
+            }`}
+          </Text>
+        )}
+        {toggleStoper && (
+          <Text>{`Data: ${bestTime?.timer_date || "Brak Danych"}\n`}</Text>
+        )}
+        {toggleStoper && (
+          <Text>
+            {`Ostatni czas na trasie - ${
+              (lastTime?.timer && formatNumberToTimer(lastTime?.timer)) ||
+              formatNumberToTimer(0)
+            }`}
+          </Text>
+        )}
+        {toggleStoper && (
+          <Text>{`Data: ${lastTime?.timer_date || "Brak Danych"}\n`}</Text>
+        )}
+        <Text style={styles.distance}>Długość Trasy: {distance} Km</Text>
+        <Text style={styles.description}>{description}</Text>
+      </ScrollView>
+      <TouchableOpacity
+        style={styles.stoper}
+        onPress={() => setToggleStoper((prev) => !prev)}
+      >
+        <Image source={stoper} style={{ width: "100%", height: "100%" }} />
+      </TouchableOpacity>
+    </>
   );
 };
 
@@ -202,5 +270,16 @@ const styles = StyleSheet.create({
   distance: { marginVertical: 20, fontSize: 16 },
   description: {
     marginHorizontal: 20,
+    marginBottom: 80,
+  },
+  stoper: {
+    position: "absolute",
+    right: 15,
+    bottom: 15,
+    height: 60,
+    padding: 10,
+    width: 60,
+    borderRadius: 20,
+    backgroundColor: "#B266FF",
   },
 });
