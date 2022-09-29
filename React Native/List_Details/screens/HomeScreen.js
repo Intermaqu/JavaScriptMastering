@@ -1,6 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
-import { StyleSheet, Text, View, ScrollView, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Dimensions,
+  ToastAndroid,
+} from "react-native";
 import * as SQLite from "expo-sqlite";
 
 import RouteIcon from "../components/RouteIcon";
@@ -9,16 +16,30 @@ import cytadela from "../images/cytadela.jpg";
 import rusalka from "../images/rusalka.jpg";
 import wartostrada from "../images/wartostrada.jpg";
 import zoo from "../images/zoo.jpg";
+import CustomNavButton from "../components/CustomNavButton";
+import CustomSmallView from "../components/CustomSmallView";
 
 const db = SQLite.openDatabase("ListDetailsDB");
 const cols = 2;
 const marginHorizontal = 10;
-const marginVertical = 10;
 const width =
   Dimensions.get("window").width / cols - marginHorizontal * (cols - 1);
 
 const HomeScreen = ({ navigation }) => {
   const [routes, setRoutes] = useState([]);
+  const [category, setCategory] = useState("title");
+
+  const setTitle = () => {
+    setCategory("title");
+  };
+
+  const setEasy = () => {
+    setCategory("easy");
+  };
+
+  const setAll = () => {
+    setCategory("all");
+  };
 
   const getImagePath = (name) => {
     switch (name) {
@@ -88,28 +109,87 @@ const HomeScreen = ({ navigation }) => {
     getAllData();
   }, []);
 
+  useEffect(() => {
+    let text = "";
+    switch (category) {
+      case "title":
+        text = "Tytuł";
+        break;
+      case "easy":
+        text = "Łatwe";
+        break;
+      default:
+        text = "Wszystkie";
+    }
+    ToastAndroid.show(`${text}`, ToastAndroid.SHORT);
+  }, [category]);
+
   return (
-    <ScrollView style={styles.container}>
-      <Text style={[styles.title, styles.firstTitle]}>Jogging</Text>
-      <Text style={styles.title}>Training</Text>
-      <Text style={styles.title}>Tracking</Text>
-      <Text style={styles.title}>App</Text>
-      <View style={styles.grid}>
-        {routes &&
-          routes.map(({ name, id, description, distance }) => (
-            <View style={styles.gridItem} key={id}>
-              <RouteIcon
-                name={name}
-                path={getImagePath(name)}
-                navigation={navigation}
-                description={description}
-                distance={distance}
-                id={id}
-              />
-            </View>
-          ))}
+    <>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          backgroundColor: "#fff",
+          padding: 10,
+          paddingBottom: 30,
+        }}
+      >
+        <CustomNavButton text="TYTUŁ" onPress={setTitle} />
+        <CustomNavButton text="ŁATWE" onPress={setEasy} />
+        <CustomNavButton text="WSZYSTKIE" onPress={setAll} />
       </View>
-    </ScrollView>
+      {category != "title" ? (
+        <ScrollView style={styles.container}>
+          <View style={styles.grid}>
+            {category === "all" &&
+              routes &&
+              routes.map(({ name, id, description, distance }) => (
+                <CustomSmallView
+                  name={name}
+                  id={id}
+                  description={description}
+                  distance={distance}
+                  path={getImagePath(name)}
+                  key={id}
+                  navigation={navigation}
+                />
+              ))}
+            {category === "easy" &&
+              routes &&
+              routes
+                .filter(
+                  (route) =>
+                    route.name === "wartostrada" || route.name === "zoo"
+                )
+                .map(({ name, id, description, distance }) => (
+                  <CustomSmallView
+                    name={name}
+                    id={id}
+                    description={description}
+                    distance={distance}
+                    path={getImagePath(name)}
+                    key={id}
+                    navigation={navigation}
+                  />
+                ))}
+          </View>
+        </ScrollView>
+      ) : (
+        <View
+          style={{
+            height: "100%",
+            backgroundColor: "#fff",
+            justifyContent: "center",
+          }}
+        >
+          <Text style={styles.title}>Jogging</Text>
+          <Text style={styles.title}>Training</Text>
+          <Text style={styles.title}>Tracking</Text>
+          <Text style={styles.title}>App</Text>
+        </View>
+      )}
+    </>
   );
 };
 
@@ -135,11 +215,5 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     justifyContent: "center",
     alignItems: "center",
-  },
-  gridItem: {
-    marginVertical: marginVertical,
-    marginHorizontal: marginHorizontal,
-    width: width - 10,
-    height: 200,
   },
 });

@@ -7,30 +7,28 @@ import {
   View,
 } from "react-native";
 
-const CustomButton = ({ text, onPress, maxWidth = "40%" }) => {
+const CustomNavButton = ({ text, onPress }) => {
   return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={[styles.container, { maxWidth: maxWidth }]}
-    >
+    <TouchableOpacity onPress={onPress} style={styles.container}>
       <Text style={styles.text}>{text}</Text>
     </TouchableOpacity>
   );
 };
 
-export default CustomButton;
+export default CustomNavButton;
 
 const styles = StyleSheet.create({
   container: {
-    width: 200,
-    padding: 10,
+    width: "30%",
     backgroundColor: "#B266FF",
+    height: 40,
     borderRadius: 10,
+    justifyContent: "center",
+    alignItems: "center",
   },
   text: {
-    textAlign: "center",
+    color: "#FFF",
     fontSize: 16,
-    color: "#fff",
     fontWeight: "bold",
   },
 });
