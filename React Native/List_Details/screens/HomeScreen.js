@@ -183,7 +183,7 @@ const HomeScreen = ({ navigation }) => {
             justifyContent: "center",
           }}
         >
-          <Text style={styles.title}>Jogging</Text>
+          <Text style={styles.title}>Joggingr</Text>
           <Text style={styles.title}>Training</Text>
           <Text style={styles.title}>Tracking</Text>
           <Text style={styles.title}>App</Text>
