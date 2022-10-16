@@ -1,0 +1,15 @@
+.navbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.navbar--logo {
+  margin-right: auto;
+  height: 50px;
+}
+
+.navbar--cart {
+  margin-right: 40px;
+}
