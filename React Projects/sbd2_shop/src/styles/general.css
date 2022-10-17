@@ -12,3 +12,17 @@
   width: 100%;
   grid-template-columns: 100%;
 }
+
+.flex {
+  display: flex;
+}
+
+.m-right-auto {
+  margin-right: auto;
+}
+
+.icon {
+  filter: invert(63%) sepia(11%) saturate(6%) hue-rotate(1deg) brightness(94%)
+    contrast(88%);
+  cursor: pointer;
+}

@@ -7,9 +7,9 @@ import "../styles/navbar.css";
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <img src={logo} className="navbar--logo" />
-      <img src={cart_icon} className="navbar--cart" />
-      <img src={user_icon} className="navbar--user" />
+      <img src={logo} className="navbar--logo" alt="logo" />
+      <img src={cart_icon} className="navbar--cart icon" alt="cart" />
+      <img src={user_icon} className="navbar--user icon" alt="user" />
     </nav>
   );
 };
