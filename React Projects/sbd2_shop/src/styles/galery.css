@@ -1,0 +1,20 @@
+.galery {
+  display: flex;
+  width: 60%;
+  justify-content: space-between;
+  gap: 30px
+}
+
+.galery--left-col {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+}
+.big-image {
+  flex: 5;
+}
+
+.small-image {
+  width: 100%;
+}

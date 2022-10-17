@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "DM Sans", sans-serif;
+}
+
+.app {
+  display: inline-grid;
+  justify-content: center;
+  padding: 20px 50px;
+  width: 100%;
+  grid-template-columns: 100%;
+}
+
+.flex {
+  display: flex;
+}
+
+.m-right-auto {
+  margin-right: auto;
+}
+
+.icon {
+  filter: invert(63%) sepia(11%) saturate(6%) hue-rotate(1deg) brightness(94%)
+    contrast(88%);
+  cursor: pointer;
+}

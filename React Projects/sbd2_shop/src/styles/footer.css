@@ -1,0 +1,14 @@
+.footer {
+  width: 100%;
+  padding-top: 30px;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.footer .flex :is(a:link, a:visited, a:hover, a:active) {
+  color: #707070;
+  text-decoration: none;
+}
+
+.footer div:first-child() {
+  margin-bottom: 40px;
+}

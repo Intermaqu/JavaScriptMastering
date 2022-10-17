@@ -9,33 +9,15 @@ const AnimatedWelcome = ({ navigation }) => {
 
   useEffect(() => {
     Animated.sequence([
-      Animated.spring(ref1, {
-        toValue: 1,
-        useNativeDriver: true,
-      }),
+      Animated.spring(ref1, {toValue: 1,useNativeDriver: true,}),
       Animated.delay(600),
-      Animated.spring(ref1, {
-        toValue: 0,
-        useNativeDriver: true,
-      }),
-      Animated.spring(ref2, {
-        toValue: 1,
-        useNativeDriver: true,
-      }),
+      Animated.spring(ref1, {toValue: 0,useNativeDriver: true,}),
+      Animated.spring(ref2, {toValue: 1,useNativeDriver: true,}),
       Animated.delay(600),
-      Animated.spring(ref2, {
-        toValue: 0,
-        useNativeDriver: true,
-      }),
-      Animated.spring(ref3, {
-        toValue: 1,
-        useNativeDriver: true,
-      }),
+      Animated.spring(ref2, {toValue: 0,useNativeDriver: true,}),
+      Animated.spring(ref3, {toValue: 1,useNativeDriver: true,}),
       Animated.delay(600),
-      Animated.spring(ref3, {
-        toValue: 0,
-        useNativeDriver: true,
-      }),
+      Animated.spring(ref3, {toValue: 0,useNativeDriver: true,}),
     ]).start();
     setTimeout(() => {
       navigation.navigate("HomeScreen", { navigation });
