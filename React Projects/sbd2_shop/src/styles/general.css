@@ -6,11 +6,9 @@
 }
 
 .app {
-  display: inline-grid;
-  justify-content: center;
-  padding: 20px 50px;
-  width: 100%;
-  grid-template-columns: 100%;
+  margin: 20px auto;
+  max-width: 1440px;
+  width: 1300px;
 }
 
 .flex {
@@ -21,8 +19,20 @@
   margin-right: auto;
 }
 
+.bold {
+  font-weight: bold;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
 .icon {
   filter: invert(63%) sepia(11%) saturate(6%) hue-rotate(1deg) brightness(94%)
     contrast(88%);
   cursor: pointer;
+}
+
+html {
+  min-height: 100vh;
 }

@@ -1,0 +1,73 @@
+.authentication {
+  align-items: center;
+  width: 100%;
+  margin-top: 120px;
+  flex-direction: column;
+  height: 400px;
+  margin-bottom: 200px;
+}
+
+.authentication-switch {
+  width: 480px;
+  background: #efefef;
+  justify-content: space-between;
+  padding: 5px;
+  border-radius: 10px;
+  margin: 40px 0px;
+}
+
+.authentication-switch button {
+  border: none;
+  font-weight: 700;
+  width: 48%;
+  height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.authentication-switch-picked {
+  background: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.authentication-login {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 480px;
+}
+
+.authentication-login-button,
+.authentication-register-button {
+  margin-top: 40px;
+  width: 100%;
+  height: 40px;
+  font-weight: 700;
+  background-color: #000;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  margin-bottom: auto;
+}
+
+.authentication-register {
+  display: grid;
+  grid-template-columns: 400px 400px;
+  grid-gap: 20px 40px;
+  justify-items: center;
+}
+
+.authentication-register-button {
+  grid-column: 1/3;
+  width: 480px;
+}
+
+.grid-l {
+  grid-column: 1/2;
+  width: 100%;
+}
+.grid-r {
+  grid-column: 2/3;
+  width: 100%;
+}

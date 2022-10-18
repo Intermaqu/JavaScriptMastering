@@ -2,6 +2,8 @@
   width: 100%;
   padding-top: 30px;
   border-top: 1px solid rgba(0, 0, 0, 0.2);
+  margin-top: 100px auto;
+  /* position: sticky; */
 }
 
 .footer .flex :is(a:link, a:visited, a:hover, a:active) {

@@ -3,12 +3,18 @@ import Navbar from "./Navbar";
 import "../styles/product.css";
 import Footer from "./Footer";
 import Galery from "./Galery";
+import ProductInfo from "./ProductInfo";
+import Authentication from "./Authentication";
 
 const Product = () => {
   return (
     <div className="product">
       <Navbar />
-      <Galery/>
+      {/* <div className="flex product-main">
+        <Galery />
+        <ProductInfo />
+      </div> */}
+      <Authentication />
       <Footer />
     </div>
   );
