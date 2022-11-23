@@ -82,7 +82,7 @@ const main = () => {
   console.log("Apolonia: ", I);
   console.log("Bogus: ", J);
 
-  const M = 500;
+  const M = 5000;
   const p = findHugePrime(100);
   const q = findHugePrime(110);
   const n = q * p;
