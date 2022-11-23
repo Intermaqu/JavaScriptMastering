@@ -103,7 +103,9 @@ const main = () => {
   const x = Math.floor(Math.random() * 100);
   console.log(`Random number x: ${x}`);
   const C = powerAndModulo(x, Apol_public_e, n);
+  console.log(`C: ${C}`)
   const m = C - J + 1;
+  console.log(`m: ${m}`)
 
   // Apolonia
   apolonia();
@@ -131,7 +133,7 @@ const main = () => {
 
   console.log(`CHECK Zj ${Z[J - 1]}`);
 
-  console.log("Incrementing");
+  // console.log("Incrementing");
   for (let j = I - 1; j < M; j++) {
     Z[j] += 1;
   }
