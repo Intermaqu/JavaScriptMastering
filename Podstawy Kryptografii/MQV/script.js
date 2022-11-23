@@ -76,6 +76,7 @@ const findPrimitiveRoot = (number) =>{
 
 
 const main = () => {
+    console.clear()
     const p1 = document.getElementById("person1").value
     const p2 = document.getElementById("person2").value
 
@@ -93,7 +94,7 @@ const main = () => {
     const B = powerAndModulo(G,b,N)
 
     const YtoB = powerAndModulo(Y, B, N)
-    const XtoA = powerAndModulo(X, B, N)
+    const XtoA = powerAndModulo(X, A, N)
 
     const _B = (B * YtoB)
     const _A = (A * XtoA)
@@ -110,8 +111,17 @@ const main = () => {
     console.log("_A", _A)
     console.log("_B", _B)
     console.log("kA and kB:", kA, kB)
-    
+    return kA === kB
 
+}
+
+const loop = () => {
+    const N = 100
+    let sum = 0
+    for (let i = 0; i < N; i++){
+        sum += main()
+    }
+    console.log(`Sum: ${(sum/N)*100}%`)
 }
 
 button.addEventListener("click", main)
