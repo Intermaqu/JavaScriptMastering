@@ -1,0 +1,119 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 100vh;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 50px 300px 50px;
+  grid-template-rows: 100px 100px;
+  grid-gap: 20px;
+}
+
+.a-button:visited,
+.a-button:link,
+.a-button:hover,
+.a-button:active,
+.a-button {
+  grid-column: 2/3;
+  background: rgb(221, 235, 251);
+  border: 3px solid rgb(0, 17, 255);
+  border-radius: 20px;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  line-height: 100px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  color: rgb(0, 17, 255);
+}
+
+#correct,
+#wrong {
+  width: 80px;
+  height: 100px;
+  font-size: 2rem;
+  text-align: center;
+  justify-content: center;
+  line-height: 100px;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  margin-top: 0;
+}
+
+#correct {
+  grid-column: 1/2;
+  border: 3px solid rgb(31, 146, 31);
+  background-color: rgb(191, 241, 191);
+}
+
+#wrong {
+  grid-column: 3/4;
+  background-color: rgb(246, 134, 134);
+  border: 3px solid rgb(231, 54, 54);
+}
+
+.counter-numbers {
+  grid-column: 2/3;
+  display: flex;
+  width: 100%;
+  border: 1px solid red;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  gap: 10px;
+  border: 2px solid rgb(0, 17, 255);
+  border-radius: 10px;
+  background-color: rgb(221, 235, 251);
+  color: rgb(0, 17, 255);
+}
+
+.counter-answers {
+  grid-column: 2/3;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: 100%;
+  gap: 20px;
+}
+
+.counter-answers > :is(button, input, input:focus) {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  border: 2px solid rgb(0, 17, 255);
+  border-radius: 10px;
+  background-color: rgb(221, 235, 251);
+  color: rgb(0, 17, 255);
+  outline: none;
+}
+
+.counter-answers > input {
+  height: 50px;
+  font-size: 1.5rem;
+}
+.counter-answers > button {
+  height: 50px;
+}
+
+.rememberer-answers {
+  margin-top: 30px;
+  height: 100px;
+  justify-content: space-around;
+}
+
+.numberToRemember {
+  height: 100px;
+  margin-top: 40px;
+}
