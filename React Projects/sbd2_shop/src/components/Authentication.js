@@ -178,7 +178,7 @@ const Authentication = () => {
             className="grid-r"
             style={{ gridRow: "5/6" }}
           />
-          <button className="authentication-register-button">REGISTER</button>
+          <button className="authentication-register-button" >REGISTER</button>
         </div>
       )}
     </div>

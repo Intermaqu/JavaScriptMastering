@@ -1,0 +1,16 @@
+.product-grid{
+    margin: 100px 0px;
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    justify-content: space-between;
+    grid-template-rows: auto;
+    width: 100%;
+    grid-row-gap: 80px;
+}
+
+
+.product-grid--p{
+    font-weight: 700;
+    font-size: 2rem;
+    grid-column: 1/4;
+}
