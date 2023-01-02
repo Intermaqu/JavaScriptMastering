@@ -1,7 +1,5 @@
-// import sha256 from "crypto-js/sha256"
-// import md5 from "crypto-js/md5"
-
-var Crypto = require("crypto-js")
+import sha256 from "crypto-js/sha256"
+import md5 from "crypto-js/md5"
 
 function is_prime(num){
     if(num < 2)
