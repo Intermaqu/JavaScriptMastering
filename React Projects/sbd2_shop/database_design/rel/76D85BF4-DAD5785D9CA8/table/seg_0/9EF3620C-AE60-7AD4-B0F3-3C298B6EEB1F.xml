@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9EF3620C-AE60-7AD4-B0F3-3C298B6EEB1F" name="delivery">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>7CC0AB9C-74D7-D94B-7D23-C27862E2CDFA</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="company_name" id="AED428B1-1C53-038F-B6D8-68E3C3B109A8">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<commentInRDBMS><![CDATA[	]]></commentInRDBMS>
+<generatorID>05A2A549-0866-A6AC-3BE5-12C016ACF541</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="type" id="EA4BD064-6CB3-5F8B-91FA-98A2F5C97414">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>00921A74-3531-4143-91C7-44E253D274DB</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="price" id="07BD3AF9-A7B7-24D3-868B-0A9DA86774FB">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>4F5228D3-61B1-0F4E-D1D9-A2193B007A96</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,10,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ID_DELIVERY" id="8570BA29-95E0-82B8-440C-DD6FABE45295">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>DA243D1A-416B-1EDC-63E9-6E1336387491</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1B804A71-9A65-70A0-2F3F-7DA5009477E7" name="delivery_PK">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>23FD25C1-999B-A691-BE7B-F73F1468B939</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8570BA29-95E0-82B8-440C-DD6FABE45295"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

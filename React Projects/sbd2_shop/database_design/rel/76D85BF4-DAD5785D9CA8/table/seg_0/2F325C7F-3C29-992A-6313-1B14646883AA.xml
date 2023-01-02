@@ -1,0 +1,99 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="2F325C7F-3C29-992A-6313-1B14646883AA" name="producer">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>DAE0E4F8-8B13-B216-D84D-9A8637CED151</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="name" id="9634809B-6592-74AF-20BD-91A328278677">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>1C27379E-49E7-A286-E8A8-61369D7EE6A1</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="description" id="97305CB8-FDE9-7959-1103-50DA6F8FCB2A">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>8DBAC0BF-D67A-DA18-4794-0BB7F37118D0</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ID_PRODUCER" id="5C4DF66B-5000-3B6E-84CD-1E91FE5326B8">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>70F730F3-C633-D8ED-DB54-868BA85851B3</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="address_ID_ADDRESS" id="076CB3D1-D8C0-755C-8897-CBD417FD9F49">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>B8B2ABCC-D264-075E-00CE-1DD2F669F500</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="BFB4E1C2-D973-564B-90B6-29DD697B0B5A" referredColumn="2BD74D84-2012-2B5C-36CD-CB2D24BFF8EB"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0A5F3AC7-0E86-EC0D-7208-8D0DC90BA49C" name="producer_PK">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>3D3CE0B8-DA03-E311-7E33-BEC73D4B0AF8</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5C4DF66B-5000-3B6E-84CD-1E91FE5326B8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E509D2B8-D365-250B-2AD2-022296C40A29" name="producer__IDX">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>4AF2A494-A33F-9B2B-85AC-9B330A494E6B</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="076CB3D1-D8C0-755C-8897-CBD417FD9F49"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="65FF3EE5-2718-52C4-7C06-C7D10E24E878" name="producer_address_FK">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>4AF2A494-A33F-9B2B-85AC-9B330A494E6B</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="076CB3D1-D8C0-755C-8897-CBD417FD9F49"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

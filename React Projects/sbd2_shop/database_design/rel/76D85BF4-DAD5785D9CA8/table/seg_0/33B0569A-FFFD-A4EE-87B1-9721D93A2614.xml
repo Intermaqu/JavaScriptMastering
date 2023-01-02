@@ -1,0 +1,134 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="33B0569A-FFFD-A4EE-87B1-9721D93A2614" name="user">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>DFAD66B9-A275-1244-571B-D47363382407</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="name" id="8AD9C415-403E-92FD-E870-56E360B6AFB3">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>83790CBD-D234-B8F5-EC19-DF4A08886179</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="surname" id="028AAC67-1C89-A4D5-6C56-C8B25C925756">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>B8BB35EF-0430-F409-61A0-3FCDABB5DDAC</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="email" id="461BB45D-C92B-FAED-B076-9CEA9D60B7F4">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>3E9D6D49-EFE6-DB6C-7ACB-38BAD85B6D1A</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nickname" id="257F204F-54E3-A9BC-BF8B-837C2406A3DF">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>ED2ABFB0-580C-14BD-EE9D-2A3C9ACF8E33</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="password" id="614E617A-1F79-F469-C322-AFF0E1AF484E">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>F37D9AA4-C476-52C0-67FE-BAB980FE7055</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ID_USER" id="DFFB1194-5AA7-6CE6-B243-7D763C173F0A">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>17DEC6A7-4031-6DE0-B6A9-307A738C011B</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="address_ID_ADDRESS" id="214F783A-06E9-8A31-8C29-734264480C1D">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>614EDCDE-86A6-4E5E-DCDD-E3D5683730EF</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F3C2EAD0-9F84-02F0-F607-FC0610CABF68" referredColumn="2BD74D84-2012-2B5C-36CD-CB2D24BFF8EB"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D03B78BA-1368-24D5-661A-5F6DCE20E5CE" name="user_PK">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>AD3942D9-F1C7-E3DA-2763-8C31A7DF9C72</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DFFB1194-5AA7-6CE6-B243-7D763C173F0A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D3A63C6F-B4AC-67D6-EA82-EB2C7E08EF19" name="user__IDX">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>74D5AC0C-8516-744D-B84E-6BFD76EE61F2</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="214F783A-06E9-8A31-8C29-734264480C1D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FD3A9764-EB1D-5F0C-789E-FB516F9C8FF8" name="user_address_FK">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>74D5AC0C-8516-744D-B84E-6BFD76EE61F2</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="214F783A-06E9-8A31-8C29-734264480C1D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

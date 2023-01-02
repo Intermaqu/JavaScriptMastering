@@ -1,0 +1,113 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="67E00CBB-DC3E-E395-F617-F69936504B06" name="address">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:06 UTC</createdTime>
+<generatorID>CF8E5EF4-010B-1E03-AA01-FCB665E26922</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="country" id="71AA002B-03FA-C590-1167-4DD5B51D48B6">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:06 UTC</createdTime>
+<generatorID>B2A2CD60-28C2-E4F4-A6F2-1FA908ABFDC9</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="city" id="CBE66A08-D46F-8B82-751D-0F3FA1DBBE96">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:06 UTC</createdTime>
+<generatorID>ACBA2756-EBCC-9C20-97CF-00D7FBB52D51</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="street" id="3B6E54B0-E59D-B689-FB73-661433CAD500">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:06 UTC</createdTime>
+<generatorID>7D828195-E947-E07D-BAED-97765C54EE2D</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 CHAR</dataTypeSize>
+<ownDataTypeParameters>255 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="appartment" id="FBD5CCEE-5A3F-340D-B208-63A99B240BD8">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:06 UTC</createdTime>
+<generatorID>E5CE975C-F83E-824C-1FBA-0D4E7A8AA0A5</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="postal_code" id="814BBBCA-9DA4-856C-BE2D-5542C989FF4C">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:06 UTC</createdTime>
+<generatorID>1DF26BD3-3072-248A-EAAF-C28B209F6EDB</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>6 CHAR</dataTypeSize>
+<ownDataTypeParameters>6 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ID_ADDRESS" id="2BD74D84-2012-2B5C-36CD-CB2D24BFF8EB">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:06 UTC</createdTime>
+<generatorID>A10B2688-5175-408C-D576-82534E92BA98</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="46529437-5224-2A49-D074-F63C0F9BAC2E" name="address_PK">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:06 UTC</createdTime>
+<generatorID>FDF218FA-77A8-F7E8-BA3E-9E640EC3A136</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2BD74D84-2012-2B5C-36CD-CB2D24BFF8EB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E6EA8BF6-4879-FAE1-A1A8-D7C300A56159" name="address__IDX">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>74D5AC0C-8516-744D-B84E-6BFD76EE61F2</relationGeneratorID>
+</ind_PK_UK>
+<ind_PK_UK id="491F2B51-270C-CF9D-A272-DC64848F85D1" name="address__IDXv1">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>4AF2A494-A33F-9B2B-85AC-9B330A494E6B</relationGeneratorID>
+</ind_PK_UK>
+</indexes>
+</Table>

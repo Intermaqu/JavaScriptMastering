@@ -1,0 +1,208 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="96BFD306-6108-FF6D-87CA-DDE5F2AB4C34" name="transaction">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>31FC4056-D459-2870-18E2-B66AD462F5DA</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="date" id="1F2A2806-79FF-E40E-7C2D-4F84B6527E43">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>7A96A01A-F659-36B1-94BE-0C03769A4A5F</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ID_TRANSACTION" id="A588894B-77EE-CD8E-616F-39CEAD1BB66C">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>7A55F454-E079-BDA1-82ED-7988E9803274</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="product_ID_PRODUCT" id="AAE92579-6421-CB8A-57B1-ED2ADB0753A0">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>698BA274-24FA-DD55-694F-B5828F00D25B</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DC0C2E61-87A2-E73E-DE5C-E37794F9CE83" referredColumn="0B60F3C1-F7D6-820E-C79C-22267F62FDEA"/>
+</associations>
+</Column>
+<Column name="product_user_ID_USER" id="BDE3BB9F-C7FE-86C1-1747-1635A395D86F">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>F1D62DC4-7D47-3862-03A5-20024EA16AAD</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DC0C2E61-87A2-E73E-DE5C-E37794F9CE83" referredColumn="D762A781-C8B7-B1BD-79EC-00C03D1573E1"/>
+</associations>
+</Column>
+<Column name="payment_ID_PAYMENT" id="C1E34F87-16F2-5DB8-27F5-296E39D357E9">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>70AC581D-9265-E4ED-7897-0B99CB9F14AB</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0449D662-2E01-A104-9E33-866003761205" referredColumn="1DAB035D-3272-990C-7D37-22E9436BA9AF"/>
+</associations>
+</Column>
+<Column name="delivery_ID_DELIVERY" id="7F3E756F-A4DD-C91D-4090-727330ED9ADD">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>F778C818-364B-3B7B-2EA7-9A204DBA5889</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9E6AFD5F-7D99-DAF3-05A8-9A3340D7F156" referredColumn="8570BA29-95E0-82B8-440C-DD6FABE45295"/>
+</associations>
+</Column>
+<Column name="user_ID_USER2" id="5657A23B-F289-C596-FD5A-9A617EA2FB0A">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>6B7A486F-111B-68D6-5486-F8FB232FC6ED</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7F0F413C-EA84-9ABB-232A-1115038C0376" referredColumn="DFFB1194-5AA7-6CE6-B243-7D763C173F0A"/>
+</associations>
+</Column>
+<Column name="user_ID_USER" id="53E0D378-9EB6-FBE7-1BF5-EB1C8FE12FA6">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>3DE17BEF-4E44-7DF2-46A0-F3DAC830D2CD</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="759792CC-8C28-5233-CACA-F04C0D281947" referredColumn="DFFB1194-5AA7-6CE6-B243-7D763C173F0A"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="336F6703-425A-42CE-6A91-0AE1AB3404DC" name="transaction_PK">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>D76E3B94-7035-886F-AB12-99E61B7D20B9</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A588894B-77EE-CD8E-616F-39CEAD1BB66C"/>
+<colUsage columnID="53E0D378-9EB6-FBE7-1BF5-EB1C8FE12FA6"/>
+<colUsage columnID="5657A23B-F289-C596-FD5A-9A617EA2FB0A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7A36054D-E032-8160-B5CE-E8E673507DE1" name="transaction__IDX">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>1972254B-5442-72F4-8749-F73BABCF80BB</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="AAE92579-6421-CB8A-57B1-ED2ADB0753A0"/>
+<colUsage columnID="BDE3BB9F-C7FE-86C1-1747-1635A395D86F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="44176E2E-7823-E9D5-7F4E-9CD469D93B2D" name="transaction_user_FK">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>409FE20A-07AB-2446-BB6D-A5B207C11E1B</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="53E0D378-9EB6-FBE7-1BF5-EB1C8FE12FA6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C6AFE983-DAA9-F71C-610D-E7F2DFCA7A85" name="transaction_product_FK">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>1972254B-5442-72F4-8749-F73BABCF80BB</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AAE92579-6421-CB8A-57B1-ED2ADB0753A0"/>
+<colUsage columnID="BDE3BB9F-C7FE-86C1-1747-1635A395D86F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6F2639BA-A20C-4D8C-E557-6EDFB697A82B" name="transaction_payment_FK">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>D2F72E7C-BF07-04A5-D601-6E3ABB810230</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C1E34F87-16F2-5DB8-27F5-296E39D357E9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5D759AE9-4C8E-E5D0-BD21-A75631509ED2" name="transaction_delivery_FK">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>4EB77B01-BF89-5E38-E38B-FA8F2856F019</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7F3E756F-A4DD-C91D-4090-727330ED9ADD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6EDBEDEA-AC4B-D753-1880-1E895F90DBFC" name="transaction_user_FKv2">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-02 14:32:07 UTC</createdTime>
+<generatorID>0C97D701-3A78-9889-7C53-343BB452FF7F</generatorID>
+<ownerDesignName>database_design</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5657A23B-F289-C596-FD5A-9A617EA2FB0A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
