@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import "../styles/authentication.css";
 import { TextField, MenuItem, Select, InputLabel } from "@mui/material";
+import axios from "axios";
+import { URL } from "../services/URL";
+import AuthenticationService from "../services/AuthenticationService";
+import { useNavigate } from "react-router-dom";
 
-const Authentication = () => {
+const Authentication = ({ snackbar }) => {
+  const navigate = useNavigate("/");
+
   const [isLoginShown, setIsLoginShown] = useState(true);
   const [genter, setGender] = useState("");
   const [userData, setUserData] = useState({
@@ -21,6 +27,52 @@ const Authentication = () => {
     email: "",
     password: "",
   });
+
+  if (AuthenticationService.isUserLoggedIn()) {
+    localStorage.clear();
+    window.location.href = window.location.href;
+  }
+
+  const handleLogin = () => {
+    axios({
+      method: "POST",
+      url: `${URL}/users/login`,
+      data: loginData,
+    })
+      .then((res) => {
+        snackbar("Logged in Successfully!", "success");
+        console.log(res);
+        AuthenticationService.registerSuccessfulLogin(
+          res.data.userData,
+          res.data.token
+        );
+      })
+      .catch((e) => {
+        snackbar(e.response.data, "error");
+      });
+  };
+
+  const handleRegister = () => {
+    axios({
+      method: "POST",
+      url: `${URL}/users/register`,
+      data: userData,
+      // headers: {
+      //   authorization: AuthenticationService.getToken(),
+      // },
+    })
+      .then((res) => {
+        console.log("Registered successfully");
+        setIsLoginShown(true); // console.log(res);
+        // AuthenticationService.registerSuccessfulLogin(
+        // res.data.userData,
+        // res.data.token
+        // );
+      })
+      .catch((e) => {
+        console.log(e.response.data);
+      });
+  };
 
   const handleGender = (e) => {
     setGender(e.target.value);
@@ -76,7 +128,9 @@ const Authentication = () => {
             autoComplete="current-password"
             variant="standard"
           />
-          <button className="authentication-login-button" onClick={()=>console.log(loginData)}>SIGN IN</button>
+          <button className="authentication-login-button" onClick={handleLogin}>
+            SIGN IN
+          </button>
         </div>
       ) : (
         <div className="authentication-register">
@@ -178,7 +232,12 @@ const Authentication = () => {
             className="grid-r"
             style={{ gridRow: "5/6" }}
           />
-          <button className="authentication-register-button" >REGISTER</button>
+          <button
+            className="authentication-register-button"
+            onClick={handleRegister}
+          >
+            REGISTER
+          </button>
         </div>
       )}
     </div>
