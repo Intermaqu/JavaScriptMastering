@@ -1,38 +1,45 @@
-import React from "react";
-import photo from "../images/display.png";
-import photo2 from "../images/photo2.png";
-import photo3 from "../images/photo3.png";
-import photo4 from "../images/photo4.png";
+import React, { useEffect, useState } from "react";
 import "../styles/galery.css";
 
-const Galery = () => {
-  const [displayed, setDisplayed] = React.useState(photo);
+const Galery = ({ photo_1, photo_2, photo_3, photo_4 }) => {
+  const [displayed, setDisplayed] = useState();
 
+  useEffect(() => {
+    setDisplayed(photo_1);
+  }, [photo_1]);
   return (
     <div className="galery">
       <div className="galery--left-col">
-        <img
-          src={photo}
-          className="small-image"
-          onClick={() => setDisplayed(photo)}
-        />
-        <img
-          src={photo2}
-          className="small-image"
-          onClick={() => setDisplayed(photo2)}
-        />
-        <img
-          src={photo3}
-          className="small-image"
-          onClick={() => setDisplayed(photo3)}
-        />
-        <img
-          src={photo4}
-          className="small-image"
-          onClick={() => setDisplayed(photo4)}
-        />
+        {photo_1 && (
+          <img
+            src={`./assets/productImages/${photo_1}`}
+            className="small-image"
+            onClick={() => setDisplayed(photo_1)}
+          />
+        )}
+        {photo_2 && (
+          <img
+            src={`./assets/productImages/${photo_2}`}
+            className="small-image"
+            onClick={() => setDisplayed(photo_2)}
+          />
+        )}
+        {photo_3 && (
+          <img
+            src={`./assets/productImages/${photo_3}`}
+            className="small-image"
+            onClick={() => setDisplayed(photo_3)}
+          />
+        )}
+        {photo_4 && (
+          <img
+            src={`./assets/productImages/${photo_4}`}
+            className="small-image"
+            onClick={() => setDisplayed(photo_4)}
+          />
+        )}
       </div>
-      <img src={displayed} className="big-image" />
+      <img src={`./assets/productImages/${displayed}`} className="big-image" />
     </div>
   );
 };

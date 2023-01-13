@@ -6,6 +6,11 @@ const cors = require("cors");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var addressRouter = require("./routes/address");
+var producerRouter = require("./routes/producer");
+var categoryRouter = require("./routes/category");
+var colorsRouter = require("./routes/colors");
+var galeryRouter = require("./routes/galery");
+var productRouter = require("./routes/product");
 const passport = require("passport");
 const User = require("./models/User");
 
@@ -22,5 +27,10 @@ app.use(cookieParser());
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/address", addressRouter);
+app.use("/producer", producerRouter);
+app.use("/category", categoryRouter);
+app.use("/colors", colorsRouter);
+app.use("/galery", galeryRouter);
+app.use("/product", productRouter);
 
 module.exports = app;

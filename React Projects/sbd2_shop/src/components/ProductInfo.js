@@ -10,16 +10,17 @@ const ProductInfo = ({ category, name, price, description }) => {
         <p className="product-price">{`$  ${price}`}</p>
       </div>
       <div>
-        <p className="product-description">
-          {description}
-        </p>
-        <button className="product-buy-button" onClick={() => console.log("BUY IT")}>
+        <p className="product-description">{description}</p>
+        <button
+          className="product-buy-button"
+          onClick={() => console.log("BUY IT")}
+        >
           BUY IT
         </button>
       </div>
       <p>
-        <span className="bold">Categories: </span> {/*Fasion, Style*/}
-        {category.join(", ")}
+        <span className="bold">Categories: </span>
+        {category}
       </p>
     </div>
   );

@@ -5,6 +5,7 @@ import ProductsGrid from "./components/ProductsGrid";
 import "./styles/general.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import NewProduct from "./components/NewProduct";
 import { useSnackbar } from "notistack";
 
 const App = () => {
@@ -26,10 +27,13 @@ const App = () => {
             element={<Authentication snackbar={snackbar} />}
           />
           <Route path="/product" element={<Product snackbar={snackbar} />} />
+          <Route
+            path="/addNewProduct"
+            element={<NewProduct snackbar={snackbar} />}
+          />
         </Routes>
         <Footer />
       </div>
-      {/* <Product /> */}
     </div>
   );
 };

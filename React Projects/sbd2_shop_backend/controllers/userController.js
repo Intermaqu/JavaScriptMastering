@@ -15,7 +15,7 @@ module.exports = {
       apartmentNum,
       postCode,
     } = req.body;
-    // console.log(req.body);
+
     if (
       !name ||
       !surname ||

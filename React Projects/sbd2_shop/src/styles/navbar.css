@@ -8,6 +8,7 @@
 .navbar--logo {
   margin-right: auto;
   height: 50px;
+  cursor: pointer;
 }
 
 .navbar--cart {

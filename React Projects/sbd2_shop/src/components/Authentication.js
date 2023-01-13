@@ -40,7 +40,7 @@ const Authentication = ({ snackbar }) => {
       data: loginData,
     })
       .then((res) => {
-        snackbar("Logged in Successfully!", "success");
+        snackbar("Product Added Succesfully!", "success");
         console.log(res);
         AuthenticationService.registerSuccessfulLogin(
           res.data.userData,
