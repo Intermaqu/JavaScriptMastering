@@ -1,7 +1,10 @@
 var express = require("express");
 // const passport = require("passport");
-const { getAllCategory } = require("../models/Category");
+const { getAllCategory, getCategoryById } = require("../models/Category");
 var router = express.Router();
+
+router.post("/getCategoryById", getCategoryById)
+
 
 router.get("/getAllCategory", getAllCategory);
 

@@ -1,7 +1,9 @@
 var express = require("express");
 // const passport = require("passport");
-const { getAllColors } = require("../models/Colors");
+const { getAllColors, getColorById } = require("../models/Colors");
 var router = express.Router();
+
+router.post("/getColorById", getColorById)
 
 router.get("/getAllColors", getAllColors);
 

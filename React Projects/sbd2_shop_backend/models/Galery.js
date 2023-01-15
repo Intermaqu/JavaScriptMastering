@@ -20,4 +20,9 @@ module.exports = {
     let galery = await db.query("SELECT * FROM galery");
     res.status(200).send(galery.rows);
   },
+
+  getGaleryById: async (req, res) => {
+    let galery = await db.query(`SELECT * FROM galery WHERE "ID_GALERY" = $1`, [req.body.id])
+    res.status(200).send(galery.rows[0]);
+  }
 };

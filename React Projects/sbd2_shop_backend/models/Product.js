@@ -40,12 +40,9 @@ module.exports = {
     return allProducts.rows;
   },
 
-  getProductsByIDWithGalery: async (id) => {
+  getProductById: async (id) => {
     const product = await db.query(
       `SELECT * FROM product 
-      JOIN galery on product."ID_GALERY" = galery."ID_GALERY" 
-      JOIN category on product."ID_CATEGORY" = category."ID_CATEGORY" 
-      JOIN colors on product."ID_COLOR" = colors."ID_COLOR" 
       WHERE "ID_PRODUCT" = $1`,
       [id]
     );

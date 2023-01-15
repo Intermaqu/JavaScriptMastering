@@ -56,9 +56,9 @@ module.exports = {
     res.status(200).send(allProducts);
   },
 
-  getProductsByIDWithGalery: async (req, res) => {
+  getProductById: async (req, res) => {
     console.log(req.body);
-    const product = await Product.getProductsByIDWithGalery(req.body.id);
+    const product = await Product.getProductById(req.body.id);
     console.log(product);
     res.status(200).send(product);
   },

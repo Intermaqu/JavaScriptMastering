@@ -3,12 +3,12 @@ const {
   addNewProduct,
   getAllProducts,
   getAllProductsWithGalery,
-  getProductsByIDWithGalery,
+  getProductById,
 } = require("../controllers/productController");
 var router = express.Router();
 
 router.post("/addNewProduct", addNewProduct);
-router.post("/getProductsByIDWithGalery", getProductsByIDWithGalery);
+router.post("/getProductById", getProductById);
 
 /* GET users listing. */
 
