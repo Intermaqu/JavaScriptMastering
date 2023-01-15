@@ -8,4 +8,8 @@ module.exports = {
     );
     return delivery;
   },
+  getAllDelivery: async () => {
+    const allDelivery = await db.query("SELECT * FROM delivery");
+    return allDelivery.rows;
+  },
 };

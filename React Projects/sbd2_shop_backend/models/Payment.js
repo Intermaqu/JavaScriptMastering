@@ -8,4 +8,9 @@ module.exports = {
     );
     return payment;
   },
+
+  getAllPayment: async () => {
+    const allPayment = await db.query("SELECT * FROM payment");
+    return allPayment.rows;
+  },
 };

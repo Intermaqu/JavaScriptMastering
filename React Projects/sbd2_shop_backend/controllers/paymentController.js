@@ -19,4 +19,13 @@ module.exports = {
       res.status(400).send("Error");
     }
   },
+  getAllPayment: async (req, res) => {
+    const payment = await Payment.getAllPayment().catch((e) => console.log(e));
+    console.log(payment);
+    if (payment) {
+      res.status(200).send(payment);
+    } else {
+      res.status(400).send("Error");
+    }
+  },
 };

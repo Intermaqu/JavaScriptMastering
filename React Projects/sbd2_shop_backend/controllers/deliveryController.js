@@ -20,4 +20,15 @@ module.exports = {
       res.status(400).send("Error");
     }
   },
+  getAllDelivery: async (req, res) => {
+    const delivery = await Delivery.getAllDelivery().catch((e) =>
+      console.log(e)
+    );
+    console.log(delivery);
+    if (delivery) {
+      res.status(200).send(delivery);
+    } else {
+      res.status(400).send("Error");
+    }
+  },
 };
