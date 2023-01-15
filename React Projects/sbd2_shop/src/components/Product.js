@@ -24,15 +24,10 @@ const Product = () => {
   const getParams = () => {
     const params = new URLSearchParams(window.location.search);
     const newId = params.get("id");
-    // console.log(newId);
     setId(newId);
   };
 
-  const isObjEmpty = (obj) => {
-    return Object.keys(obj).length === 0;
-  };
-
-  const getGalery = async (ID) => {
+  const getGalery = (ID) => {
     axios({
       method: "POST",
       url: `${URL}/galery/getGaleryById`,
@@ -49,7 +44,7 @@ const Product = () => {
       });
   };
 
-  const getColor = async (ID) => {
+  const getColor = (ID) => {
     axios({
       method: "POST",
       url: `${URL}/colors/getColorById`,
@@ -66,7 +61,7 @@ const Product = () => {
       });
   };
 
-  const getCategory = async (ID) => {
+  const getCategory = (ID) => {
     axios({
       method: "POST",
       url: `${URL}/category/getCategoryById`,
@@ -83,11 +78,7 @@ const Product = () => {
       });
   };
 
-  if (loaded) {
-    console.log("DONE!");
-  }
-
-  const init = async () => {
+  const init = () => {
     if (id !== undefined) {
       axios({
         method: "POST",
@@ -95,17 +86,15 @@ const Product = () => {
         data: {
           id: id,
         },
-      })
-        .then((res) => {
-          console.log(res.data);
-          setProduct(res.data);
-          getGalery(res.data.ID_GALERY);
-          getCategory(res.data.ID_CATEGORY);
-          getColor(res.data.ID_COLOR);
-        })
-        .then(() => {
-          setLoaded(true);
-        });
+      }).then((res) => {
+        // console.log(res.data);
+        let data = res.data;
+        console.log(data);
+        setProduct(data);
+        getGalery(data.ID_GALERY);
+        getColor(data.ID_COLOR);
+        getCategory(data.ID_CATEGORY);
+      });
     }
   };
 
@@ -126,23 +115,21 @@ DODAĆ FUNKCJONALNOŚĆ KUPOWANIA PRODUKUT
 
   return (
     <>
-      {loaded && !isObjEmpty(galery) (
-        <div className="flex product-main">
-          <Galery
-            photo_1={galery.photo_1}
-            photo_2={galery.photo_2}
-            photo_3={galery.photo_3}
-            photo_4={galery.photo_4}
-          />
-          <ProductInfo
-            category={category.name}
-            color={color.color_hex}
-            description={description}
-            price={product.price}
-            name={product.name}
-          />
-        </div>
-      )}
+      <div className="flex product-main">
+        <Galery
+          photo_1={galery.photo_1}
+          photo_2={galery.photo_2}
+          photo_3={galery.photo_3}
+          photo_4={galery.photo_4}
+        />
+        <ProductInfo
+          category={category.Name}
+          color={color.Color_hex}
+          description={product.Description}
+          price={product.Price}
+          name={product.Name}
+        />
+      </div>
     </>
   );
 };
