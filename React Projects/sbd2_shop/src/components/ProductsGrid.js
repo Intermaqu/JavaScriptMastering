@@ -4,6 +4,7 @@ import ProductMiniature from "./ProductMiniature";
 import { useLocation, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { URL } from "../services/URL";
+import AuthenticationService from "../services/AuthenticationService";
 
 const ProductsGrid = ({ snackbar }) => {
   const [data, setData] = useState([]);
@@ -18,7 +19,10 @@ const ProductsGrid = ({ snackbar }) => {
   const getDataFromDB = () => {
     axios({
       method: "GET",
-      url: `${URL}/product/getAllProductsWithGalery`,
+      url: `${URL}/product/getAllPostedProductsWithGalery`,
+      headers: {
+        authorization: AuthenticationService.getToken(),
+      },
     })
       .then((res) => {
         setData(res.data);
@@ -49,13 +53,15 @@ const ProductsGrid = ({ snackbar }) => {
       {data &&
         data.map((obj) => {
           return (
-            <ProductMiniature
-              key={obj.ID_PRODUCT}
-              id={obj.ID_PRODUCT}
-              photo={obj.photo_1}
-              price={obj.Price}
-              name={obj.Name}
-            />
+            obj.ID_USER !== AuthenticationService.getUserData().ID_USER && (
+              <ProductMiniature
+                key={obj.ID_PRODUCT}
+                id={obj.ID_PRODUCT}
+                photo={obj.photo_1}
+                price={obj.Price}
+                name={obj.Name}
+              />
+            )
           );
         })}
     </main>

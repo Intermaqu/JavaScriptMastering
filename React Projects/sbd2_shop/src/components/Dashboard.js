@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import "../styles/dashboard.css";
 import { TextField } from "@mui/material";
+import { URL } from "../services/URL";
+import axios from "axios";
+import AuthenticationService from "../services/AuthenticationService";
 
 const styled = {
   width: "300px",
 };
 
-const Dashboard = () => {
+const Dashboard = ({ snackbar }) => {
   const [displayed, setDisplayed] = useState("Category");
   const [category, setCategory] = useState({
     name: "",
@@ -41,33 +44,139 @@ const Dashboard = () => {
   };
 
   const handleRequest = () => {
-    if (displayed === "Category") console.log(category);
+    if (displayed === "Category") {
+      axios({
+        method: "POST",
+        url: `${URL}/category/addCategory`,
+        data: category,
+        headers: {
+          authorization: AuthenticationService.getToken(),
+        },
+      })
+        .then((res) => {
+          snackbar("Category Has Been Added", "success");
+          setCategory({
+            name: "",
+            description: "",
+          });
+        })
+        .catch((e) => {
+          snackbar("Something Went Wrong!", "error");
+        });
+    }
 
-    if (displayed === "Color") console.log(color);
+    if (displayed === "Color") {
+      axios({
+        method: "POST",
+        url: `${URL}/colors/addColor`,
+        data: color,
+        headers: {
+          authorization: AuthenticationService.getToken(),
+        },
+      })
+        .then((res) => {
+          snackbar("Color Has Been Added", "success");
+          setColor({
+            name: "",
+            color_hex: "",
+          });
+        })
+        .catch((e) => {
+          snackbar("Something Went Wrong!", "error");
+        });
+    }
 
-    if (displayed === "Producer") console.log(producer);
+    if (displayed === "Producer") {
+      axios({
+        method: "POST",
+        url: `${URL}/producer/addProducer`,
+        data: producer,
+        headers: {
+          authorization: AuthenticationService.getToken(),
+        },
+      })
+        .then((res) => {
+          snackbar("Producer Has Been Added", "success");
+          setProducer({
+            name: "",
+            description: "",
+            country: "",
+            city: "",
+            street: "",
+            apartmentNum: "",
+            postCode: "",
+          });
+        })
+        .catch((e) => {
+          snackbar("Something Went Wrong!", "error");
+        });
+    }
 
-    if (displayed === "Payment") console.log(payment);
+    if (displayed === "Payment") {
+      axios({
+        method: "POST",
+        url: `${URL}/payment/addPayment`,
+        data: payment,
+        headers: {
+          authorization: AuthenticationService.getToken(),
+        },
+      })
+        .then((res) => {
+          snackbar("Payment Method Has Been Added", "success");
+          setPayment({
+            type: "",
+            description: "",
+          });
+        })
+        .catch((e) => {
+          snackbar("Something Went Wrong!", "error");
+        });
+    }
 
-    if (displayed === "Delivery") console.log(delivery);
+    if (displayed === "Delivery") {
+      axios({
+        method: "POST",
+        url: `${URL}/delivery/addDelivery`,
+        data: delivery,
+        headers: {
+          authorization: AuthenticationService.getToken(),
+        },
+      })
+        .then((res) => {
+          snackbar("Delivery Method Has Been Added", "success");
+          setDelivery({
+            name: "",
+            price: "",
+            description: "",
+          });
+        })
+        .catch((e) => {
+          snackbar("Something Went Wrong!", "error");
+        });
+    }
   };
 
-  const handleCategoryForm = (e) => {
-    setCategory({ ...category, [e.target.name]: e.target.value });
+  const handleCategoryForm = ({ target: { name, value } }) => {
+    setCategory({ ...category, [name]: value });
   };
 
-  const handleColorForm = (e) => {
-    setColor({ ...color, [e.target.name]: e.target.value });
+  const handleColorForm = ({ target: { name, value } }) => {
+    if (name === "color_hex" && value.match(/[A-Zg-z]/g)) return;
+    if (name === "color_hex" && value.length > 6) {
+      setColor({ ...color, [name]: value.slice(0, 6) });
+      return;
+    }
+    setColor({ ...color, [name]: value });
   };
-  const handleProducerForm = (e) => {
-    setProducer({ ...producer, [e.target.name]: e.target.value });
+  const handleProducerForm = ({ target: { name, value } }) => {
+    setProducer({ ...producer, [name]: value });
   };
-  const handlePaymentFrom = (e) => {
-    setPayment({ ...payment, [e.target.name]: e.target.value });
+  const handlePaymentFrom = ({ target: { name, value } }) => {
+    setPayment({ ...payment, [name]: value });
   };
-  const handleDeliveryForm = (e) => {
-    if (e.target.name === "price" && e.target.value < 0) return;
-    setDelivery({ ...delivery, [e.target.name]: e.target.value });
+  const handleDeliveryForm = ({ target: { name, value } }) => {
+    if (name === "price" && value < 0) return;
+    setDelivery({ ...delivery, [name]: value });
   };
   return (
     <div className="dashboard">
@@ -162,11 +271,10 @@ const Dashboard = () => {
             required
             name="color_hex"
             label="color hex"
-            multiline
-            rows="4"
             variant="standard"
             onChange={handleColorForm}
             value={color.color_hex}
+            style={styled}
           />
         </div>
       )}

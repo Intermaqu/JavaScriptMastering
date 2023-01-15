@@ -38,6 +38,9 @@ const NewProduct = ({ snackbar }) => {
     axios({
       method: "GET",
       url: `${URL}/producer/getAllProducers`,
+      headers: {
+        authorization: AuthenticationService.getToken(),
+      },
     }).then((res) => {
       setAllProducers(res.data);
       console.log(res.data);
@@ -48,6 +51,9 @@ const NewProduct = ({ snackbar }) => {
     axios({
       method: "GET",
       url: `${URL}/category/getAllCategory`,
+      headers: {
+        authorization: AuthenticationService.getToken(),
+      },
     }).then((res) => {
       setAllCategory(res.data);
       console.log(res.data);
@@ -58,6 +64,9 @@ const NewProduct = ({ snackbar }) => {
     axios({
       method: "GET",
       url: `${URL}/colors/getAllColors`,
+      headers: {
+        authorization: AuthenticationService.getToken(),
+      },
     }).then((res) => {
       setAllColors(res.data);
       console.log(res.data);
@@ -69,10 +78,13 @@ const NewProduct = ({ snackbar }) => {
       method: "POST",
       url: `${URL}/product/addNewProduct`,
       data: productData,
+      headers: {
+        authorization: AuthenticationService.getToken(),
+      },
     })
       .then((res) => {
         console.log(res.data);
-        snackbar("Logged in Successfully!", "success");
+        snackbar("Product Has Been Added!", "success");
         navigate("/");
       })
       .catch((e) => {

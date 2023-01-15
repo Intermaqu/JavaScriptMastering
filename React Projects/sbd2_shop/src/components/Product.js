@@ -6,6 +6,7 @@ import axios from "axios";
 import Galery from "./Galery";
 import ProductInfo from "./ProductInfo";
 import Authentication from "./Authentication";
+import AuthenticationService from "../services/AuthenticationService";
 import ProductsGrid from "./ProductsGrid";
 import { useEffect } from "react";
 import { URL } from "../services/URL";
@@ -16,7 +17,6 @@ const Product = () => {
   const [color, setColor] = useState({});
   const [category, setCategory] = useState({});
   const [product, setProduct] = useState({});
-  const [loaded, setLoaded] = useState(true);
 
   const description =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam placerat, augue a volutpat hendrerit, sapien tortor faucibus augue, a maximus elit ex vitae libero. Sed quis mauris eget arcu facilisis consequat sed eu felis.";
@@ -33,6 +33,9 @@ const Product = () => {
       url: `${URL}/galery/getGaleryById`,
       data: {
         id: ID,
+      },
+      headers: {
+        authorization: AuthenticationService.getToken(),
       },
     })
       .then((res) => {
@@ -51,6 +54,9 @@ const Product = () => {
       data: {
         id: ID,
       },
+      headers: {
+        authorization: AuthenticationService.getToken(),
+      },
     })
       .then((res) => {
         setColor(res.data);
@@ -67,6 +73,9 @@ const Product = () => {
       url: `${URL}/category/getCategoryById`,
       data: {
         id: ID,
+      },
+      headers: {
+        authorization: AuthenticationService.getToken(),
       },
     })
       .then((res) => {
@@ -86,8 +95,11 @@ const Product = () => {
         data: {
           id: id,
         },
+        headers: {
+          authorization: AuthenticationService.getToken(),
+        },
       }).then((res) => {
-        // console.log(res.data);
+        console.log("product", res.data);
         let data = res.data;
         console.log(data);
         setProduct(data);
@@ -124,10 +136,12 @@ DODAĆ FUNKCJONALNOŚĆ KUPOWANIA PRODUKUT
         />
         <ProductInfo
           category={category.Name}
-          color={color.Color_hex}
+          color_hex={color.color_hex}
           description={product.Description}
           price={product.Price}
           name={product.Name}
+          id={product.ID_PRODUCT}
+          owner={product.ID_USER}
         />
       </div>
     </>

@@ -127,6 +127,9 @@ const Authentication = ({ snackbar }) => {
             value={loginData.password}
             autoComplete="current-password"
             variant="standard"
+            onKeyDown={(e) => {
+              e.key === "Enter" && handleLogin();
+            }}
           />
           <button className="authentication-login-button" onClick={handleLogin}>
             SIGN IN
