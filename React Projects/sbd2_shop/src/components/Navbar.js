@@ -23,7 +23,12 @@ const Navbar = () => {
         alt="logo"
         onClick={() => navigate(`/`)}
       />
-      <img src={user_icon} className="navbar--user icon" alt="user" />
+      <img
+        src={user_icon}
+        className="navbar--user icon"
+        alt="user"
+        onClick={() => navigate("/dashboard")}
+      />
       {AuthenticationService.isUserLoggedIn() ? (
         <img
           src={add_svg}

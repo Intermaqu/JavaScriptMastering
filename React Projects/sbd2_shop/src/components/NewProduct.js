@@ -20,14 +20,14 @@ const NewProduct = ({ snackbar }) => {
     photo_2: "",
     photo_3: "",
     photo_4: "",
-    id_user: "",
+    id_user: AuthenticationService.getUserData().ID_USER,
   });
   // (ID_PRODUCT) (ID_GALERY)
 
   const [allProducers, setAllProducers] = useState([]);
   const [allCategory, setAllCategory] = useState([]);
   const [allColors, setAllColors] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleChangeProduct = (e) => {
     if (e.target.name === "price" && e.target.value < 0) return;
@@ -81,10 +81,6 @@ const NewProduct = ({ snackbar }) => {
       });
   };
 
-  useEffect(() => {
-    const userData = AuthenticationService.getUserData();
-    setProductData({ ...productData, id_user: userData.ID_USER });
-  }, []);
   useEffect(getAllProducers, []);
   useEffect(getAllCategory, []);
   useEffect(getAllColors, []);
