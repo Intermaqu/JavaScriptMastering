@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { TextField, MenuItem, Select, InputLabel } from "@mui/material";
 import { URL } from "../services/URL";
 import axios from "axios";
@@ -26,6 +27,7 @@ const NewProduct = ({ snackbar }) => {
   const [allProducers, setAllProducers] = useState([]);
   const [allCategory, setAllCategory] = useState([]);
   const [allColors, setAllColors] = useState([]);
+  const navigate = useNavigate()
 
   const handleChangeProduct = (e) => {
     if (e.target.name === "price" && e.target.value < 0) return;
@@ -71,6 +73,7 @@ const NewProduct = ({ snackbar }) => {
       .then((res) => {
         console.log(res.data);
         snackbar("Logged in Successfully!", "success");
+        navigate("/");
       })
       .catch((e) => {
         console.log(e);
