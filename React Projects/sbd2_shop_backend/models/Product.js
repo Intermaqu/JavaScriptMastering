@@ -33,9 +33,9 @@ module.exports = {
     return allProducts.rows;
   },
 
-  getAllProductsWithGalery: async () => {
+  getAllPostedProductsWithGalery: async () => {
     const allProducts = await db.query(
-      `SELECT * FROM product JOIN galery on product."ID_GALERY" = galery."ID_GALERY"`
+      `SELECT * FROM product JOIN galery on product."ID_GALERY" = galery."ID_GALERY" WHERE "Status" = 'Posted'`
     );
     return allProducts.rows;
   },
@@ -43,6 +43,16 @@ module.exports = {
   getProductById: async (id) => {
     const product = await db.query(
       `SELECT * FROM product 
+      WHERE "ID_PRODUCT" = $1`,
+      [id]
+    );
+    return product.rows[0];
+  },
+
+  changeStatusToSoldById: async (id) => {
+    const product = await db.query(
+      `UPDATE product 
+      SET "Status" = 'Sold'
       WHERE "ID_PRODUCT" = $1`,
       [id]
     );

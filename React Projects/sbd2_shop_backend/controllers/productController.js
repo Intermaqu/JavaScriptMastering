@@ -51,15 +51,22 @@ module.exports = {
     const allProducts = await Product.getAllProducts();
     res.status(200).send(allProducts);
   },
-  getAllProductsWithGalery: async (req, res) => {
-    const allProducts = await Product.getAllProductsWithGalery();
+  getAllPostedProductsWithGalery: async (req, res) => {
+    const allProducts = await Product.getAllPostedProductsWithGalery();
     res.status(200).send(allProducts);
   },
 
   getProductById: async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     const product = await Product.getProductById(req.body.id);
-    console.log(product);
+    // console.log(product);
+    res.status(200).send(product);
+  },
+
+  changeStatusToSoldById: async (req, res) => {
+    // console.log(req.body);
+    const product = await Product.changeStatusToSoldById(req.body.id);
+    // console.log(product);
     res.status(200).send(product);
   },
 };

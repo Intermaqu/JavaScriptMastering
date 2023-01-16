@@ -20,14 +20,14 @@ const NewProduct = ({ snackbar }) => {
     photo_2: "",
     photo_3: "",
     photo_4: "",
-    id_user: "",
+    id_user: AuthenticationService.getUserData().ID_USER,
   });
   // (ID_PRODUCT) (ID_GALERY)
 
   const [allProducers, setAllProducers] = useState([]);
   const [allCategory, setAllCategory] = useState([]);
   const [allColors, setAllColors] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleChangeProduct = (e) => {
     if (e.target.name === "price" && e.target.value < 0) return;
@@ -38,6 +38,9 @@ const NewProduct = ({ snackbar }) => {
     axios({
       method: "GET",
       url: `${URL}/producer/getAllProducers`,
+      headers: {
+        authorization: AuthenticationService.getToken(),
+      },
     }).then((res) => {
       setAllProducers(res.data);
       console.log(res.data);
@@ -48,6 +51,9 @@ const NewProduct = ({ snackbar }) => {
     axios({
       method: "GET",
       url: `${URL}/category/getAllCategory`,
+      headers: {
+        authorization: AuthenticationService.getToken(),
+      },
     }).then((res) => {
       setAllCategory(res.data);
       console.log(res.data);
@@ -58,6 +64,9 @@ const NewProduct = ({ snackbar }) => {
     axios({
       method: "GET",
       url: `${URL}/colors/getAllColors`,
+      headers: {
+        authorization: AuthenticationService.getToken(),
+      },
     }).then((res) => {
       setAllColors(res.data);
       console.log(res.data);
@@ -69,10 +78,13 @@ const NewProduct = ({ snackbar }) => {
       method: "POST",
       url: `${URL}/product/addNewProduct`,
       data: productData,
+      headers: {
+        authorization: AuthenticationService.getToken(),
+      },
     })
       .then((res) => {
         console.log(res.data);
-        snackbar("Logged in Successfully!", "success");
+        snackbar("Product Has Been Added!", "success");
         navigate("/");
       })
       .catch((e) => {
@@ -81,10 +93,6 @@ const NewProduct = ({ snackbar }) => {
       });
   };
 
-  useEffect(() => {
-    const userData = AuthenticationService.getUserData();
-    setProductData({ ...productData, id_user: userData.ID_USER });
-  }, []);
   useEffect(getAllProducers, []);
   useEffect(getAllCategory, []);
   useEffect(getAllColors, []);
