@@ -45,7 +45,6 @@ const findPrimitiveRoot = (number) =>{
     let set = new Set()
 
     findPrimeFactors(set, phi)
-    let primitive
     // console.log(set)
     let maxPrimitive
     for(let r = 2; r <= phi; r++){
@@ -68,13 +67,13 @@ const findPrimitiveRoot = (number) =>{
 
 // console.log(generatePrime(1000));
 
-const P = generatePrime(10000);
+const P = generatePrime(20000);
 const ALPHA = findPrimitiveRoot(P)
 const K = Math.floor(Math.random()*(P-1)) + 1
 
 const BETA = powerAndModulo(ALPHA, K, P)
 
-const MESSAGE = 2137
+const MESSAGE = 10070
 const X = Math.floor(Math.random()*(P-1)) + 1
 const A = powerAndModulo(ALPHA, X, P)
 const B = (MESSAGE * powerAndModulo(BETA, X, P)) % P
