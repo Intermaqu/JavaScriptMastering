@@ -28,7 +28,7 @@ const Navbar = () => {
         src={user_icon}
         className="navbar--user icon"
         alt="user_account"
-        onClick={() => navigate("/userAccount")}
+        onClick={() => navigate("/userDashboard")}
         style={addButtonStyles}
       />
       <img

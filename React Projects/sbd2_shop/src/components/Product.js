@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import Navbar from "./Navbar";
 import "../styles/product.css";
-import Footer from "./Footer";
 import axios from "axios";
 import Galery from "./Galery";
 import ProductInfo from "./ProductInfo";
@@ -17,9 +15,6 @@ const Product = () => {
   const [color, setColor] = useState({});
   const [category, setCategory] = useState({});
   const [product, setProduct] = useState({});
-
-  const description =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam placerat, augue a volutpat hendrerit, sapien tortor faucibus augue, a maximus elit ex vitae libero. Sed quis mauris eget arcu facilisis consequat sed eu felis.";
 
   const getParams = () => {
     const params = new URLSearchParams(window.location.search);
