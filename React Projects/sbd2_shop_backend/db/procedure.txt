@@ -1,0 +1,14 @@
+create or replace procedure NewCategory
+(
+    pName in varchar,
+    pDescription in varchar
+) 
+LANGUAGE SQL
+AS $$
+ 
+    insert into category ("Name","Description") 
+    values(pName, pDescription);
+$$
+
+
+CALL NewCategory('procedure','fromProcedure')

@@ -58,4 +58,20 @@ module.exports = {
     );
     return product.rows[0];
   },
+
+  getAllProductsByIdSeller: async (id) => {
+    const product = await db.query(
+     `SELECT * FROM product WHERE "ID_USER" = $1`,
+     [id]
+    );
+    return product.rows;
+  },
+
+  getAllProductsByIdSellerWithGalery: async (id) => {
+    const product = await db.query(
+     `SELECT * FROM product JOIN galery on product."ID_GALERY" = galery."ID_GALERY" WHERE "ID_USER" = $1`,
+     [id]
+    );
+    return product.rows;
+  },
 };

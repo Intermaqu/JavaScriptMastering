@@ -1,0 +1,17 @@
+CREATE or replace FUNCTION totalValue (my_id int)  
+	RETURNS integer
+    LANGUAGE plpgsql
+AS $$ 
+DECLARE
+	total integer;
+begin
+	SELECT (p."Price"::integer + d."price") into total from transactions t
+	join product p on p."ID_PRODUCT" = t."ID_PRODUCT"
+	join delivery d on d."ID_DELIVERY" = t."ID_DELIVERY"
+	where "ID_TRANSACTION" = my_id;
+	return total;
+end;
+$$
+
+
+SELECT totalValue(2)

@@ -69,4 +69,14 @@ module.exports = {
     // console.log(product);
     res.status(200).send(product);
   },
+
+  getAllProductsByIdSeller: async (req, res) => {
+    const products = await Product.getAllProductsByIdSeller(req.body.id);
+    res.status(200).send(products)
+  },
+
+  getAllProductsByIdSellerWithGalery: async (req, res) => {
+    const products = await Product.getAllProductsByIdSellerWithGalery(req.body.id);
+    res.status(200).send(products)
+  },
 };
