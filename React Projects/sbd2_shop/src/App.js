@@ -22,8 +22,8 @@ const App = () => {
       <Navbar />
 
       <Routes>
-        <Route path="/" element={<ProductsGrid snackbar={snackbar} />} />
         <Route path="/login" element={<Authentication snackbar={snackbar} />} />
+        <Route path="/" element={<ProductsGrid snackbar={snackbar} />} />
         <Route path="/product" element={<Product snackbar={snackbar} />} />
         <Route
           path="/addNewProduct"
