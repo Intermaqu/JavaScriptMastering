@@ -89,4 +89,16 @@ module.exports = {
     const product = await Product.deleteProductById(req.body.id);
     res.status(200).send(product)
   },
+  updateProductNameById: async (req, res) => {
+    const product = await Product.updateProductNameById(req.body.name, req.body.id);
+    res.status(200).send(product)
+  },
+  updateProductPriceById: async (req, res) => {
+    const product = await Product.updateProductPriceById(req.body.price, req.body.id);
+    res.status(200).send(product)
+  },
+  updateProductDescriptionById: async (req, res) => {
+    const product = await Product.updateProductDescriptionById(req.body.description, req.body.id);
+    res.status(200).send(product)
+  },
 };

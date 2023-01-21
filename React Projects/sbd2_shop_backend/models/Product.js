@@ -61,33 +61,52 @@ module.exports = {
 
   getAllProductsByIdSeller: async (id) => {
     const product = await db.query(
-     `SELECT * FROM product WHERE "ID_USER" = $1`,
-     [id]
+      `SELECT * FROM product WHERE "ID_USER" = $1`,
+      [id]
     );
     return product.rows;
   },
 
   getAllProductsByIdSellerWithGalery: async (id) => {
     const product = await db.query(
-     `SELECT * FROM product JOIN galery on product."ID_GALERY" = galery."ID_GALERY" WHERE "ID_USER" = $1`,
-     [id]
+      `SELECT * FROM product JOIN galery on product."ID_GALERY" = galery."ID_GALERY" WHERE "ID_USER" = $1`,
+      [id]
     );
     return product.rows;
   },
 
   getTotalEarned: async (id) => {
-    const product = await db.query(
-     `SELECT totalEarned($1)`,
-     [id]
-    );
+    const product = await db.query(`SELECT totalEarned($1)`, [id]);
     return product.rows[0];
   },
 
   deleteProductById: async (id) => {
     const product = await db.query(
-     `DELETE FROM product WHERE "ID_PRODUCT" = $1`,
-     [id]
+      `DELETE FROM product WHERE "ID_PRODUCT" = $1`,
+      [id]
     );
     return product.rows[0];
-  }
+  },
+
+  updateProductNameById: async (name, id) => {
+    const product = await db.query(
+      `UPDATE product SET "Name" = $1 WHERE "ID_PRODUCT" = $2`,
+      [name, id]
+    );
+    return product.rows[0];
+  },
+  updateProductPriceById: async (price, id) => {
+    const product = await db.query(
+      `UPDATE product SET "Price" = $1 WHERE "ID_PRODUCT" = $2`,
+      [price, id]
+    );
+    return product.rows[0];
+  },
+  updateProductDescriptionById: async (description, id) => {
+    const product = await db.query(
+      `UPDATE product SET "Description" = $1 WHERE "ID_PRODUCT" = $2`,
+      [description, id]
+    );
+    return product.rows[0];
+  },
 };

@@ -8,7 +8,10 @@ const {
   getAllProductsByIdSeller,
   getAllProductsByIdSellerWithGalery,
   getTotalEarned,
-  deleteProductById
+  deleteProductById,
+  updateProductNameById,
+  updateProductPriceById,
+  updateProductDescriptionById,
 } = require("../controllers/productController");
 var router = express.Router();
 
@@ -19,6 +22,9 @@ router.post("/getAllProductsByIdSellerWithGalery", getAllProductsByIdSellerWithG
 router.post("/changeStatusToSoldById", changeStatusToSoldById);
 router.post("/getTotalEarned", getTotalEarned);
 router.post("/deleteProductById", deleteProductById);
+router.post("/updateProductNameById", updateProductNameById);
+router.post("/updateProductPriceById", updateProductPriceById);
+router.post("/updateProductDescriptionById", updateProductDescriptionById);
 
 /* GET users listing. */
 
