@@ -3,8 +3,7 @@ const db = require("../db/config");
 module.exports = {
   addNewCategory: async ({ name, description }) => {
     let category = await db.query(
-      `INSERT INTO category ("Name", "Description") VALUES ($1, $2)`,
-      [name, description]
+      `CALL NewCategory('${name}','${description}')`
     );
     return category;
   },

@@ -6,7 +6,9 @@ const {
   getProductById,
   changeStatusToSoldById,
   getAllProductsByIdSeller,
-  getAllProductsByIdSellerWithGalery
+  getAllProductsByIdSellerWithGalery,
+  getTotalEarned,
+  deleteProductById
 } = require("../controllers/productController");
 var router = express.Router();
 
@@ -15,6 +17,8 @@ router.post("/getProductById", getProductById);
 router.post("/getAllProductsByIdSeller", getAllProductsByIdSeller);
 router.post("/getAllProductsByIdSellerWithGalery", getAllProductsByIdSellerWithGalery);
 router.post("/changeStatusToSoldById", changeStatusToSoldById);
+router.post("/getTotalEarned", getTotalEarned);
+router.post("/deleteProductById", deleteProductById);
 
 /* GET users listing. */
 

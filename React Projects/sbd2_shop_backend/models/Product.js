@@ -74,4 +74,20 @@ module.exports = {
     );
     return product.rows;
   },
+
+  getTotalEarned: async (id) => {
+    const product = await db.query(
+     `SELECT totalEarned($1)`,
+     [id]
+    );
+    return product.rows[0];
+  },
+
+  deleteProductById: async (id) => {
+    const product = await db.query(
+     `DELETE FROM product WHERE "ID_PRODUCT" = $1`,
+     [id]
+    );
+    return product.rows[0];
+  }
 };

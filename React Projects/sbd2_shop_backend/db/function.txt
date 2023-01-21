@@ -1,17 +1,15 @@
-CREATE or replace FUNCTION totalValue (my_id int)  
-	RETURNS integer
+CREATE or replace FUNCTION totalEarned (my_id int)  
+	RETURNS numeric(10,2)
     LANGUAGE plpgsql
 AS $$ 
 DECLARE
-	total integer;
+	total numeric(10,2);
 begin
-	SELECT (p."Price"::integer + d."price") into total from transactions t
-	join product p on p."ID_PRODUCT" = t."ID_PRODUCT"
-	join delivery d on d."ID_DELIVERY" = t."ID_DELIVERY"
-	where "ID_TRANSACTION" = my_id;
+	SELECT sum(p."Price"::numeric(10,2)) into total from products
+	where "ID_USER" = my_id and "Status" = 'Sold';
 	return total;
 end;
 $$
 
 
-SELECT totalValue(2)
+SELECT totalEarned(2)

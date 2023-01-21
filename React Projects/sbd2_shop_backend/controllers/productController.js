@@ -79,4 +79,14 @@ module.exports = {
     const products = await Product.getAllProductsByIdSellerWithGalery(req.body.id);
     res.status(200).send(products)
   },
+
+  getTotalEarned: async (req, res) => {
+    const products = await Product.getTotalEarned(req.body.id);
+    res.status(200).send(products)
+  },
+
+  deleteProductById: async (req, res) => {
+    const product = await Product.deleteProductById(req.body.id);
+    res.status(200).send(product)
+  },
 };
