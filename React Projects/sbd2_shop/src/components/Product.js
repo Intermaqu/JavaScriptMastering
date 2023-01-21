@@ -9,7 +9,7 @@ import ProductsGrid from "./ProductsGrid";
 import { useEffect } from "react";
 import { URL } from "../services/URL";
 
-const Product = () => {
+const Product = ({snackbar}) => {
   const [id, setId] = useState(undefined);
   const [galery, setGalery] = useState({});
   const [color, setColor] = useState({});
@@ -137,6 +137,7 @@ DODAĆ FUNKCJONALNOŚĆ KUPOWANIA PRODUKUT
           name={product.Name}
           id={product.ID_PRODUCT}
           owner={product.ID_USER}
+          snackbar={snackbar}
         />
       </div>
     </>

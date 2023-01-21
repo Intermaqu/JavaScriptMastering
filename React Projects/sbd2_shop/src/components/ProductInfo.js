@@ -5,7 +5,7 @@ import AuthenticationService from "../services/AuthenticationService";
 import "../styles/general.css";
 import "../styles/product.css";
 import { useState } from "react";
-import { TextField, MenuItem, Select, InputLabel } from "@mui/material";
+import { TextField, MenuItem, Select, InputLabel, snackbarClasses } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const ProductInfo = ({
@@ -16,6 +16,7 @@ const ProductInfo = ({
   color_hex,
   id,
   owner,
+  snackbar
 }) => {
   const navigate = useNavigate();
   const [allDelivery, setAllDelivery] = useState([]);
@@ -54,7 +55,13 @@ const ProductInfo = ({
       },
     }).then((res) => {
       console.log("Added Transaction");
+      snackbar("Congratulation, You bought product!", "success");
       navigate("/");
+    }).catch(e=>{
+      console.log(e)
+      
+      // snackbar(e.response.data, "error");
+      snackbar("Somsthing Went Wrong!", "error")
     });
   };
 

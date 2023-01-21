@@ -14,7 +14,7 @@ const UserDashboard = ({ snackbar }) => {
   const [allSoldProducts, setAllSoldProducts] = useState([]);
   const [allPostedProducts, setAllPostedProducts] = useState([]);
 
-  const init = () => {
+  const getAllProducts = () => {
     axios({
       method: "POST",
       url: `${URL}/product/getAllProductsByIdSellerWithGalery`,
@@ -33,8 +33,48 @@ const UserDashboard = ({ snackbar }) => {
       setAllPostedProducts(
         res.data.filter((product) => product.Status === "Posted")
       );
-      setEarned(res.data.filter((product) => product.Status === "Sold").reduce((acc, product) => acc + parseInt(product.Price), 0))
     });
+  }
+
+  const getTotalEarned = () => {
+    axios({
+      method: "POST",
+      url: `${URL}/product/getTotalEarned`,
+      data: {
+        id: AuthenticationService.getUserData().ID_USER,
+      },
+      headers: {
+        authorization: AuthenticationService.getToken(),
+      },
+    }).then((res) => {
+      
+      setEarned(res.data.totalearned)
+    }).catch(e=>{
+      console.log(e)
+    });
+  }
+
+  const handleDelete = (product_id) => {
+    axios({
+      method: "POST",
+      url: `${URL}/product/deleteProductById`,
+      data: {
+        id: product_id,
+      },
+      headers: {
+        authorization: AuthenticationService.getToken(),
+      },
+    }).then((res) => {
+      setAllPostedProducts(allPostedProducts.filter(product=>product.ID_PRODUCT !== product_id))
+      snackbar("Product deleted successfully", "success")
+    }).catch(e=>{
+      snackbar("Error deleting product", "error")
+    })
+  }
+
+  const init = () => {
+    getAllProducts()
+    getTotalEarned()
   };
 
   useEffect(init, []);
@@ -51,6 +91,10 @@ const UserDashboard = ({ snackbar }) => {
               description={product.Description}
               photo_1={product.photo_1}
               key={product.ID_PRODUCT}
+              id={product.ID_PRODUCT}
+              snackbar={snackbar}
+              status={product.Status}
+              handleDelete={()=>handleDelete(product.ID_PRODUCT)}
             />
           ))}
       </div>
@@ -64,6 +108,8 @@ const UserDashboard = ({ snackbar }) => {
               description={product.Description}
               photo_1={product.photo_1}
               key={product.ID_PRODUCT}
+              id={product.ID_PRODUCT}
+              status={product.Status}
             />
           ))}
       </div>
