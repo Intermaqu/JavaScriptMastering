@@ -7,23 +7,26 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 40px;
+    /* gap: 40px; */
     margin: 20px 0;
 }
 
 .productDashboard-image{
     height: 100%;
     aspect-ratio: 1;
+    margin-right: 20px;
 }
 
 .productDashboard-name{
     font-size: 24px;
     font-weight: 500;
+    margin-right: 20px;
 }
 
 .productDashboard-price{
     font-size: 24px;
     font-weight: 700;
+    margin-right: 20px;
 }
 
 .productDashboard-description{
@@ -34,6 +37,18 @@
     width: 100px;
     padding: 10px 20px;
     background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+.productDashboard-modifyProduct{
+    width: 100px;
+    padding: 10px 20px;
+    background-color: #0d0;
     color: white;
     border: none;
     cursor: pointer;

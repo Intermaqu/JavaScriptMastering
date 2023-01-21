@@ -9,6 +9,7 @@ import NewProduct from "./components/NewProduct";
 import { useSnackbar } from "notistack";
 import Dashboard from "./components/Dashboard";
 import UserDashboard from "./components/UserDashboard"
+import ModifyProduc from "./components/ModifyProduct"
 
 const App = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -31,6 +32,7 @@ const App = () => {
         />
         <Route path="/dashboard" element={<Dashboard snackbar={snackbar} />} />
         <Route path="/userDashboard" element={<UserDashboard snackbar={snackbar} />} />
+        <Route path="/modifyProduct" element={<ModifyProduc snackbar={snackbar} />} />
       </Routes>
       <Footer />
     </div>
