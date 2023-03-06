@@ -1,0 +1,60 @@
+<!--
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    AKAI Frontend Task - HTML
+
+	W tym pliku znajduje się struktura strony z formularzem. Twoim zadaniem jest upiększenie
+	tego formularza. Przeanalizuj poniższy kod. Jego znajomość będzie potrzebna do przerobienia
+	pliku form.css odpowiedzialnego za styl strony. Gdy zapoznasz się ze strukturą strony,
+	przejdź do pliku css/form.css lub js/validation.js po dalsze instrukcje.
+
+    Powodzenia!
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>AKAI Frontend Task</title>
+		<link rel="stylesheet" type="text/css" href="css/form.css">
+		<meta name="viewport" charset="utf-8" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+		<script type="text/javascript" src="js/validation.js" defer></script>
+</head>
+<body>
+	<main id="task-frontend">
+		<span class="basic-title">Formularz rekrutacyjny</span>
+		<form method="POST">
+
+		    <span id="first-name-parent">
+				<input type="text" id="first-name" placeholder="Imię"/>
+			</span>
+				
+			<span id="last-name-parent">
+				<input type="text" id="last-name"  placeholder="Nazwisko"/>
+			</span>
+			<span id="email-parent">
+				<input type="email" id="email" placeholder="Email"/>
+			</span>
+			<span>Sekcje które cię interesują:</span>
+            <div class="section">
+				<span>
+					<input type="checkbox" id="frontend-checkbox" name="section" value="frontend">
+					<label for="frontend-checkbox">Frontend</label>
+				</span>
+				<span>
+					<input type="checkbox" id="backend-checkbox" name="section" value="frontend">
+					<label for="backend-checkbox">Backend</label>
+				</span>
+				<span>
+					<input type="checkbox" id="mobile-checkbox" name="section" value="frontend">
+					<label for="mobile-checkbox">Mobile</label>
+				</span>
+				<span>
+					<input type="checkbox" id="graphics-checkbox" name="section" value="frontend">
+					<label for="graphics-checkbox">Grafika</label>
+				</span>
+			</div>
+            <input type="submit" value="Prześlij" id="submit">
+		</form>
+	</main>
+</body>
+</html>
