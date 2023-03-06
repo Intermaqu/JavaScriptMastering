@@ -1,0 +1,95 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="transaction" directorySegmentName="seg_0" id="96BFD306-6108-FF6D-87CA-DDE5F2AB4C34">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="date" id="1F2A2806-79FF-E40E-7C2D-4F84B6527E43">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="user_ID_USER" id="53E0D378-9EB6-FBE7-1BF5-EB1C8FE12FA6">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="user_ID_USER2" id="5657A23B-F289-C596-FD5A-9A617EA2FB0A">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="delivery_ID_DELIVERY" id="7F3E756F-A4DD-C91D-4090-727330ED9ADD">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ID_TRANSACTION" id="A588894B-77EE-CD8E-616F-39CEAD1BB66C">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="product_ID_PRODUCT" id="AAE92579-6421-CB8A-57B1-ED2ADB0753A0">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="product_user_ID_USER" id="BDE3BB9F-C7FE-86C1-1747-1635A395D86F">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="payment_ID_PAYMENT" id="C1E34F87-16F2-5DB8-27F5-296E39D357E9">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="transaction__IDX" id="7A36054D-E032-8160-B5CE-E8E673507DE1">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</IndexProxy>
+</indexProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="transaction_user_FK" id="44176E2E-7823-E9D5-7F4E-9CD469D93B2D">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="transaction_delivery_FK" id="5D759AE9-4C8E-E5D0-BD21-A75631509ED2">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="transaction_user_FKv2" id="6EDBEDEA-AC4B-D753-1880-1E895F90DBFC">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="transaction_payment_FK" id="6F2639BA-A20C-4D8C-E557-6EDFB697A82B">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="transaction_product_FK" id="C6AFE983-DAA9-F71C-610D-E7F2DFCA7A85">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="transaction_PK" id="336F6703-425A-42CE-6A91-0AE1AB3404DC">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev11g>

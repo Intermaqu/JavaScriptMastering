@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FunctionOracle class="oracle.dbtools.crest.model.design.storage.oracle.FunctionOracle" name="getTotalEarnedByUserId" directorySegmentName="seg_0" id="69FAE6D1-C369-9823-A4FD-EA05BA5C804A">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:45 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<source>CREATE or replace FUNCTION getTotalEarnedByUserId (my_id int)  
+	RETURNS numeric(10,2)
+    LANGUAGE plpgsql
+AS $$ 
+DECLARE
+	total numeric(10,2);
+begin
+	SELECT sum(p.&quot;Price&quot;::numeric(10,2)) into total from products
+	where &quot;ID_USER&quot; = my_id and &quot;Status&quot; = &apos;Sold&apos;;
+	return total;
+end;
+$$
+
+
+SELECT totalEarned(2)</source>
+</FunctionOracle>

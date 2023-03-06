@@ -1,0 +1,36 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="payment" directorySegmentName="seg_0" id="0F7B8430-04BC-7E70-964D-49BF94CC4C85">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="ID_PAYMENT" id="1DAB035D-3272-990C-7D37-22E9436BA9AF">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="descripition" id="77F308B5-5F4C-1889-DF44-78FD2D0C1E47">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="type" id="B743BD8A-9462-D593-F1E4-DE0068EDF8E8">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="payment_PK" id="70106B5B-DBEA-FCFD-B8F1-29A388A0EE7F">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev11g>

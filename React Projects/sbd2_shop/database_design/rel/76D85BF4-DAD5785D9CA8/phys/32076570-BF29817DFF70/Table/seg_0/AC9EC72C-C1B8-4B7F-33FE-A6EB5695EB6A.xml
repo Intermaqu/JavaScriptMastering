@@ -1,0 +1,36 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="colors" directorySegmentName="seg_0" id="AC9EC72C-C1B8-4B7F-33FE-A6EB5695EB6A">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="name" id="7F84990B-A16C-23F9-4306-7526240D329B">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="color_hex" id="E52438ED-20B9-7AD3-FB4E-FE8342935C4A">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ID_COLOR" id="FD2CABE8-5235-AAE9-1D03-0E60B6CE9D61">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="colors_PK" id="082D6464-8709-29B8-67F3-78460567E0FD">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev11g>

@@ -1,0 +1,63 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="address" directorySegmentName="seg_0" id="67E00CBB-DC3E-E395-F617-F69936504B06">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="ID_ADDRESS" id="2BD74D84-2012-2B5C-36CD-CB2D24BFF8EB">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="street" id="3B6E54B0-E59D-B689-FB73-661433CAD500">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="country" id="71AA002B-03FA-C590-1167-4DD5B51D48B6">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="postal_code" id="814BBBCA-9DA4-856C-BE2D-5542C989FF4C">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="city" id="CBE66A08-D46F-8B82-751D-0F3FA1DBBE96">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="appartment" id="FBD5CCEE-5A3F-340D-B208-63A99B240BD8">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="address__IDXv1" id="491F2B51-270C-CF9D-A272-DC64848F85D1">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="address__IDX" id="E6EA8BF6-4879-FAE1-A1A8-D7C300A56159">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</IndexProxy>
+</indexProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="address_PK" id="46529437-5224-2A49-D074-F63C0F9BAC2E">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev11g>

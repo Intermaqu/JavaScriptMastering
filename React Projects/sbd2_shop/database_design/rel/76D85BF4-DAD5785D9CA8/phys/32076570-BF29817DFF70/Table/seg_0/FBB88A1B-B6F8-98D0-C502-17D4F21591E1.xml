@@ -1,0 +1,36 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="category" directorySegmentName="seg_0" id="FBB88A1B-B6F8-98D0-C502-17D4F21591E1">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="name" id="15205A9A-ED07-4A10-39A8-29C9A530435C">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ID_CATEGORY" id="63FCCD27-0BE7-158E-B1D2-4972F516EEBD">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="description" id="9B720EA5-F60B-F044-5DBB-B34EA8FA71D8">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="category_PK" id="B1FB5330-1129-A742-52D0-694919CDFA9D">
+<createdBy>inter</createdBy>
+<createdTime>2023-01-24 09:30:36 UTC</createdTime>
+<ownerDesignName>database_design</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev11g>
