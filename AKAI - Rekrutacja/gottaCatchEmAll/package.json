@@ -1,0 +1,16 @@
+{
+  "name": "gottacatchemall",
+  "version": "1.0.0",
+  "description": "Teraz Twoim zadaniem będzie stworzenie pokedexu na miarę Asha Ketchuma!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.35.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5"
+  }
+}
