@@ -1,0 +1,15 @@
+html {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.canvas1,
+.canvas2 {
+    width: 400px;
+    height: 300px;
+    background: red;
+    cursor: pointer;
+}
