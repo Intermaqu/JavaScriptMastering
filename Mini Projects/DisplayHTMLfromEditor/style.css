@@ -1,0 +1,15 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+#iframe {
+    width: 400px;
+    height: 300px;
+    position: relative;
+    border: 1px solid #ccc;
+    overflow: hidden;
+}

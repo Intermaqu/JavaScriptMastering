@@ -5,7 +5,6 @@ create or replace procedure NewCategory
 ) 
 LANGUAGE SQL
 AS $$
- 
     insert into category ("Name","Description") 
     values(pName, pDescription);
 $$
