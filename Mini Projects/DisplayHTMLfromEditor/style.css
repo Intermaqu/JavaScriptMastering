@@ -3,7 +3,8 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    flex-direction: column;
+    /* flex-direction: column; */
+    gap: 100px;
 }
 
 #iframe {
@@ -12,4 +13,37 @@ body {
     position: relative;
     border: 1px solid #ccc;
     overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
+
+/*
+<main><div></div>
+<div></div>
+<div class="a"></div>
+<div></div></main>
+
+<style>
+main{
+width: 400px;
+height: 300px;
+display: grid;
+background: blue;
+position: absolute;
+top: 0px;
+left:0px;
+grid-template-columns: 50% 50%;
+
+}
+div{
+width: 50px;
+height: 50px;
+background: red;
+margin: auto;
+}
+.a{
+background: green;
+}
+</style>
+
+*/
