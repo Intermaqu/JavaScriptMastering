@@ -124,5 +124,5 @@ compare.addEventListener("click", () => {
             }
         }
     }
-    console.log(`${((count * 100) / maxVal).toFixed(1)}%`);
+    console.log(`${((count * 100) / maxVal).toFixed(1)}%`   );
 });
