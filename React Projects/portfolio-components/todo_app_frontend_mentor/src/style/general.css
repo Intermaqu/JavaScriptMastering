@@ -1,0 +1,40 @@
+:root {
+    --main-purple: #635fc7;
+    --main-purple-025: rgba(99, 95, 199, 0.25);
+    --main-purple-010: rgba(99, 95, 199, 0.1);
+    --main-purple-hover: #a8a4ff;
+    --black: #000112;
+    --very-dark-grey: #20212c;
+    --dark-grey: #2b2c37;
+    --lines-dark: #3e3f4e;
+    --medium-grey: #828fa3;
+    --lines-light: #e4ebfa;
+    --light-grey-light-bg: #f4f7fd;
+    --white: #fff;
+    --red: #ea5555;
+    --red-hover: #ff9898;
+
+    --font-family: "Plus Jakarta Sans", sans-serif;
+
+    --font-size-xl: 24px;
+    --font-size-l: 18px;
+    --font-size-m: 15px;
+    --font-size-s: 12px;
+
+    --font-weight-bold: 700;
+    --font-weight-medium: 500;
+
+    --font-line-height-xl: 30px;
+    --font-line-height-l: 23px;
+    --font-line-height-m: 19px;
+    --font-line-height-s: 15px;
+
+    --kerning: 2, 4px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+}
