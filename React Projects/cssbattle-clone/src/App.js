@@ -148,7 +148,7 @@ function App() {
                     width="400px"
                     height="300px"
                 />
-                {/* <button onClick={handleDownloadClick}>Download</button> */}
+                <button onClick={handleDownloadClick}>Download</button>
                 <button onClick={handleCompare}>Compare</button>
                 <button
                     onClick={handleCopyToClipboard}
