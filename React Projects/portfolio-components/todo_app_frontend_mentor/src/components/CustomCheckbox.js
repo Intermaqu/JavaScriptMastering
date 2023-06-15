@@ -5,8 +5,6 @@ import "../style/checkboxes.css";
 const CustomCheckbox = ({ text, checked, onClickCheck, width }) => {
     const theme = useContext(ThemeContext);
 
-    console.log(theme);
-
     const classNames = `custom-checkbox custom-checkbox-${
         checked ? "checked" : "unchecked"
     }-${theme}`;
@@ -17,7 +15,11 @@ const CustomCheckbox = ({ text, checked, onClickCheck, width }) => {
             className={classNames}
             style={{ width: width || "fit-content" }}
         >
-            <input type="checkbox" checked={checked} />
+            <input
+                type="checkbox"
+                checked={checked}
+                onChange={() => onClickCheck()}
+            />
             <p>{text}</p>
         </div>
     );
