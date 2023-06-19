@@ -1,0 +1,19 @@
+.board {
+    display: flex;
+    padding: 24px;
+    gap: 24px;
+}
+
+.board-empty {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.board-light {
+    background: var(--light-grey-light-bg);
+}
+
+.board-dark {
+    background: var(--very-dark-grey-dark-bg);
+}

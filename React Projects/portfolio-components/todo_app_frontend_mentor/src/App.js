@@ -5,6 +5,11 @@ import CustomButton from "./components/CustomButton";
 import CustomCheckbox from "./components/CustomCheckbox";
 import CustomInput from "./components/CustomInput";
 import CustomDropdown from "./components/CustomDropdown";
+import Task from "./components/Task";
+import Column from "./components/Column";
+import Board from "./components/Board";
+import data from "./data.json";
+import Sidebar from "./components/Sidebar";
 
 function App() {
     const [theme, setTheme] = useState("light");
@@ -16,90 +21,44 @@ function App() {
     const [inputValue, setInputValue] = useState("");
     const [dropdownValue, setDropdownValue] = useState("Todo");
 
+    const [state, setState] = useState(data.data);
+    const [init, setInit] = useState(0);
+
+    const [selectedBoard, setSelectedBoard] = useState(1);
+
     const WIDTH = "400px";
 
     const toggleTheme = () => {
         setTheme(theme === "light" ? "dark" : "light");
     };
 
+    const handleSelectBoard = (id) => {
+        console.log(id);
+        setSelectedBoard(id);
+    };
+
+    const handleInit = () => {
+        setInit(1);
+    };
+
     return (
         <ThemeContext.Provider value={theme}>
-            <div className={`App ${theme}`}>
+            {/* <main className={`App ${theme}`}>
                 <CustomButton
                     name="Click me"
-                    callback={toggleTheme}
+                    callback={handleInit}
                     width={WIDTH}
                     type="PrimaryL"
                 />
-                <CustomButton
-                    name="Click me"
-                    callback={toggleTheme}
-                    width={WIDTH}
-                    type="PrimaryS"
-                />
-                <CustomButton
-                    name="Click me"
-                    callback={toggleTheme}
-                    width={WIDTH}
-                    type="Secondary"
-                />
-                <CustomButton
-                    name="Click me"
-                    callback={toggleTheme}
-                    width={WIDTH}
-                    type="Destructive"
-                />
-                <CustomCheckbox
-                    text="Checkbox1"
-                    checked={checkboxes.checkbox1}
-                    onClickCheck={() =>
-                        setCheckboxes({
-                            ...checkboxes,
-                            checkbox1: !checkboxes.checkbox1,
-                        })
-                    }
-                    width={WIDTH}
-                />
-                <CustomCheckbox
-                    text="Checkbox2"
-                    checked={checkboxes.checkbox2}
-                    onClickCheck={() =>
-                        setCheckboxes({
-                            ...checkboxes,
-                            checkbox2: !checkboxes.checkbox2,
-                        })
-                    }
-                    width={WIDTH}
-                />
-                <CustomCheckbox
-                    text="Checkbox3"
-                    checked={checkboxes.checkbox3}
-                    onClickCheck={() =>
-                        setCheckboxes({
-                            ...checkboxes,
-                            checkbox3: !checkboxes.checkbox3,
-                        })
-                    }
-                    width={WIDTH}
-                />
-                <CustomDropdown
-                    value={dropdownValue}
-                    setValue={setDropdownValue}
-                    options={[
-                        { id: 1, name: "Todo" },
-                        { id: 2, name: "Doing" },
-                        { id: 3, name: "Done" },
-                    ]}
-                    width={WIDTH}
-                />
-                <CustomInput
-                    value={inputValue}
-                    onChangeValue={setInputValue}
-                    isValid={inputValue.length > 0}
-                    placeholder="Enter task name"
-                    width={WIDTH}
-                />
-            </div>
+                <Board columns={state[init].columns} handleInit={handleInit} />
+            </main> */}
+            <Sidebar
+                boards={data.data}
+                selectBoard={handleSelectBoard}
+                selectedId={selectedBoard}
+                toggleTheme={toggleTheme}
+                // hideBoard={() => {}}
+            />
         </ThemeContext.Provider>
     );
 }

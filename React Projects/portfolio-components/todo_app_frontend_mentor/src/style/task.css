@@ -1,0 +1,14 @@
+.task {
+    width: 100%;
+    padding: 16px 23px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 4px 6px rgba(54, 78, 126, 0.1);
+    background: var(--white);
+    border-radius: 8px;
+}
+
+.task--subtasks {
+    color: var(--medium-grey) !important;
+}

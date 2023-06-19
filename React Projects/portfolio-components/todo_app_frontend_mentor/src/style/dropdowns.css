@@ -28,7 +28,6 @@
 
 .custom-dropdown-content > img {
     width: 16px;
-    height: 16px;
 }
 
 .custom-dropdown-options {
@@ -44,7 +43,7 @@
 }
 
 .custom-dropdown-options-dark {
-    background: var(--very-dark-grey) !important;
+    background: var(--very-dark-grey-dark-bg) !important;
 }
 
 .custom-dropdown-option {

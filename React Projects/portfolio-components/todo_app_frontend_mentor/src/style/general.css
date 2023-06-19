@@ -4,7 +4,7 @@
     --main-purple-010: rgba(99, 95, 199, 0.1);
     --main-purple-hover: #a8a4ff;
     --black: #000112;
-    --very-dark-grey: #20212c;
+    --very-dark-grey-dark-bg: #20212c;
     --dark-grey: #2b2c37;
     --lines-dark: #3e3f4e;
     --medium-grey: #828fa3;
@@ -38,4 +38,46 @@
     padding: 0;
     box-sizing: border-box;
     font-family: var(--font-family);
+}
+
+.headingXL {
+    font-size: var(--font-size-xl);
+    line-height: var(--font-line-height-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--black);
+}
+
+.headingL {
+    font-size: var(--font-size-l);
+    line-height: var(--font-line-height-l);
+    font-weight: var(--font-weight-bold);
+    color: var(--black);
+}
+
+.headingM {
+    font-size: var(--font-size-m);
+    line-height: var(--font-line-height-m);
+    font-weight: var(--font-weight-bold);
+    color: var(--black);
+}
+
+.headingS {
+    font-size: var(--font-size-s);
+    line-height: var(--font-line-height-s);
+    font-weight: var(--font-weight-bold);
+    color: var(--medium-grey);
+}
+
+.bodyL {
+    font-size: 13px;
+    line-height: var(--font-line-height-l);
+    font-weight: var(--font-weight-medium);
+    color: var(--dark-grey);
+}
+
+.bodyM {
+    font-size: 12px;
+    line-height: var(--font-line-height-s);
+    font-weight: var(--font-weight-bold);
+    color: var(--dark-grey);
 }

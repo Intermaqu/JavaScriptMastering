@@ -2,7 +2,14 @@ import React, { useContext } from "react";
 import ThemeContext from "../ThemeContext";
 import "../style/buttons.css";
 
-const CustomButton = ({ name, type, callback, width }) => {
+const CustomButton = ({
+    text,
+    type,
+    callback,
+    width,
+    plus = false,
+    customStyles = {},
+}) => {
     const theme = useContext(ThemeContext);
 
     const types = {
@@ -16,11 +23,11 @@ const CustomButton = ({ name, type, callback, width }) => {
 
     return (
         <button
-            onClick={() => callback()}
+            onClick={callback}
             className={style}
-            style={{ width: width || "fit-content" }}
+            style={{ width: width || "fit-content", ...customStyles }}
         >
-            {name}
+            {plus ? `+ ${text}` : text}
         </button>
     );
 };

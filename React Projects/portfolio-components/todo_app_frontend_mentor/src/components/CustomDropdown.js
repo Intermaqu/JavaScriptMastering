@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import "../style/dropdowns.css";
 import ThemeContext from "../ThemeContext";
-import arrow from "../assets/images/down-arrow-purple.png";
+import arrowDown from "../assets/images/icon-chevron-down.svg";
+import arrowUp from "../assets/images/icon-chevron-up.svg";
 
 const CustomDropdown = ({ value, setValue, options, width }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +22,7 @@ const CustomDropdown = ({ value, setValue, options, width }) => {
             >
                 <p>{value}</p>
                 <img
-                    src={arrow}
+                    src={isOpen ? arrowUp : arrowDown}
                     className="dropdown-arrow"
                     alt="that is dropdown arrow"
                 />

@@ -37,7 +37,7 @@
 .custom-checkbox-unchecked-dark,
 .custom-checkbox-checked-dark {
     color: var(--white);
-    background-color: var(--very-dark-grey);
+    background-color: var(--very-dark-grey-dark-bg);
 }
 
 .custom-checkbox-unchecked-dark:hover {
