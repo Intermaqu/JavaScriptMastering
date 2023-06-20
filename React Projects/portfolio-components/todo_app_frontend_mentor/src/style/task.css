@@ -5,10 +5,23 @@
     flex-direction: column;
     gap: 8px;
     box-shadow: 0 4px 6px rgba(54, 78, 126, 0.1);
-    background: var(--white);
     border-radius: 8px;
 }
+.task-light {
+    background: var(--white);
+}
 
+.task--title-light {
+    color: var(--black);
+}
+
+.task-dark {
+    background: var(--dark-grey);
+}
+
+p.task--title-dark {
+    color: var(--white);
+}
 .task--subtasks {
     color: var(--medium-grey) !important;
 }

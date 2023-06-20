@@ -1,7 +1,6 @@
 .sidebar {
     width: 300px;
     padding: 24px 0;
-    border: 1px solid red;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -128,6 +127,7 @@
     height: 48px;
     gap: 15px;
     margin-top: 8px;
+    cursor: pointer;
 }
 
 .sidebar-hide > p {

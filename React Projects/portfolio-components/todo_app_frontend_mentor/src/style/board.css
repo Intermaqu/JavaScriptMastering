@@ -17,3 +17,25 @@
 .board-dark {
     background: var(--very-dark-grey-dark-bg);
 }
+
+.sidebar-toggle-button {
+    position: absolute;
+    left: 0;
+    bottom: 32px;
+    height: 48px;
+    width: 56px;
+    border-radius: 0 24px 24px 0;
+    background: var(--main-purple);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.sidebar-toggle-button:hover {
+    background: var(--main-purple-hover);
+}
+
+.sidebar-toggle-button > img {
+    width: 16px;
+}

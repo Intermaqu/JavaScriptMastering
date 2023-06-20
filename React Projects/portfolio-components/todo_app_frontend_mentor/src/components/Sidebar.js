@@ -13,19 +13,22 @@ import "../style/sidebar.css";
 const Sidebar = ({
     boards,
     selectBoard,
-    hideBoard,
+    hideSidebar,
     selectedId,
     toggleTheme,
+    isSidebarOpen,
 }) => {
     const theme = useContext(ThemeContext);
 
     return (
         <div className={`sidebar sidebar-${theme}`}>
+            {/* LOGO */}
             <img
                 className="sidebar-logo"
                 alt="logo"
                 src={theme === "light" ? logoDark : logoLight}
             />
+            {/* ALL BOARDS */}
             <div className="sidebar-boards">
                 <p className="sidebar-boards--title">
                     {`ALL BOARDS (${boards.length})`}
@@ -50,11 +53,18 @@ const Sidebar = ({
                         </p>
                     </div>
                 ))}
-                <div className="sidebar-boards--board sidebar-boards--add">
+                {/* ADD NEW BOARD */}
+                <div
+                    className="sidebar-boards--board sidebar-boards--add"
+                    onClick={() => {
+                        console.log("Add New Board");
+                    }}
+                >
                     <img src={boardIcon} alt="board icon" />
                     <p className="headingM">+Create New Board</p>
                 </div>
             </div>
+            {/* THEME TOGGLER */}
             <div
                 className={`sidebar-toggle-theme sidebar-toggle-theme-${theme}`}
             >
@@ -70,7 +80,8 @@ const Sidebar = ({
                 </div>
                 <img src={darkThemeIcon} alt="dark  theme" />
             </div>
-            <div className="sidebar-hide">
+            {/* SIDEBAR SWITCH OFF */}
+            <div className="sidebar-hide" onClick={hideSidebar}>
                 <img src={hideSidebarIcon} alt="Hide sidebar icon" />
                 <p className="headingM">Hide Sidebar</p>
             </div>

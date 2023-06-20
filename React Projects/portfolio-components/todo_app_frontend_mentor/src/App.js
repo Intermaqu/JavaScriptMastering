@@ -18,6 +18,8 @@ function App() {
         checkbox2: false,
         checkbox3: false,
     });
+
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const [inputValue, setInputValue] = useState("");
     const [dropdownValue, setDropdownValue] = useState("Todo");
 
@@ -43,22 +45,25 @@ function App() {
 
     return (
         <ThemeContext.Provider value={theme}>
-            {/* <main className={`App ${theme}`}>
-                <CustomButton
-                    name="Click me"
-                    callback={handleInit}
-                    width={WIDTH}
-                    type="PrimaryL"
+            <main className={`App ${theme}`}>
+                {isSidebarOpen && (
+                    <Sidebar
+                        boards={data.data}
+                        selectBoard={handleSelectBoard}
+                        selectedId={selectedBoard}
+                        toggleTheme={toggleTheme}
+                        // hideBoard={() => {}}
+                        hideSidebar={() => setIsSidebarOpen(false)}
+                        isSidebarOpen={isSidebarOpen}
+                    />
+                )}
+                <Board
+                    columns={state[selectedBoard].columns}
+                    handleInit={handleInit}
+                    isSidebarOpen={isSidebarOpen}
+                    setIsSidebarOpen={setIsSidebarOpen}
                 />
-                <Board columns={state[init].columns} handleInit={handleInit} />
-            </main> */}
-            <Sidebar
-                boards={data.data}
-                selectBoard={handleSelectBoard}
-                selectedId={selectedBoard}
-                toggleTheme={toggleTheme}
-                // hideBoard={() => {}}
-            />
+            </main>
         </ThemeContext.Provider>
     );
 }

@@ -3,8 +3,9 @@ import "../style/board.css";
 import ThemeContext from "../ThemeContext";
 import Column from "./Column";
 import CustomButton from "./CustomButton";
+import eyeIcon from "../assets/images/icon-show-sidebar.svg";
 
-const Board = ({ columns, handleInit }) => {
+const Board = ({ columns, addNewColumn, isSidebarOpen, setIsSidebarOpen }) => {
     const theme = useContext(ThemeContext);
 
     return (
@@ -29,7 +30,10 @@ const Board = ({ columns, handleInit }) => {
                     </p>
                     <CustomButton
                         text="Add New Column"
-                        callback={handleInit}
+                        callback={() => {
+                            console.log("Add New Column");
+                        }}
+                        // callback={addNewColumn}
                         type="PrimaryL"
                         width="175px"
                         plus
@@ -39,6 +43,15 @@ const Board = ({ columns, handleInit }) => {
             {/* 
                 TODO!!!
             {columns.length > 0 && <NewColumnButton/>} */}
+
+            {!isSidebarOpen && (
+                <div
+                    className="sidebar-toggle-button"
+                    onClick={() => setIsSidebarOpen(true)}
+                >
+                    <img src={eyeIcon} alt="sidebar toggler" />
+                </div>
+            )}
         </div>
     );
 };
