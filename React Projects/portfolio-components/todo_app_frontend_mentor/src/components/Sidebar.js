@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import logoLight from "../assets/images/logo-light.svg";
 import logoDark from "../assets/images/logo-dark.svg";
 import boardIcon from "../assets/images/icon-board.svg";
@@ -16,9 +16,13 @@ const Sidebar = ({
     hideSidebar,
     selectedId,
     toggleTheme,
-    isSidebarOpen,
+    setIsAddNewBoardShown,
 }) => {
     const theme = useContext(ThemeContext);
+
+    useEffect(() => {
+        console.log("boards", boards);
+    }, [boards]);
 
     return (
         <div className={`sidebar sidebar-${theme}`}>
@@ -32,34 +36,33 @@ const Sidebar = ({
             {/* ALL BOARDS */}
             <div className="sidebar-boards">
                 <p className="sidebar-boards--title">
-                    {`ALL BOARDS (${boards.length})`}
+                    {`ALL BOARDS (${boards && boards.length})`}
                 </p>
-                {boards.map(({ boardName, id }) => (
-                    <div
-                        className={`sidebar-boards--board ${
-                            id === selectedId &&
-                            "sidebar-boards--board--selected"
-                        }`}
-                        key={id}
-                        onClick={() => selectBoard(id)}
-                    >
-                        <img src={boardIcon} alt="board icon" />
-                        <p
-                            className={`headingM ${
+                {boards &&
+                    boards.map(({ boardName, id }) => (
+                        <div
+                            className={`sidebar-boards--board ${
                                 id === selectedId &&
                                 "sidebar-boards--board--selected"
                             }`}
+                            key={id}
+                            onClick={() => selectBoard(id)}
                         >
-                            {boardName}
-                        </p>
-                    </div>
-                ))}
+                            <img src={boardIcon} alt="board icon" />
+                            <p
+                                className={`headingM ${
+                                    id === selectedId &&
+                                    "sidebar-boards--board--selected"
+                                }`}
+                            >
+                                {boardName}
+                            </p>
+                        </div>
+                    ))}
                 {/* ADD NEW BOARD */}
                 <div
                     className="sidebar-boards--board sidebar-boards--add"
-                    onClick={() => {
-                        console.log("Add New Board");
-                    }}
+                    onClick={() => setIsAddNewBoardShown(true)}
                 >
                     <img src={boardIcon} alt="board icon" />
                     <p className="headingM">+Create New Board</p>

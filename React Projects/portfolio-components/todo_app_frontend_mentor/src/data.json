@@ -17,9 +17,21 @@
                         {
                             "taskName": "Build UI for onboarding flow todo 1",
                             "subtasks": [
-                                { "subtaskName": "subtask 1", "status": true },
-                                { "subtaskName": "subtask 2", "status": false },
-                                { "subtaskName": "subtask 3", "status": false }
+                                {
+                                    "subtaskName": "subtask 1",
+                                    "status": true,
+                                    "id": 1
+                                },
+                                {
+                                    "subtaskName": "subtask 2",
+                                    "status": false,
+                                    "id": 2
+                                },
+                                {
+                                    "subtaskName": "subtask 3",
+                                    "status": false,
+                                    "id": 3
+                                }
                             ],
                             "id": 1
                         },

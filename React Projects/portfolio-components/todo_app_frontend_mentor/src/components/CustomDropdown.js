@@ -20,7 +20,7 @@ const CustomDropdown = ({ value, setValue, options, width = "100%" }) => {
                     isOpen && "custom-dropdown-content-opened"
                 } custom-dropdown-content-${theme}`}
             >
-                <p>{value}</p>
+                <p>{value.columnName}</p>
                 <img
                     src={isOpen ? arrowUp : arrowDown}
                     className="dropdown-arrow"

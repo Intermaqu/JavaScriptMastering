@@ -1,0 +1,35 @@
+.add-new-board {
+    padding: 32px;
+    width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    border-radius: 6px;
+}
+
+.add-new-board-light {
+    background: var(--white);
+}
+
+.new-task-form-label-light {
+    color: var(--medium-grey) !important;
+}
+
+.add-new-board--section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.new-board-form--columns-column {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+    align-items: center;
+}
+
+.new-board-form--columns-column > img {
+    cursor: pointer;
+}

@@ -5,7 +5,7 @@ import "../style/inputs.css";
 const CustomInput = ({
     value,
     onChangeValue,
-    placeholder = "Enter task name",
+    placeholder = "Name",
     width = "100%",
     type = "text",
     customStyles = {},

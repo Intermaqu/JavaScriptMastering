@@ -1,30 +1,29 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import ThemeContext from "../ThemeContext";
+import CustomButton from "./CustomButton";
 import CustomInput from "./CustomInput";
 import iconCross from "../assets/images/icon-cross.svg";
-import CustomButton from "./CustomButton";
 import CustomDropdown from "./CustomDropdown";
-import ThemeContext from "../ThemeContext";
-import "../style/newTaskForm.css";
-import { getId } from "../utils/generateId";
+import { isCompositeComponent } from "react-dom/test-utils";
+import { v4 as uuidv4 } from "uuid";
 
-const NewTaskForm = ({ columns, handleAddTask, setIsAddNewTaskShown }) => {
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [status, setStatus] = useState({});
-    const [subtasks, setSubtasks] = useState([
-        {
-            id: getId(),
-            subtaskName: "",
-            placeholder: "e.g. Make coffee",
-            status: false,
-        },
-        {
-            id: getId(),
-            subtaskName: "",
-            placeholder: "e.g. Drink coffee & smile",
-            status: false,
-        },
-    ]);
+// TODO REPAIR
+
+const EditTaskForm = ({
+    columnName,
+    columnId,
+    columns,
+    task,
+    setIsEditTaskShown,
+}) => {
+    const [currentTask, setCurrentTask] = useState(task);
+    const [title, setTitle] = useState(task.taskName);
+    const [description, setDescription] = useState(task.taskDescription || "");
+    const [status, setStatus] = useState({
+        columnName,
+        columnId,
+    });
+    const [subtasks, setSubtasks] = useState(task.subtasks);
 
     const theme = useContext(ThemeContext);
 
@@ -46,26 +45,13 @@ const NewTaskForm = ({ columns, handleAddTask, setIsAddNewTaskShown }) => {
         setSubtasks(newSubtasks);
     };
 
-    const handleSubmit = () => {
-        console.log("title", title);
-        console.log("description", description);
-        console.log("status", status);
-        console.log("subtasks", subtasks);
-    };
-
     useEffect(() => {
         console.log(subtasks);
+        console.log(uuidv4().slice(-8));
     }, [subtasks]);
 
-    useEffect(() => {
-        setStatus(columns[0]);
-    }, []);
-
     return (
-        <div
-            className="overlay"
-            onMouseDown={() => setIsAddNewTaskShown(false)}
-        >
+        <div className="overlay" onMouseDown={() => setIsEditTaskShown(false)}>
             <div
                 className={`new-task-form new-task-form-${theme}`}
                 onMouseDown={(e) => {
@@ -107,13 +93,13 @@ const NewTaskForm = ({ columns, handleAddTask, setIsAddNewTaskShown }) => {
                     <p className={`bodyM new-task-form-label-${theme}`}>
                         Subtasks
                     </p>
-                    {subtasks.map(({ id, subtaskName, placeholder }) => (
+                    {subtasks.map(({ id, subtaskName }) => (
                         <div
                             key={id}
                             className="new-task-form--subtasks-subtask"
                         >
                             <CustomInput
-                                placeholder={placeholder}
+                                placeholder={"e.g. Let's smile"}
                                 value={subtaskName}
                                 onChangeValue={(value) =>
                                     handleChangeSubtasks(id, value)
@@ -137,7 +123,10 @@ const NewTaskForm = ({ columns, handleAddTask, setIsAddNewTaskShown }) => {
                             setSubtasks([
                                 ...subtasks,
                                 {
-                                    id: getId(),
+                                    id:
+                                        subtasks.length === 0
+                                            ? 1
+                                            : subtasks.at(-1).id + 1,
                                     subtaskName: "",
                                     placeholder: "e.g. Let's smile",
                                     status: false,
@@ -159,18 +148,27 @@ const NewTaskForm = ({ columns, handleAddTask, setIsAddNewTaskShown }) => {
                 <CustomButton
                     text="Create Task"
                     type="PrimaryL"
-                    onClick={() =>
-                        handleAddTask({
-                            taskName: title,
-                            description,
-                            column: status,
-                            subtasks,
-                        })
-                    }
+                    onClick={() => {
+                        console.log(title);
+                        console.log(description);
+                        console.log(status);
+                        console.log(subtasks);
+                        console.log(columnId);
+                        console.log(status.id);
+                        console.log(currentTask.id);
+                    }}
+                    // onClick={() =>
+                    //     handleAddTask({
+                    //         taskName: title,
+                    //         description,
+                    //         column: status,
+                    //         subtasks,
+                    //     })
+                    // }
                 />
             </div>
         </div>
     );
 };
 
-export default NewTaskForm;
+export default EditTaskForm;

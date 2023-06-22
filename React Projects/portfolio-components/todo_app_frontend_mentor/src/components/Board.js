@@ -102,9 +102,6 @@ const Board = ({ columns, addNewColumn, isSidebarOpen, setIsSidebarOpen }) => {
                     />
                 </>
             )}
-            {/* 
-                TODO!!!
-            {columns.length > 0 && <NewColumnButton/>} */}
 
             {!isSidebarOpen && (
                 <div
