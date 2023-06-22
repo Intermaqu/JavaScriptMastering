@@ -23,11 +23,12 @@ const Sidebar = ({
     return (
         <div className={`sidebar sidebar-${theme}`}>
             {/* LOGO */}
-            <img
-                className="sidebar-logo"
-                alt="logo"
-                src={theme === "light" ? logoDark : logoLight}
-            />
+            <div className="sidebar-logo">
+                <img
+                    alt="logo"
+                    src={theme === "light" ? logoDark : logoLight}
+                />
+            </div>
             {/* ALL BOARDS */}
             <div className="sidebar-boards">
                 <p className="sidebar-boards--title">

@@ -5,8 +5,8 @@ import "../style/buttons.css";
 const CustomButton = ({
     text,
     type,
-    callback,
-    width,
+    onClick,
+    width = "100%",
     plus = false,
     customStyles = {},
 }) => {
@@ -23,7 +23,7 @@ const CustomButton = ({
 
     return (
         <button
-            onClick={callback}
+            onClick={onClick}
             className={style}
             style={{ width: width || "fit-content", ...customStyles }}
         >

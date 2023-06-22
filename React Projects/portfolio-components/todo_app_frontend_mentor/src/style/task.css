@@ -6,7 +6,9 @@
     gap: 8px;
     box-shadow: 0 4px 6px rgba(54, 78, 126, 0.1);
     border-radius: 8px;
+    word-wrap: break-word;
 }
+
 .task-light {
     background: var(--white);
 }

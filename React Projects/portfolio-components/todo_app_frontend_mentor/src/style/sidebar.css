@@ -1,24 +1,30 @@
 .sidebar {
     width: 300px;
-    padding: 24px 0;
     height: 100vh;
     display: flex;
     flex-direction: column;
+    border-right: 1px solid;
 }
 
 .sidebar-light {
     background: var(--white);
+    border-color: var(--lines-light);
 }
 
 .sidebar-dark {
     background: var(--dark-grey);
+    border-color: var(--lines-dark);
 }
 
 .sidebar-logo {
-    height: 25px;
-    width: fit-content;
-    margin-bottom: 54px;
+    display: flex;
+    align-items: center;
+    height: 96px;
     margin-left: 32px;
+}
+
+.sidebar-logo > img {
+    height: 25px;
 }
 
 .sidebar-boards--title {
@@ -35,7 +41,7 @@
 .sidebar-boards {
     display: flex;
     flex-direction: column;
-    width: 276px;
+    width: calc(100% - 24px);
     margin-bottom: auto;
 }
 

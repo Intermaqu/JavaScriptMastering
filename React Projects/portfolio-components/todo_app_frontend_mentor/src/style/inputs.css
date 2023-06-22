@@ -10,6 +10,10 @@
     position: relative;
 }
 
+textarea {
+    resize: none;
+}
+
 .custom-input-input {
     width: 100%;
     outline: none;

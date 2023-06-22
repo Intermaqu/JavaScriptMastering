@@ -3,6 +3,8 @@
     flex-direction: column;
     gap: 24px;
     width: 280px;
+    flex: 0 0 auto;
+    overflow-wrap: break-word;
     /* border: 1px solid red; */
 }
 

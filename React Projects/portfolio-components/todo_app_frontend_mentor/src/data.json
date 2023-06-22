@@ -85,6 +85,83 @@
                             "id": 3
                         }
                     ]
+                },
+                {
+                    "id": 3,
+                    "columnName": "Todo",
+                    "dotColor": "#FF0000",
+                    "tasks": [
+                        {
+                            "taskName": "Build UI for onboarding flow todo 1",
+                            "subtasks": [
+                                { "subtaskName": "subtask 1", "status": true },
+                                { "subtaskName": "subtask 2", "status": false },
+                                { "subtaskName": "subtask 3", "status": false }
+                            ],
+                            "id": 1
+                        },
+                        {
+                            "taskName": "Build UI for onboarding flow todo 2",
+                            "subtasks": [
+                                { "subtaskName": "subtask 1", "status": true },
+                                { "subtaskName": "subtask 2", "status": false },
+                                { "subtaskName": "subtask 3", "status": false }
+                            ],
+                            "id": 2
+                        },
+                        {
+                            "taskName": "Build UI for onboarding flow todo 3",
+                            "subtasks": [
+                                { "subtaskName": "subtask 1", "status": true },
+                                { "subtaskName": "subtask 2", "status": false },
+                                { "subtaskName": "subtask 3", "status": false }
+                            ],
+                            "id": 3
+                        },
+                        {
+                            "taskName": "Build UI for onboarding flow todo 4",
+                            "subtasks": [
+                                { "subtaskName": "subtask 1", "status": true },
+                                { "subtaskName": "subtask 2", "status": false },
+                                { "subtaskName": "subtask 3", "status": false }
+                            ],
+                            "id": 4
+                        }
+                    ]
+                },
+                {
+                    "id": 4,
+                    "columnName": "DOING",
+                    "dotColor": "#00FF00",
+                    "tasks": [
+                        {
+                            "taskName": "Build UI for onboarding flow DOING 1",
+                            "subtasks": [
+                                { "subtaskName": "subtask 1", "status": true },
+                                { "subtaskName": "subtask 2", "status": false },
+                                { "subtaskName": "subtask 3", "status": false }
+                            ],
+                            "id": 1
+                        },
+                        {
+                            "taskName": "Build UI for onboarding flow DOING 2",
+                            "subtasks": [
+                                { "subtaskName": "subtask 1", "status": true },
+                                { "subtaskName": "subtask 2", "status": false },
+                                { "subtaskName": "subtask 3", "status": false }
+                            ],
+                            "id": 2
+                        },
+                        {
+                            "taskName": "Build UI for onboarding flow DOING 3",
+                            "subtasks": [
+                                { "subtaskName": "subtask 1", "status": true },
+                                { "subtaskName": "subtask 2", "status": false },
+                                { "subtaskName": "subtask 3", "status": false }
+                            ],
+                            "id": 3
+                        }
+                    ]
                 }
             ]
         }

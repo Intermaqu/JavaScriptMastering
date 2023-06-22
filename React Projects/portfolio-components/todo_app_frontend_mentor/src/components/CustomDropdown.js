@@ -4,7 +4,7 @@ import ThemeContext from "../ThemeContext";
 import arrowDown from "../assets/images/icon-chevron-down.svg";
 import arrowUp from "../assets/images/icon-chevron-up.svg";
 
-const CustomDropdown = ({ value, setValue, options, width }) => {
+const CustomDropdown = ({ value, setValue, options, width = "100%" }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const theme = useContext(ThemeContext);
@@ -31,16 +31,16 @@ const CustomDropdown = ({ value, setValue, options, width }) => {
                 <div
                     className={`custom-dropdown-options custom-dropdown-options-${theme}`}
                 >
-                    {options.map(({ id, name }) => (
+                    {options.map((option) => (
                         <span
                             className="custom-dropdown-option"
                             onClick={() => {
-                                setValue(name);
+                                setValue(option);
                                 setIsOpen(false);
                             }}
-                            key={id}
+                            key={option.id}
                         >
-                            {name}
+                            {option.columnName}
                         </span>
                     ))}
                 </div>

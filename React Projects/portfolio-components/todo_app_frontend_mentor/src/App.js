@@ -10,25 +10,16 @@ import Column from "./components/Column";
 import Board from "./components/Board";
 import data from "./data.json";
 import Sidebar from "./components/Sidebar";
+import Header from "./components/Header";
+import NewTaskForm from "./components/NewTaskForm";
 
 function App() {
     const [theme, setTheme] = useState("light");
-    const [checkboxes, setCheckboxes] = useState({
-        checkbox1: false,
-        checkbox2: false,
-        checkbox3: false,
-    });
-
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-    const [inputValue, setInputValue] = useState("");
-    const [dropdownValue, setDropdownValue] = useState("Todo");
-
     const [state, setState] = useState(data.data);
-    const [init, setInit] = useState(0);
 
+    const [isAddNewTaskShown, setIsAddNewTaskShown] = useState(false);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const [selectedBoard, setSelectedBoard] = useState(1);
-
-    const WIDTH = "400px";
 
     const toggleTheme = () => {
         setTheme(theme === "light" ? "dark" : "light");
@@ -39,8 +30,50 @@ function App() {
         setSelectedBoard(id);
     };
 
-    const handleInit = () => {
-        setInit(1);
+    const handleAddTask = ({ taskName, description, column, subtasks }) => {
+        const columnIdx = state[selectedBoard].columns.findIndex(
+            ({ id }) => id === column.id,
+        );
+        const taskIdx =
+            state[selectedBoard].columns[columnIdx].tasks.length > 0
+                ? state[selectedBoard].columns[columnIdx].tasks.at(-1).id + 1
+                : 1;
+        const subtasksWithoutPlaceholder = subtasks.map((subtask) => ({
+            id: subtask.id,
+            subtaskName: subtask.subtaskName,
+            status: subtask.status,
+        }));
+
+        const newTask = {
+            id: taskIdx,
+            taskName,
+            subtasks: subtasksWithoutPlaceholder,
+            description,
+        };
+
+        const mewState = state.map((board) => {
+            if (board.id !== selectedBoard) return board;
+
+            const newColumns = board.columns.map((col) => {
+                if (col.id !== column.id) return col;
+
+                return {
+                    ...col,
+                    tasks: [...col.tasks, newTask],
+                };
+            });
+            return {
+                ...board,
+                columns: newColumns,
+            };
+        });
+
+        setState(mewState);
+        setIsAddNewTaskShown(false);
+    };
+
+    const handleAddColumn = () => {
+        console.log("Add New Column");
     };
 
     return (
@@ -52,18 +85,31 @@ function App() {
                         selectBoard={handleSelectBoard}
                         selectedId={selectedBoard}
                         toggleTheme={toggleTheme}
-                        // hideBoard={() => {}}
                         hideSidebar={() => setIsSidebarOpen(false)}
                         isSidebarOpen={isSidebarOpen}
                     />
                 )}
-                <Board
-                    columns={state[selectedBoard].columns}
-                    handleInit={handleInit}
-                    isSidebarOpen={isSidebarOpen}
-                    setIsSidebarOpen={setIsSidebarOpen}
-                />
+                <div className="content">
+                    <Header
+                        isSidebarOpen={isSidebarOpen}
+                        addNewTask={() => setIsAddNewTaskShown(true)}
+                        boardName={state[selectedBoard].boardName}
+                    />
+                    <Board
+                        columns={state[selectedBoard].columns}
+                        isSidebarOpen={isSidebarOpen}
+                        setIsSidebarOpen={setIsSidebarOpen}
+                        addNewColumn={handleAddColumn}
+                    />
+                </div>
             </main>
+            {isAddNewTaskShown && (
+                <NewTaskForm
+                    columns={state[selectedBoard].columns}
+                    setIsAddNewTaskShown={setIsAddNewTaskShown}
+                    handleAddTask={handleAddTask}
+                />
+            )}
         </ThemeContext.Provider>
     );
 }

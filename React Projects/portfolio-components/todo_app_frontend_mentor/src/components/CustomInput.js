@@ -6,7 +6,9 @@ const CustomInput = ({
     value,
     onChangeValue,
     placeholder = "Enter task name",
-    width,
+    width = "100%",
+    type = "text",
+    customStyles = {},
 }) => {
     const theme = useContext(ThemeContext);
     const inputRef = useRef(null);
@@ -26,10 +28,6 @@ const CustomInput = ({
         }
     };
 
-    useEffect(() => {
-        console.log(error);
-    }, [error]);
-
     const className = `custom-input-wrapper custom-input-wrapper-${theme} ${
         error && "custom-input-wrapper-invalid"
     }`;
@@ -37,18 +35,29 @@ const CustomInput = ({
     return (
         <div
             className={className}
-            style={{ width: width }}
+            style={{ width: width, ...customStyles }}
             onClick={handleClickParent}
         >
-            <input
-                type="text"
-                onChange={(e) => handleChange(e)}
-                value={value}
-                placeholder={placeholder}
-                style={{ width: width }}
-                className="custom-input-input"
-                ref={inputRef}
-            />
+            {type === "textarea" ? (
+                <textarea
+                    onChange={(e) => handleChange(e)}
+                    value={value}
+                    placeholder={placeholder}
+                    style={{ width: width, height: "100%" }}
+                    className="custom-input-input"
+                    ref={inputRef}
+                />
+            ) : (
+                <input
+                    type={type}
+                    onChange={(e) => handleChange(e)}
+                    value={value}
+                    placeholder={placeholder}
+                    style={{ width: width }}
+                    className="custom-input-input"
+                    ref={inputRef}
+                />
+            )}
             {error && (
                 <p className="custom-input-invalid-text">Can't be empty</p>
             )}
