@@ -147,7 +147,7 @@ const EditTaskForm = ({
                 </div>
                 <CustomButton
                     text="Create Task"
-                    type="PrimaryL"
+                    type="PrimaryS"
                     onClick={() => {
                         console.log(title);
                         console.log(description);

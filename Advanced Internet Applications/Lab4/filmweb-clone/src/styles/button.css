@@ -1,24 +1,21 @@
-button{
-        padding: 10px;
-        margin: 20px;
-        background: rgb(159, 196, 213);
-        border-radius: 1em;
-        border: none;
-        box-shadow: 
-            2px 2px 5px rgb(169, 54, 218);
+button {
+    padding: 10px;
+    margin: 20px;
+    background: rgb(159, 196, 213);
+    border-radius: 1em;
+    border: none;
+    box-shadow: 2px 2px 5px rgb(169, 54, 218);
 }
 
-
-input[type=text]{
+input[type="text"] {
     padding: 10px;
     background: #d6d6d6;
     color: #000;
     border-radius: 1em;
     border: none;
-    box-shadow: 
-        2px 2px 5px rgb(169, 54, 218);
+    box-shadow: 2px 2px 5px rgb(169, 54, 218);
 }
 
-nav{
+nav {
     margin: 0px 40px 0px;
 }

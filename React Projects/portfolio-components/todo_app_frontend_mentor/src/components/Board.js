@@ -38,22 +38,22 @@ const Board = ({ columns, addNewColumn, isSidebarOpen, setIsSidebarOpen }) => {
     };
 
     useEffect(() => {
-        const handleShiftPressed = (e) => {
+        const handleSpacePressed = (e) => {
             if (e.key === " " || e.code === "Space" || e.keyCode === 32) {
                 setIsSpaceClicked(true);
             }
         };
-        const handleShiftReleased = (e) => {
+        const handleSpaceReleased = (e) => {
             if (e.key === " " || e.code === "Space" || e.keyCode === 32) {
                 setIsSpaceClicked(false);
             }
         };
-        document.addEventListener("keydown", handleShiftPressed);
-        document.addEventListener("keyup", handleShiftReleased);
+        document.addEventListener("keydown", handleSpacePressed);
+        document.addEventListener("keyup", handleSpaceReleased);
 
         return () => {
-            document.removeEventListener("keydown", handleShiftPressed);
-            document.removeEventListener("keyup", handleShiftReleased);
+            document.removeEventListener("keydown", handleSpacePressed);
+            document.removeEventListener("keyup", handleSpaceReleased);
         };
     }, []);
 
@@ -67,6 +67,14 @@ const Board = ({ columns, addNewColumn, isSidebarOpen, setIsSidebarOpen }) => {
             onMouseLeave={handleMouseLeave}
             onMouseUp={handleMouseUp}
             onMouseMove={handleMouseMove}
+            style={{
+                cursor:
+                    isSpaceClicked && isMouseDown
+                        ? "grabbing"
+                        : isSpaceClicked
+                        ? "grab"
+                        : "default",
+            }}
         >
             {columns.length > 0 ? (
                 <div className="board-scrollable-columns">

@@ -46,17 +46,6 @@ const NewTaskForm = ({ columns, handleAddTask, setIsAddNewTaskShown }) => {
         setSubtasks(newSubtasks);
     };
 
-    const handleSubmit = () => {
-        console.log("title", title);
-        console.log("description", description);
-        console.log("status", status);
-        console.log("subtasks", subtasks);
-    };
-
-    useEffect(() => {
-        console.log(subtasks);
-    }, [subtasks]);
-
     useEffect(() => {
         setStatus(columns[0]);
     }, []);
@@ -73,7 +62,7 @@ const NewTaskForm = ({ columns, handleAddTask, setIsAddNewTaskShown }) => {
                 }}
             >
                 <p className={`headingL new-task-form-heading-${theme}`}>
-                    Edit Task
+                    Add New Task
                 </p>
                 <div className="new-task-form-section">
                     <p className={`bodyM new-task-form-label-${theme}`}>
@@ -158,7 +147,7 @@ const NewTaskForm = ({ columns, handleAddTask, setIsAddNewTaskShown }) => {
                 </div>
                 <CustomButton
                     text="Create Task"
-                    type="PrimaryL"
+                    type="PrimaryS"
                     onClick={() =>
                         handleAddTask({
                             taskName: title,

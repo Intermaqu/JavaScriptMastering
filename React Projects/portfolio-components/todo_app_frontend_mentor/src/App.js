@@ -19,9 +19,7 @@ import { getId } from "./utils/generateId";
 
 function App() {
     const [theme, setTheme] = useState("light");
-    // const [state, setState] = useState(null);
     const [state, setState] = useState(data.data);
-    // const [dataLoaded, setDataLoaded] = useState(false);
 
     const [isAddNewTaskShown, setIsAddNewTaskShown] = useState(false);
     const [isAddNewBoardShown, setIsAddNewBoardShown] = useState(false);
@@ -150,7 +148,15 @@ function App() {
 
     return (
         <ThemeContext.Provider value={theme}>
-            <main className={`App ${theme}`}>
+            <main
+                className={`App ${theme}`}
+                onKeyDown={(e) => {
+                    if (e.key === "Escape") {
+                        setIsAddNewTaskShown(false);
+                        setIsAddNewBoardShown(false);
+                    }
+                }}
+            >
                 {isSidebarOpen && (
                     <Sidebar
                         // boards={state.data}

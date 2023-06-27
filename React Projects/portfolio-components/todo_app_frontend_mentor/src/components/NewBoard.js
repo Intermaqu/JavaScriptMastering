@@ -27,7 +27,7 @@ const NewBoard = ({ handleAddBoard, setIsAddNewBoardShown }) => {
                 className={`add-new-board add-new-board-${theme}`}
                 onMouseDown={(e) => e.stopPropagation()}
             >
-                <p className={`headingL add-new-board--header`}>
+                <p className={`headingL add-new-board--header-${theme}`}>
                     Add new board
                 </p>
                 <div className={`add-new-board--section`}>
@@ -76,7 +76,7 @@ const NewBoard = ({ handleAddBoard, setIsAddNewBoardShown }) => {
                 </div>
                 <CustomButton
                     text={`Create New Board`}
-                    type="PrimaryL"
+                    type="PrimaryS"
                     onClick={() => handleAddBoard(title, columns)}
                 />
             </div>
