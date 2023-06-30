@@ -36,12 +36,12 @@ const Header = ({ isSidebarOpen, addNewTask, boardName }) => {
                 width="165px"
             />
             <div
-                className="header__options"
+                className="hamburger"
                 onClick={() => console.log("Hamburger Clicked!!!")}
             >
-                <div></div>
-                <div></div>
-                <div></div>
+                <div className="dot"></div>
+                <div className="dot"></div>
+                <div className="dot"></div>
             </div>
         </div>
     );

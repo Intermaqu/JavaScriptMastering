@@ -44,3 +44,34 @@
 .inspect-task-form-label-dark {
     color: var(--white) !important;
 }
+
+.task-menu {
+    position: absolute;
+    top: 40px;
+    width: 160px;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.task-menu-light {
+    background: var(--white);
+}
+
+.task-menu-dark {
+    background: var(--very-dark-grey-dark-bg);
+}
+
+.task-menu-edit {
+    color: var(--medium-grey) !important;
+    cursor: pointer;
+    margin-bottom: 16px;
+    width: 100%;
+    display: block;
+}
+
+.task-menu-delete {
+    color: var(--red) !important;
+    cursor: pointer;
+    width: 100%;
+    display: block;
+}

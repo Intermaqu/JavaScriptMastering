@@ -29,12 +29,13 @@ function App() {
     const [isAddNewBoardShown, setIsAddNewBoardShown] = useState(false);
     const [isInspectTaskShown, setIsInspectTaskShown] = useState(false);
     const [isAddNewColumnShown, setIsAddNewColumnShown] = useState(false);
+    const [isEditTaskShown, setIsEditTaskShown] = useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const [selectedBoard, setSelectedBoard] = useState(state[1].id);
     const [inspectedTask, setInspectedTask] = useState(null);
+    // inspected task = { taskId, columnId }
 
     // ON CREATE BOARD SWITCH TO IT
-    // MARK SUBTASK AS DONE NOT WORKING
 
     const toggleTheme = () => {
         setTheme(theme === "light" ? "dark" : "light");
@@ -107,14 +108,16 @@ function App() {
     ) => {
         const currentBoard = state.find((board) => board.id === selectedBoard);
 
-        // console.log(
-        //     "Status.columnId",
-        //     status.columnId,
-        //     "previousColumnId",
-        //     previousColumnId,
-        //     "\nstatus:",
-        //     status,
-        // );
+        console.log(status);
+
+        console.log(
+            "Status.columnId",
+            status.columnId,
+            "previousColumnId",
+            previousColumnId,
+            "\nstatus:",
+            status,
+        );
 
         if (status.columnId === previousColumnId) {
             const newColumns = currentBoard.columns.map((column) => {
@@ -206,12 +209,16 @@ function App() {
             tasks: [],
             dotColor: colorPalette[index],
         }));
+
+        const newId = getId();
+
         const newState = [
             ...state,
-            { id: getId(), boardName, columns: newColumns },
+            { id: newId, boardName, columns: newColumns },
         ];
         setState(newState);
         setIsAddNewBoardShown(false);
+        setSelectedBoard(newId);
     };
 
     const handleAddColumn = (columnName) => {
@@ -238,18 +245,38 @@ function App() {
         setIsAddNewColumnShown(false);
     };
 
+    const handleDeleteTask = (taskId, columnId) => {
+        const newState = state.map((board) => {
+            if (board.id !== selectedBoard) return board;
+
+            const newColumns = board.columns.map((column) => {
+                if (column.id !== columnId) return column;
+
+                return {
+                    ...column,
+                    tasks: column.tasks.filter((task) => task.id !== taskId),
+                };
+            });
+
+            return {
+                ...board,
+                columns: newColumns,
+            };
+        });
+
+        setState(newState);
+        setIsInspectTaskShown(false);
+        setInspectedTask(null);
+    };
+
     useEffect(() => {
         console.log("New State: ", state);
     }, [state]);
 
-    // useEffect(() => {
-    //     setState(data.data);
-    //     setDataLoaded(true);
-    // }, []);
+    useEffect(() => {
+        console.log(inspectedTask);
+    }, [inspectedTask]);
 
-    // useEffect(() => {
-    //     for (let i = 0; i < 3; i++) console.log(`,\n"id": "${getId()}"`);
-    // }, []);
     return (
         <ThemeContext.Provider value={theme}>
             <InspectTaskContext.Provider value={handleInspectTask}>
@@ -291,7 +318,6 @@ function App() {
                             isSidebarOpen={isSidebarOpen}
                             setIsSidebarOpen={setIsSidebarOpen}
                             addNewColumn={handleAddColumn}
-                            handleInspectTask={handleInspectTask}
                             setIsAddNewColumnShown={setIsAddNewColumnShown}
                         />
                     </div>
@@ -312,6 +338,25 @@ function App() {
                     //     task={state[selectedBoard].columns[0].tasks[0]}
                     //     handleEditTask={handleEditTask}
                     // />
+                )}
+
+                {isEditTaskShown && (
+                    <EditTaskForm
+                        columns={
+                            state.find(({ id }) => id === selectedBoard).columns
+                        }
+                        setIsEditTaskShown={setIsEditTaskShown}
+                        columnName={
+                            state
+                                .find(({ id }) => id === selectedBoard)
+                                .columns.find(
+                                    ({ id }) => id === inspectedTask.columnId,
+                                ).columnName
+                        }
+                        columnId={inspectedTask.columnId}
+                        task={inspectedTask.task}
+                        handleEditTask={handleEditTask}
+                    />
                 )}
 
                 {isAddNewBoardShown && (
@@ -337,6 +382,8 @@ function App() {
                         }}
                         setIsInspectTaskShown={setIsInspectTaskShown}
                         handleEditTask={handleEditTask}
+                        handleDeleteTask={handleDeleteTask}
+                        setIsEditTaskShown={setIsEditTaskShown}
                     />
                 )}
                 {isAddNewColumnShown && (

@@ -55,21 +55,3 @@
     display: flex;
     align-items: center;
 }
-
-.header__options {
-    display: flex;
-    align-items: center;
-    height: 20px;
-    width: 37px;
-    margin-left: 12px;
-    justify-content: space-between;
-    flex-direction: column;
-    cursor: pointer;
-}
-
-.header__options > div {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background-color: var(--medium-grey);
-}

@@ -4,24 +4,21 @@ import CustomButton from "./CustomButton";
 import CustomInput from "./CustomInput";
 import iconCross from "../assets/images/icon-cross.svg";
 import CustomDropdown from "./CustomDropdown";
-import { isCompositeComponent } from "react-dom/test-utils";
-import { v4 as uuidv4 } from "uuid";
-
-// TODO REPAIR
+import { getId } from "../utils/generateId.js";
 
 const EditTaskForm = ({
+    task,
+    columns,
+    setIsEditTaskShown,
     columnName,
     columnId,
-    columns,
-    task,
-    setIsEditTaskShown,
+    handleEditTask,
 }) => {
-    const [currentTask, setCurrentTask] = useState(task);
     const [title, setTitle] = useState(task.taskName);
     const [description, setDescription] = useState(task.taskDescription || "");
     const [status, setStatus] = useState({
         columnName,
-        columnId,
+        id: columnId,
     });
     const [subtasks, setSubtasks] = useState(task.subtasks);
 
@@ -47,7 +44,7 @@ const EditTaskForm = ({
 
     useEffect(() => {
         console.log(subtasks);
-        console.log(uuidv4().slice(-8));
+        console.log(getId());
     }, [subtasks]);
 
     return (
@@ -146,25 +143,22 @@ const EditTaskForm = ({
                     />
                 </div>
                 <CustomButton
-                    text="Create Task"
+                    text="Edit Task"
                     type="PrimaryS"
                     onClick={() => {
-                        console.log(title);
-                        console.log(description);
-                        console.log(status);
-                        console.log(subtasks);
-                        console.log(columnId);
-                        console.log(status.id);
-                        console.log(currentTask.id);
+                        handleEditTask(
+                            title,
+                            description,
+                            subtasks,
+                            {
+                                columnName: status.columnName,
+                                columnId: status.id,
+                            },
+                            columnId,
+                            task.id,
+                        );
+                        setIsEditTaskShown(false);
                     }}
-                    // onClick={() =>
-                    //     handleAddTask({
-                    //         taskName: title,
-                    //         description,
-                    //         column: status,
-                    //         subtasks,
-                    //     })
-                    // }
                 />
             </div>
         </div>

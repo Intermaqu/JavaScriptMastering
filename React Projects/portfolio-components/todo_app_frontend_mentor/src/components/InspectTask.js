@@ -10,53 +10,16 @@ const InspectTask = ({
     status,
     setIsInspectTaskShown,
     handleEditTask,
+    handleDeleteTask,
+    setIsEditTaskShown,
 }) => {
     const theme = useContext(ThemeContext);
     const [currentSubtasks, setCurrentSubtasks] = useState(subtasks);
     const [currentStatus, setCurrentStatus] = useState(status);
-
-    const handleChangeSubtasks = (subtaskId) => {
-        const newSubtasks = currentSubtasks.map((subtask) => {
-            if (subtask.id === subtaskId) {
-                return {
-                    ...subtask,
-                    status: !subtask.status,
-                };
-            }
-            return subtask;
-        });
-        handleEditTask(
-            taskName,
-            description,
-            newSubtasks,
-            {
-                columnId: status.columnId,
-                columnName: status.columnName,
-            },
-            status.columnId,
-            id,
-        );
-        setCurrentSubtasks(newSubtasks);
-    };
-
-    const handleChangeStatus = (newStatus) => {
-        handleEditTask(
-            taskName,
-            description,
-            currentSubtasks,
-            {
-                columnId: newStatus.id,
-                columnName: newStatus.columnName,
-            },
-            status.columnId,
-            id,
-        );
-
-        setCurrentStatus(newStatus);
-    };
+    const [isTaskMenuShown, setIsTaskMenuShown] = useState(false);
 
     const handleChangeTask = (payload) => {
-        // console.log("Payload:", payload);
+        console.log("Payload:", payload);
 
         if (payload.id) {
             // payload = {
@@ -100,16 +63,20 @@ const InspectTask = ({
                 description,
                 newSubtasks,
                 {
-                    columnId: currentStatus.id,
+                    columnId: currentStatus.columnId,
                     columnName: currentStatus.columnName,
                 },
-                currentStatus.id,
+                currentStatus.columnId,
                 id,
             );
             setCurrentSubtasks(newSubtasks);
             return;
         }
     };
+
+    useEffect(() => {
+        console.log(isTaskMenuShown);
+    }, [isTaskMenuShown]);
 
     // useEffect(() => {
     //     console.log("USEEFFECT CURRENTSTATUS", currentStatus);
@@ -122,12 +89,15 @@ const InspectTask = ({
     return (
         <div
             className="overlay"
-            onMouseDown={() => setIsInspectTaskShown(false)}
+            onMouseDown={() => {
+                setIsInspectTaskShown(false);
+            }}
         >
             <div
                 className={`inspect-task inspect-task-${theme}`}
                 onMouseDown={(e) => {
                     e.stopPropagation();
+                    setIsTaskMenuShown(false);
                 }}
             >
                 <div className="inspect-task-header">
@@ -135,12 +105,43 @@ const InspectTask = ({
                         {taskName}
                     </p>
                     <div
-                        className="header__options"
-                        onClick={() => console.log("Hamburger Clicked!!!")}
+                        className="hamburger"
+                        onClick={() => {
+                            setIsTaskMenuShown(true);
+                        }}
                     >
-                        <div></div>
-                        <div></div>
-                        <div></div>
+                        <div className="dot"></div>
+                        <div className="dot"></div>
+                        <div className="dot"></div>
+                        {isTaskMenuShown && (
+                            <div
+                                className={`task-menu task-menu-${theme}`}
+                                onMouseDown={(e) => {
+                                    e.stopPropagation();
+                                }}
+                            >
+                                <span
+                                    className="task-menu-edit bodyL"
+                                    onClick={() => {
+                                        setIsEditTaskShown(true);
+                                        setIsInspectTaskShown(false);
+                                    }}
+                                >
+                                    Edit Task
+                                </span>
+                                <span
+                                    className="task-menu-delete bodyL"
+                                    onClick={() =>
+                                        handleDeleteTask(
+                                            id,
+                                            currentStatus.columnId,
+                                        )
+                                    }
+                                >
+                                    Delete Task
+                                </span>
+                            </div>
+                        )}
                     </div>
                 </div>
                 <p className="bodyL">{description}</p>

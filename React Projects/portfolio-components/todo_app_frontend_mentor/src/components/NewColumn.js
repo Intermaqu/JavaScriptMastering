@@ -4,13 +4,19 @@ import CustomInput from "./CustomInput";
 import CustomButton from "./CustomButton";
 import "../style/newColumn.css";
 
-const NewColumn = ({ handleAddColumn }) => {
+const NewColumn = ({ handleAddColumn, setIsAddNewColumnShown }) => {
     const theme = useContext(ThemeContext);
     const [columnName, setColumnName] = useState("");
 
     return (
-        <div className="overlay">
-            <div className={`new-column new-column-${theme}`}>
+        <div
+            className="overlay"
+            onMouseDown={() => setIsAddNewColumnShown(false)}
+        >
+            <div
+                className={`new-column new-column-${theme}`}
+                onMouseDown={(e) => e.stopPropagation()}
+            >
                 <p className={`headingL new-column-heading-${theme}`}>
                     Add new column
                 </p>
