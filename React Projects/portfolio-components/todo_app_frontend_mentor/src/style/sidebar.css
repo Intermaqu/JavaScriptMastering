@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     border-right: 1px solid;
+    padding-bottom: 32px;
 }
 
 .sidebar-light {
@@ -134,8 +135,27 @@
     gap: 15px;
     margin-top: 8px;
     cursor: pointer;
+    border-radius: 0 24px 24px 0;
+    margin-right: 32px;
 }
 
 .sidebar-hide > p {
     color: var(--medium-grey) !important;
+}
+
+.sidebar-hide:hover > p {
+    color: var(--main-purple) !important;
+}
+
+.sidebar-hide:hover > img {
+    filter: invert(42%) sepia(90%) saturate(625%) hue-rotate(208deg)
+        brightness(79%) contrast(96%);
+}
+
+.sidebar-hide-light:hover {
+    background: var(--main-purple-010);
+}
+
+.sidebar-hide-dark:hover {
+    background: var(--white);
 }

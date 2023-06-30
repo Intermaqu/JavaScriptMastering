@@ -20,9 +20,9 @@ const Sidebar = ({
 }) => {
     const theme = useContext(ThemeContext);
 
-    useEffect(() => {
-        console.log("boards", boards);
-    }, [boards]);
+    // useEffect(() => {
+    //     console.log("boards", boards);
+    // }, [boards]);
 
     return (
         <div className={`sidebar sidebar-${theme}`}>
@@ -85,7 +85,10 @@ const Sidebar = ({
                 <img src={darkThemeIcon} alt="dark  theme" />
             </div>
             {/* SIDEBAR SWITCH OFF */}
-            <div className="sidebar-hide" onClick={hideSidebar}>
+            <div
+                className={`sidebar-hide sidebar-hide-${theme}`}
+                onClick={hideSidebar}
+            >
                 <img src={hideSidebarIcon} alt="Hide sidebar icon" />
                 <p className="headingM">Hide Sidebar</p>
             </div>

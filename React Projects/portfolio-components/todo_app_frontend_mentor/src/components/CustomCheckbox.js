@@ -2,7 +2,13 @@ import React, { useContext } from "react";
 import ThemeContext from "../ThemeContext";
 import "../style/checkboxes.css";
 
-const CustomCheckbox = ({ text, checked, onClickCheck, width }) => {
+const CustomCheckbox = ({
+    text,
+    checked,
+    onClickCheck,
+    width = "100%",
+    additionalParam,
+}) => {
     const theme = useContext(ThemeContext);
 
     const classNames = `custom-checkbox custom-checkbox-${
@@ -11,14 +17,14 @@ const CustomCheckbox = ({ text, checked, onClickCheck, width }) => {
 
     return (
         <div
-            onClick={() => onClickCheck()}
+            onClick={() => onClickCheck(additionalParam)}
             className={classNames}
             style={{ width: width || "fit-content" }}
         >
             <input
                 type="checkbox"
                 checked={checked}
-                onChange={() => onClickCheck()}
+                onChange={() => onClickCheck(additionalParam)}
             />
             <p>{text}</p>
         </div>

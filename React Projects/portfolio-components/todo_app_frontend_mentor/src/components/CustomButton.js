@@ -17,6 +17,7 @@ const CustomButton = ({
         PrimaryS: "button-primary-s",
         Secondary: "button-secondary",
         Destructive: "button-destructive",
+        ThemeToggler: "button-theme-toggler",
     };
     const buttonType = types[type] || types["PrimaryL"];
     const style = theme === "light" ? buttonType : `${buttonType}-dark`;

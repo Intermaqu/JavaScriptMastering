@@ -22,7 +22,8 @@ textarea {
     background: inherit;
 }
 
-.custom-input-wrapper-dark > input {
+.custom-input-wrapper-dark > input,
+.custom-input-wrapper-dark > textarea {
     color: var(--white);
 }
 

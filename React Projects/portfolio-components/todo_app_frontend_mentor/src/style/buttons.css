@@ -72,3 +72,13 @@
 .button-destructive-dark:hover {
     background-color: var(--red-hover);
 }
+
+.button-theme-toggler-light,
+.button-theme-toggler-dark {
+    background: inherit;
+}
+
+.button-theme-toggler-light:hover {
+    color: var(--main-purple);
+    background: var(--main-purple-hover);
+}

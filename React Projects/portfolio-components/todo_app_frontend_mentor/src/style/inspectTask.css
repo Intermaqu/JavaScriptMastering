@@ -1,0 +1,46 @@
+.inspect-task {
+    padding: 32px;
+    width: 416px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.inspect-task-light {
+    background: var(--white);
+}
+
+.inspect-task-dark {
+    background: var(--dark-grey);
+}
+
+.inspect-task-heading-light {
+    color: var(--black) !important;
+}
+
+.inspect-task-heading-dark {
+    color: var(--white) !important;
+}
+.inspect-task-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.inspect-task-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.inspect-task-form-label-light {
+    color: var(--medium-grey) !important;
+}
+
+.inspect-task-form-label-dark {
+    color: var(--white) !important;
+}

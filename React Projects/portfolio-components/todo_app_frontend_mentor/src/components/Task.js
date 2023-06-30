@@ -1,15 +1,27 @@
 import React, { useContext } from "react";
 import "../style/task.css";
 import ThemeContext from "../ThemeContext";
+import InspectTaskContext from "../InspectTaskContext";
 
-const Task = ({ name, subtasks }) => {
+const Task = ({
+    name,
+    description,
+    subtasks,
+    columnId,
+    columnName,
+    taskId,
+}) => {
     const theme = useContext(ThemeContext);
+    const handleInspectTask = useContext(InspectTaskContext);
 
     return (
         <div
             className={`task task-${theme}`}
             onClick={() => {
-                console.log(subtasks.map(({ subtaskName }) => subtaskName));
+                handleInspectTask({
+                    taskId,
+                    columnId,
+                });
             }}
         >
             <p className={`headingM task--title-${theme}`}>{name}</p>

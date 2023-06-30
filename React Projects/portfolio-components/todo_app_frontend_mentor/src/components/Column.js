@@ -2,7 +2,7 @@ import React from "react";
 import "../style/column.css";
 import Task from "./Task";
 
-const Column = ({ columnName, dotColor, tasks }) => {
+const Column = ({ columnId, columnName, dotColor, tasks }) => {
     return (
         <div className="column">
             <div className="headingS column--name">
@@ -17,7 +17,14 @@ const Column = ({ columnName, dotColor, tasks }) => {
             <div className="column--tasks">
                 {tasks.map(({ id, taskName, subtasks }) => {
                     return (
-                        <Task key={id} name={taskName} subtasks={subtasks} />
+                        <Task
+                            key={id}
+                            name={taskName}
+                            subtasks={subtasks}
+                            columnId={columnId}
+                            columnName={columnName}
+                            taskId={id}
+                        />
                     );
                 })}
             </div>

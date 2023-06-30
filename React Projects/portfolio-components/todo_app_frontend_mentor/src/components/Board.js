@@ -5,7 +5,12 @@ import Column from "./Column";
 import CustomButton from "./CustomButton";
 import eyeIcon from "../assets/images/icon-show-sidebar.svg";
 
-const Board = ({ columns, addNewColumn, isSidebarOpen, setIsSidebarOpen }) => {
+const Board = ({
+    columns,
+    isSidebarOpen,
+    setIsSidebarOpen,
+    setIsAddNewColumnShown,
+}) => {
     const [isMouseDown, setIsMouseDown] = useState(false);
     const [isSpaceClicked, setIsSpaceClicked] = useState(false);
     const [startX, setStartX] = useState(null);
@@ -84,11 +89,12 @@ const Board = ({ columns, addNewColumn, isSidebarOpen, setIsSidebarOpen }) => {
                             columnName={columnName}
                             dotColor={dotColor}
                             tasks={tasks}
+                            columnId={id}
                         />
                     ))}
                     <div
                         className={`column board--add-column board--add-column-${theme}`}
-                        onClick={addNewColumn}
+                        onClick={() => setIsAddNewColumnShown(true)}
                     >
                         <p className="headingXL">+ New Column</p>
                     </div>
