@@ -5,6 +5,18 @@
     flex-direction: column;
     gap: 24px;
     border-radius: 6px;
+    max-height: 90vh;
+}
+
+.add-new-board-scrollable {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    overflow-y: auto;
+}
+
+.add-new-board-scrollable::-webkit-scrollbar {
+    display: none;
 }
 
 .add-new-board-light {

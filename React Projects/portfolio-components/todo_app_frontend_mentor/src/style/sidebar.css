@@ -44,6 +44,7 @@
     flex-direction: column;
     width: calc(100% - 24px);
     margin-bottom: auto;
+    user-select: none;
 }
 
 .sidebar-boards--board {
@@ -58,6 +59,25 @@
 
 .sidebar-boards--board > p {
     color: var(--medium-grey);
+}
+
+.sidebar-boards--board--light:hover {
+    background: var(--light-grey-light-bg);
+}
+
+.sidebar-boards--board--dark:hover {
+    background: var(--white);
+}
+
+.sidebar-boards--board--light:hover > p,
+.sidebar-boards--board--dark:hover > p {
+    color: var(--main-purple);
+}
+
+.sidebar-boards--board--light:hover > img,
+.sidebar-boards--board--dark:hover > img {
+    filter: invert(42%) sepia(90%) saturate(625%) hue-rotate(208deg)
+        brightness(79%) contrast(96%);
 }
 
 .sidebar-boards--board--selected {

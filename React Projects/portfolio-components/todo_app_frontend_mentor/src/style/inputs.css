@@ -40,3 +40,7 @@ textarea {
     font-weight: var(--font-weight-medium);
     line-height: var(--font-line-height-l);
 }
+
+.custom-input-wrapper:focus-within {
+    border: 1px solid var(--main-purple);
+}

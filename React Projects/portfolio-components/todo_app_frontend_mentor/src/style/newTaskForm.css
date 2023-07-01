@@ -9,7 +9,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow-y: scroll;
 }
 
 .overlay::-webkit-scrollbar {
@@ -23,6 +22,18 @@
     flex-direction: column;
     gap: 24px;
     border-radius: 6px;
+    max-height: 90vh;
+}
+
+.new-task-form-scrollable {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    overflow-y: auto;
+}
+
+.new-task-form-scrollable::-webkit-scrollbar {
+    display: none;
 }
 
 .new-task-form-light {

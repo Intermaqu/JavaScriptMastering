@@ -2,7 +2,13 @@ import React from "react";
 import "../style/column.css";
 import Task from "./Task";
 
-const Column = ({ columnId, columnName, dotColor, tasks }) => {
+const Column = ({
+    columnId,
+    columnName,
+    dotColor,
+    tasks,
+    isSpaceCliced = false,
+}) => {
     return (
         <div className="column">
             <div className="headingS column--name">
@@ -24,6 +30,7 @@ const Column = ({ columnId, columnName, dotColor, tasks }) => {
                             columnId={columnId}
                             columnName={columnName}
                             taskId={id}
+                            isSpaceCliced={isSpaceCliced}
                         />
                     );
                 })}

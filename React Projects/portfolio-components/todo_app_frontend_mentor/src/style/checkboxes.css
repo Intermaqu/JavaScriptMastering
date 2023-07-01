@@ -10,6 +10,7 @@
     line-height: var(--font-line-height-s);
     /* background-color: var(--light-grey-light-bg); */
     border-radius: 4px;
+    cursor: pointer;
 }
 
 .custom-checkbox-unchecked-light,

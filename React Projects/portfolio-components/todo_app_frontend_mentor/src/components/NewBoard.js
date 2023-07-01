@@ -30,49 +30,55 @@ const NewBoard = ({ handleAddBoard, setIsAddNewBoardShown }) => {
                 <p className={`headingL add-new-board--header-${theme}`}>
                     Add new board
                 </p>
-                <div className={`add-new-board--section`}>
-                    <p className={`bodyM new-task-form-label-${theme}`}>Name</p>
-                    <CustomInput
-                        placeholder={`e.g. Web Design`}
-                        value={title}
-                        onChangeValue={setTitle}
-                    />
-                </div>
-                <div className={`add-new-board--section`}>
-                    <p className={`bodyM new-task-form-label-${theme}`}>
-                        Columns
-                    </p>
-                    {columns.map((column, index) => {
-                        return (
-                            <div
-                                className={`new-board-form--columns-column`}
-                                key={index}
-                            >
-                                <CustomInput
-                                    placeholder="e.g. Column Name"
-                                    value={column}
-                                    onChangeValue={(value) => {
-                                        const newColumns = [...columns];
-                                        newColumns[index] = value;
-                                        setColumns(newColumns);
-                                    }}
-                                />
-                                <img
-                                    src={iconCross}
-                                    alt="icon cross"
-                                    onClick={() => handleRemoveSubtask(index)}
-                                />
-                            </div>
-                        );
-                    })}
-                    <CustomButton
-                        text={`Add New Column`}
-                        onClick={() => {
-                            setColumns([...columns, ""]);
-                        }}
-                        plus
-                        type="Secondary"
-                    />
+                <div className="add-new-board-scrollable">
+                    <div className={`add-new-board--section`}>
+                        <p className={`bodyM new-task-form-label-${theme}`}>
+                            Name
+                        </p>
+                        <CustomInput
+                            placeholder={`e.g. Web Design`}
+                            value={title}
+                            onChangeValue={setTitle}
+                        />
+                    </div>
+                    <div className={`add-new-board--section`}>
+                        <p className={`bodyM new-task-form-label-${theme}`}>
+                            Columns
+                        </p>
+                        {columns.map((column, index) => {
+                            return (
+                                <div
+                                    className={`new-board-form--columns-column`}
+                                    key={index}
+                                >
+                                    <CustomInput
+                                        placeholder="e.g. Column Name"
+                                        value={column}
+                                        onChangeValue={(value) => {
+                                            const newColumns = [...columns];
+                                            newColumns[index] = value;
+                                            setColumns(newColumns);
+                                        }}
+                                    />
+                                    <img
+                                        src={iconCross}
+                                        alt="icon cross"
+                                        onClick={() =>
+                                            handleRemoveSubtask(index)
+                                        }
+                                    />
+                                </div>
+                            );
+                        })}
+                        <CustomButton
+                            text={`Add New Column`}
+                            onClick={() => {
+                                setColumns([...columns, ""]);
+                            }}
+                            plus
+                            type="Secondary"
+                        />
+                    </div>
                 </div>
                 <CustomButton
                     text={`Create New Board`}

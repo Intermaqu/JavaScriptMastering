@@ -15,11 +15,16 @@ import Header from "./components/Header";
 import NewTaskForm from "./components/NewTaskForm";
 import NewBoard from "./components/NewBoard";
 import EditTaskForm from "./components/EditTaskForm";
+import EditBoardForm from "./components/EditBoardForm";
+import DeleteBoard from "./components/DeleteBoard";
+import DeleteTask from "./components/DeleteTask";
 import colorPalette from "./utils/colorPalette";
 
 import { getId } from "./utils/generateId";
 import InspectTask from "./components/InspectTask";
 import NewColumn from "./components/NewColumn";
+
+// INSPECT THAT IN GOOGLE
 
 function App() {
     const [theme, setTheme] = useState("light");
@@ -27,15 +32,21 @@ function App() {
 
     const [isAddNewTaskShown, setIsAddNewTaskShown] = useState(false);
     const [isAddNewBoardShown, setIsAddNewBoardShown] = useState(false);
-    const [isInspectTaskShown, setIsInspectTaskShown] = useState(false);
     const [isAddNewColumnShown, setIsAddNewColumnShown] = useState(false);
     const [isEditTaskShown, setIsEditTaskShown] = useState(false);
+    const [isEditBoardShown, setIsEditBoardShown] = useState(false);
+    const [isDeleteBoardShown, setIsDeleteBoardShown] = useState(false);
+    const [isDeleteTaskShown, setIsDeleteTaskShown] = useState(false);
+    const [isInspectTaskShown, setIsInspectTaskShown] = useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-    const [selectedBoard, setSelectedBoard] = useState(state[1].id);
+
+    const [selectedBoard, setSelectedBoard] = useState(state[0].id);
     const [inspectedTask, setInspectedTask] = useState(null);
     // inspected task = { taskId, columnId }
 
-    // ON CREATE BOARD SWITCH TO IT
+    // FORM VALIDATION
+    // Confirm form with enter key
+    // Inspect Task description theme based color
 
     const toggleTheme = () => {
         setTheme(theme === "light" ? "dark" : "light");
@@ -221,6 +232,21 @@ function App() {
         setSelectedBoard(newId);
     };
 
+    const handleEditBoard = (boardName, columns) => {
+        const newState = state.map((board) => {
+            if (board.id !== selectedBoard) return board;
+
+            return {
+                ...board,
+                boardName,
+                columns,
+            };
+        });
+
+        setState(newState);
+        setIsEditBoardShown(false);
+    };
+
     const handleAddColumn = (columnName) => {
         const newStates = state.map((board) => {
             if (board.id !== selectedBoard) return board;
@@ -269,13 +295,17 @@ function App() {
         setInspectedTask(null);
     };
 
+    const handleDeleteBoard = (id) => {
+        const newState = state.filter((board) => board.id !== id);
+        setState(newState);
+        console.log("New State: ", newState);
+        handleSelectBoard(newState[0].id);
+        setIsDeleteBoardShown(false);
+    };
+
     useEffect(() => {
         console.log("New State: ", state);
     }, [state]);
-
-    useEffect(() => {
-        console.log(inspectedTask);
-    }, [inspectedTask]);
 
     return (
         <ThemeContext.Provider value={theme}>
@@ -309,6 +339,12 @@ function App() {
                                 state.find(({ id }) => id === selectedBoard)
                                     .boardName
                             }
+                            isBoardEmpty={
+                                state.find(({ id }) => id === selectedBoard)
+                                    .columns.length === 0
+                            }
+                            setIsEditBoardShown={setIsEditBoardShown}
+                            setIsDeleteBoardShown={setIsDeleteBoardShown}
                         />
                         <Board
                             columns={
@@ -382,7 +418,7 @@ function App() {
                         }}
                         setIsInspectTaskShown={setIsInspectTaskShown}
                         handleEditTask={handleEditTask}
-                        handleDeleteTask={handleDeleteTask}
+                        setIsDeleteTaskShown={setIsDeleteTaskShown}
                         setIsEditTaskShown={setIsEditTaskShown}
                     />
                 )}
@@ -390,6 +426,30 @@ function App() {
                     <NewColumn
                         setIsAddNewColumnShown={setIsAddNewColumnShown}
                         handleAddColumn={handleAddColumn}
+                    />
+                )}
+
+                {isEditBoardShown && (
+                    <EditBoardForm
+                        setIsEditBoardShown={setIsEditBoardShown}
+                        handleEditBoard={handleEditBoard}
+                        board={state.find(({ id }) => id === selectedBoard)}
+                    />
+                )}
+                {isDeleteBoardShown && (
+                    <DeleteBoard
+                        board={state.find(({ id }) => id === selectedBoard)}
+                        handleDeleteBoard={handleDeleteBoard}
+                        setIsDeleteBoardShown={setIsDeleteBoardShown}
+                        numberOfBoards={state.length}
+                    />
+                )}
+                {isDeleteTaskShown && (
+                    <DeleteTask
+                        task={inspectedTask?.task}
+                        setIsDeleteTaskShown={setIsDeleteTaskShown}
+                        handleDeleteTask={handleDeleteTask}
+                        columnId={inspectedTask?.columnId}
                     />
                 )}
             </InspectTaskContext.Provider>

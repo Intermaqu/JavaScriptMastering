@@ -42,8 +42,9 @@ const Sidebar = ({
                     boards.map(({ boardName, id }) => (
                         <div
                             className={`sidebar-boards--board ${
-                                id === selectedId &&
-                                "sidebar-boards--board--selected"
+                                id === selectedId
+                                    ? "sidebar-boards--board--selected"
+                                    : `sidebar-boards--board--${theme}`
                             }`}
                             key={id}
                             onClick={() => selectBoard(id)}

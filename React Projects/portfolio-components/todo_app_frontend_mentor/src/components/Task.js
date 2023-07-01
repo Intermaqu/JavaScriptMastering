@@ -10,6 +10,7 @@ const Task = ({
     columnId,
     columnName,
     taskId,
+    isSpaceCliced = false,
 }) => {
     const theme = useContext(ThemeContext);
     const handleInspectTask = useContext(InspectTaskContext);
@@ -22,6 +23,9 @@ const Task = ({
                     taskId,
                     columnId,
                 });
+            }}
+            style={{
+                userSelect: isSpaceCliced ? "none" : "auto",
             }}
         >
             <p className={`headingM task--title-${theme}`}>{name}</p>

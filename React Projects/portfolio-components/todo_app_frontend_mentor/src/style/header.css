@@ -49,9 +49,54 @@
 
 .header__title-light,
 .header__title-dark {
-    padding-left: 32px;
     margin-right: auto;
     height: 100%;
     display: flex;
     align-items: center;
+}
+
+.header__title-collapsed-light,
+.header__title-collapsed-dark {
+    padding-left: 32px;
+}
+
+.hamburger-menu {
+    position: absolute;
+    right: 0px;
+    top: 50px;
+    width: 192px;
+    padding: 16px;
+    border-radius: 8px;
+    z-index: 100;
+}
+
+.hamburger-menu-overlay {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+
+.hamburger-menu-light {
+    background: var(--white);
+}
+
+.hamburger-menu-dark {
+    background: var(--very-dark-grey-dark-bg);
+}
+
+.hamburger-menu > span {
+    display: block;
+    width: 100%;
+}
+
+.hamburger-menu-edit {
+    color: var(--medium-grey) !important;
+    margin-bottom: 16px;
+}
+
+.hamburger-menu-delete {
+    color: var(--red) !important;
 }

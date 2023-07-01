@@ -10,7 +10,7 @@ const InspectTask = ({
     status,
     setIsInspectTaskShown,
     handleEditTask,
-    handleDeleteTask,
+    setIsDeleteTaskShown,
     setIsEditTaskShown,
 }) => {
     const theme = useContext(ThemeContext);
@@ -39,9 +39,10 @@ const InspectTask = ({
                 id,
             );
 
-            setCurrentStatus(payload);
-            // TEMPORARY FIX
-            setIsInspectTaskShown(false);
+            setCurrentStatus({
+                columnId: payload.id,
+                columnName: payload.columnName,
+            });
             return;
         }
 
@@ -56,7 +57,7 @@ const InspectTask = ({
                 }
                 return subtask;
             });
-            // console.log("newSubtasks:", newSubtasks);
+            console.log("newSubtasks:", newSubtasks);
 
             handleEditTask(
                 taskName,
@@ -73,18 +74,6 @@ const InspectTask = ({
             return;
         }
     };
-
-    useEffect(() => {
-        console.log(isTaskMenuShown);
-    }, [isTaskMenuShown]);
-
-    // useEffect(() => {
-    //     console.log("USEEFFECT CURRENTSTATUS", currentStatus);
-    // }, [currentStatus]);
-
-    // useEffect(() => {
-    //     console.log("USEEFFECT CURENTSUBTASKS", currentSubtasks);
-    // }, [currentSubtasks]);
 
     return (
         <div
@@ -131,12 +120,10 @@ const InspectTask = ({
                                 </span>
                                 <span
                                     className="task-menu-delete bodyL"
-                                    onClick={() =>
-                                        handleDeleteTask(
-                                            id,
-                                            currentStatus.columnId,
-                                        )
-                                    }
+                                    onClick={() => {
+                                        setIsDeleteTaskShown(true);
+                                        setIsInspectTaskShown(false);
+                                    }}
                                 >
                                     Delete Task
                                 </span>
@@ -144,7 +131,9 @@ const InspectTask = ({
                         )}
                     </div>
                 </div>
-                <p className="bodyL">{description}</p>
+                <p className={`bodyL inspect-task-description-${theme}`}>
+                    {description}
+                </p>
                 <div className="inspect-task-section">
                     <p
                         className={`bodyM inspect-task-form-label-${theme}`}
