@@ -1,6 +1,7 @@
 .inspect-task {
     padding: 32px;
-    width: 416px;
+    width: 480px;
+    max-width: calc(100vw - 32px);
     border-radius: 6px;
     display: flex;
     flex-direction: column;

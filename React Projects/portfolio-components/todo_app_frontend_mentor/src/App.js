@@ -1,7 +1,7 @@
 import "./App.css";
 import ThemeContext from "./ThemeContext";
 import InspectTaskContext from "./InspectTaskContext";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import CustomButton from "./components/CustomButton";
 import CustomCheckbox from "./components/CustomCheckbox";
 import CustomInput from "./components/CustomInput";
@@ -12,6 +12,7 @@ import Board from "./components/Board";
 import data from "./data.json";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
+import HeaderMobile from "./components/HeaderMobile";
 import NewTaskForm from "./components/NewTaskForm";
 import NewBoard from "./components/NewBoard";
 import EditTaskForm from "./components/EditTaskForm";
@@ -23,12 +24,15 @@ import colorPalette from "./utils/colorPalette";
 import { getId } from "./utils/generateId";
 import InspectTask from "./components/InspectTask";
 import NewColumn from "./components/NewColumn";
+import MobileSelectBoard from "./components/MobileSelectBoard";
 
 // INSPECT THAT IN GOOGLE
 
 function App() {
     const [theme, setTheme] = useState("light");
     const [state, setState] = useState(data.data);
+    const [isMobile, setIsMobile] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(null);
 
     const [isAddNewTaskShown, setIsAddNewTaskShown] = useState(false);
     const [isAddNewBoardShown, setIsAddNewBoardShown] = useState(false);
@@ -39,14 +43,21 @@ function App() {
     const [isDeleteTaskShown, setIsDeleteTaskShown] = useState(false);
     const [isInspectTaskShown, setIsInspectTaskShown] = useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const [isMobileSelectBoardShown, setIsMobileSelectBoardShown] =
+        useState(true);
 
     const [selectedBoard, setSelectedBoard] = useState(state[0].id);
     const [inspectedTask, setInspectedTask] = useState(null);
+
+    const ref = useRef(null);
+
     // inspected task = { taskId, columnId }
 
     // FORM VALIDATION
     // Confirm form with enter key
     // Inspect Task description theme based color
+
+    // 480px BREAKPOINT MOBILE
 
     const toggleTheme = () => {
         setTheme(theme === "light" ? "dark" : "light");
@@ -303,9 +314,46 @@ function App() {
         setIsDeleteBoardShown(false);
     };
 
+    const handleIsMobile = () => {
+        const currentWidth = ref.current.clientWidth;
+        setWindowWidth(currentWidth);
+        if (currentWidth <= 480) {
+            setIsMobile(true);
+            setIsSidebarOpen(false);
+            return;
+        }
+        if (currentWidth <= 700) {
+            setIsMobile(false);
+            setIsSidebarOpen(false);
+            return;
+        }
+
+        setIsMobile(false);
+        setIsSidebarOpen(true);
+        return;
+    };
+
+    useLayoutEffect(() => {
+        handleIsMobile();
+    }, []);
+
     useEffect(() => {
         console.log("New State: ", state);
     }, [state]);
+
+    useEffect(() => {
+        window.addEventListener("resize", handleIsMobile);
+
+        return () => window.removeEventListener("resize", handleIsMobile);
+    }, []);
+
+    useEffect(() => {
+        console.log("isMobile: ", isMobile);
+    }, [isMobile]);
+
+    useEffect(() => {
+        console.log("isSidebarOpen:", isSidebarOpen);
+    }, [isSidebarOpen]);
 
     return (
         <ThemeContext.Provider value={theme}>
@@ -318,6 +366,7 @@ function App() {
                             setIsAddNewBoardShown(false);
                         }
                     }}
+                    ref={ref}
                 >
                     {isSidebarOpen && (
                         <Sidebar
@@ -327,25 +376,46 @@ function App() {
                             selectedId={selectedBoard}
                             toggleTheme={toggleTheme}
                             hideSidebar={() => setIsSidebarOpen(false)}
-                            isSidebarOpen={isSidebarOpen}
+                            // isSidebarOpen={!isMobile && isSidebarOpen}
+                            isSidebarOpen={false}
                             setIsAddNewBoardShown={setIsAddNewBoardShown}
                         />
                     )}
                     <div className="content">
-                        <Header
-                            isSidebarOpen={isSidebarOpen}
-                            addNewTask={() => setIsAddNewTaskShown(true)}
-                            boardName={
-                                state.find(({ id }) => id === selectedBoard)
-                                    .boardName
-                            }
-                            isBoardEmpty={
-                                state.find(({ id }) => id === selectedBoard)
-                                    .columns.length === 0
-                            }
-                            setIsEditBoardShown={setIsEditBoardShown}
-                            setIsDeleteBoardShown={setIsDeleteBoardShown}
-                        />
+                        {isMobile ? (
+                            <HeaderMobile
+                                addNewTask={() => setIsAddNewTaskShown(true)}
+                                boardName={
+                                    state.find(({ id }) => id === selectedBoard)
+                                        .boardName
+                                }
+                                isBoardEmpty={
+                                    state.find(({ id }) => id === selectedBoard)
+                                        .columns.length === 0
+                                }
+                                setIsEditBoardShown={setIsEditBoardShown}
+                                setIsDeleteBoardShown={setIsDeleteBoardShown}
+                                setIsMobileSelectBoardShown={
+                                    setIsMobileSelectBoardShown
+                                }
+                            />
+                        ) : (
+                            <Header
+                                isSidebarOpen={isSidebarOpen}
+                                addNewTask={() => setIsAddNewTaskShown(true)}
+                                boardName={
+                                    state.find(({ id }) => id === selectedBoard)
+                                        .boardName
+                                }
+                                isBoardEmpty={
+                                    state.find(({ id }) => id === selectedBoard)
+                                        .columns.length === 0
+                                }
+                                setIsEditBoardShown={setIsEditBoardShown}
+                                setIsDeleteBoardShown={setIsDeleteBoardShown}
+                                isMobile={isMobile}
+                            />
+                        )}
                         <Board
                             columns={
                                 state.find(({ id }) => id === selectedBoard)
@@ -355,6 +425,7 @@ function App() {
                             setIsSidebarOpen={setIsSidebarOpen}
                             addNewColumn={handleAddColumn}
                             setIsAddNewColumnShown={setIsAddNewColumnShown}
+                            isMobile={isMobile}
                         />
                     </div>
                 </main>
@@ -450,6 +521,18 @@ function App() {
                         setIsDeleteTaskShown={setIsDeleteTaskShown}
                         handleDeleteTask={handleDeleteTask}
                         columnId={inspectedTask?.columnId}
+                    />
+                )}
+                {isMobileSelectBoardShown && (
+                    <MobileSelectBoard
+                        boards={state}
+                        selectBoard={handleSelectBoard}
+                        selectedId={selectedBoard}
+                        toggleTheme={toggleTheme}
+                        setIsAddNewBoardShown={setIsAddNewBoardShown}
+                        setIsMobileSelectBoardShown={
+                            setIsMobileSelectBoardShown
+                        }
                     />
                 )}
             </InspectTaskContext.Provider>

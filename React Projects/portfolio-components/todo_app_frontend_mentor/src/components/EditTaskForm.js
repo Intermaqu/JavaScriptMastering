@@ -42,10 +42,10 @@ const EditTaskForm = ({
         setSubtasks(newSubtasks);
     };
 
-    useEffect(() => {
-        console.log(subtasks);
-        console.log(getId());
-    }, [subtasks]);
+    // useEffect(() => {
+    //     console.log(subtasks);
+    //     console.log(getId());
+    // }, [subtasks]);
 
     return (
         <div className="overlay" onMouseDown={() => setIsEditTaskShown(false)}>

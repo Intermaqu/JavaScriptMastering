@@ -1,6 +1,7 @@
 .add-new-board {
     padding: 32px;
     width: 480px;
+    max-width: calc(100vw - 32px);
     display: flex;
     flex-direction: column;
     gap: 24px;

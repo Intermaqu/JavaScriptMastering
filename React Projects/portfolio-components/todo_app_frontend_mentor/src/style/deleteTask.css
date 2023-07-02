@@ -1,5 +1,6 @@
 .delete-task {
     width: 480px;
+    max-width: calc(100vw - 32px);
     padding: 32px;
     display: flex;
     flex-direction: column;

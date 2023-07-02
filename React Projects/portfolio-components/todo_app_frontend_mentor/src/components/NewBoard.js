@@ -1,6 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "../style/newBoard.css";
-import { getId } from "../utils/generateId";
 import ThemeContext from "../ThemeContext";
 import CustomInput from "./CustomInput";
 import CustomButton from "./CustomButton";
@@ -83,7 +82,9 @@ const NewBoard = ({ handleAddBoard, setIsAddNewBoardShown }) => {
                 <CustomButton
                     text={`Create New Board`}
                     type="PrimaryS"
-                    onClick={() => handleAddBoard(title, columns)}
+                    onClick={() => {
+                        handleAddBoard(title, columns);
+                    }}
                 />
             </div>
         </div>

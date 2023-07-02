@@ -9,11 +9,12 @@ const CustomInput = ({
     width = "100%",
     type = "text",
     customStyles = {},
+    isValid = false,
 }) => {
     const theme = useContext(ThemeContext);
     const inputRef = useRef(null);
 
-    const [error, setError] = useState(false);
+    const [error, setError] = useState(isValid);
 
     const handleClickParent = () => {
         inputRef.current && inputRef.current.focus();

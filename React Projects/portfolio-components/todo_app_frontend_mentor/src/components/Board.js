@@ -10,6 +10,7 @@ const Board = ({
     isSidebarOpen,
     setIsSidebarOpen,
     setIsAddNewColumnShown,
+    isMobile,
 }) => {
     const [isMouseDown, setIsMouseDown] = useState(false);
     const [isSpaceClicked, setIsSpaceClicked] = useState(false);
@@ -128,7 +129,7 @@ const Board = ({
                     </>
                 )}
             </div>
-            {!isSidebarOpen && (
+            {!isMobile && !isSidebarOpen && (
                 <div
                     className="sidebar-toggle-button"
                     onClick={() => setIsSidebarOpen(true)}

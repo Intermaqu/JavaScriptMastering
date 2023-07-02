@@ -35,6 +35,7 @@
 
 .board-empty-text {
     color: var(--medium-grey) !important;
+    text-align: center;
 }
 
 .board-light {

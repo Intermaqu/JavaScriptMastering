@@ -2,6 +2,9 @@ import React, { useContext, useState } from "react";
 import "../style/header.css";
 import logoLight from "../assets/images/logo-light.svg";
 import logoDark from "../assets/images/logo-dark.svg";
+import arrowDown from "../assets/images/icon-chevron-down.svg";
+import arrowUp from "../assets/images/icon-chevron-up.svg";
+import mobileLogo from "../assets/images/logo-mobile.svg";
 import ThemeContext from "../ThemeContext";
 import CustomButton from "./CustomButton";
 
@@ -12,6 +15,7 @@ const Header = ({
     isBoardEmpty,
     setIsEditBoardShown,
     setIsDeleteBoardShown,
+    isMobile,
 }) => {
     const theme = useContext(ThemeContext);
     const [isMenuShown, setIsMenuShown] = useState(false);
