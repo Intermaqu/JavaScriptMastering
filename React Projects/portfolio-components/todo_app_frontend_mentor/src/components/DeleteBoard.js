@@ -8,6 +8,7 @@ const DeleteBoard = ({
     handleDeleteBoard,
     setIsDeleteBoardShown,
     numberOfBoards,
+    isMobile,
 }) => {
     const theme = useContext(ThemeContext);
     const [hasBeenClicked, setHasBeenClicked] = useState(false);
@@ -19,9 +20,19 @@ const DeleteBoard = ({
         }
     };
 
+    const maxWidth = isMobile
+        ? { maxWidth: "100%" }
+        : { maxWidth: "48%", width: "200px" };
+
     return (
-        <div className="overlay">
-            <div className={`delete-board delete-board-${theme}`}>
+        <div
+            className="overlay"
+            onMouseDown={() => setIsDeleteBoardShown(false)}
+        >
+            <div
+                className={`delete-board delete-board-${theme}`}
+                onMouseDown={(e) => e.stopPropagation()}
+            >
                 <p className="headingL font-red">Delete this board?</p>
                 <p className="bodyL">
                     {`Are you sure you want to delete the '${board.boardName}' board?
@@ -33,20 +44,26 @@ const DeleteBoard = ({
                         {`You can't delete the last board. Add a new board first.`}
                     </p>
                 )}
-                <div className="delete-board-buttons">
+                <div
+                    className={
+                        isMobile
+                            ? `delete-board-buttons-mobile`
+                            : `delete-board-buttons`
+                    }
+                >
                     <CustomButton
                         text="Delete"
                         type="Destructive"
                         onClick={() => {
                             handleDeleteBoardClick(board.id);
                         }}
-                        width="200px"
+                        customStyles={maxWidth}
                     />
                     <CustomButton
                         text="Cancel"
                         type="Secondary"
                         onClick={() => setIsDeleteBoardShown(false)}
-                        width="200px"
+                        customStyles={maxWidth}
                     />
                 </div>
             </div>

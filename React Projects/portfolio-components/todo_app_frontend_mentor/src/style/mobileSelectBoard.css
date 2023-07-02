@@ -7,6 +7,9 @@
     border-radius: 8px;
     padding: 16px 16px 16px 0px;
     justify-content: center;
+    position: absolute;
+    top: 80px;
+    box-shadow: 0px 10px 20px 0px rgba(54, 78, 126, 0.25);
 }
 
 .mobile-select-board-title {
@@ -76,7 +79,7 @@
     color: var(--main-purple);
 }
 
-.sidebar-boards--add > img {
+.mobile-select-board-board-add > img {
     filter: invert(42%) sepia(90%) saturate(625%) hue-rotate(208deg)
         brightness(79%) contrast(96%);
 }

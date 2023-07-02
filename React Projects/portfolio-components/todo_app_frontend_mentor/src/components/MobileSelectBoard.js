@@ -38,7 +38,10 @@ const MobileSelectBoard = ({
                                     : `mobile-select-board-board-${theme}`
                             }`}
                             key={id}
-                            onClick={() => selectBoard(id)}
+                            onClick={() => {
+                                selectBoard(id);
+                                setIsMobileSelectBoardShown(false);
+                            }}
                         >
                             <img src={boardIcon} alt="board icon" />
                             <p
@@ -54,7 +57,10 @@ const MobileSelectBoard = ({
                 {/* ADD NEW BOARD */}
                 <div
                     className="mobile-select-board-board mobile-select-board-board-add"
-                    onClick={() => setIsAddNewBoardShown(true)}
+                    onClick={() => {
+                        setIsAddNewBoardShown(true);
+                        setIsMobileSelectBoardShown(false);
+                    }}
                 >
                     <img src={boardIcon} alt="board icon" />
                     <p className="headingM">+Create New Board</p>

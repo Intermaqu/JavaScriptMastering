@@ -9,7 +9,7 @@ import CustomDropdown from "./components/CustomDropdown";
 import Task from "./components/Task";
 import Column from "./components/Column";
 import Board from "./components/Board";
-import data from "./data.json";
+import initialState from "./data.json";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import HeaderMobile from "./components/HeaderMobile";
@@ -30,7 +30,7 @@ import MobileSelectBoard from "./components/MobileSelectBoard";
 
 function App() {
     const [theme, setTheme] = useState("light");
-    const [state, setState] = useState(data.data);
+    const [state, setState] = useState(null);
     const [isMobile, setIsMobile] = useState(false);
     const [windowWidth, setWindowWidth] = useState(null);
 
@@ -44,9 +44,9 @@ function App() {
     const [isInspectTaskShown, setIsInspectTaskShown] = useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const [isMobileSelectBoardShown, setIsMobileSelectBoardShown] =
-        useState(true);
+        useState(false);
 
-    const [selectedBoard, setSelectedBoard] = useState(state[0].id);
+    const [selectedBoard, setSelectedBoard] = useState(null);
     const [inspectedTask, setInspectedTask] = useState(null);
 
     const ref = useRef(null);
@@ -64,7 +64,6 @@ function App() {
     };
 
     const handleSelectBoard = (id) => {
-        // console.log(id);
         setSelectedBoard(id);
     };
 
@@ -334,12 +333,43 @@ function App() {
     };
 
     useLayoutEffect(() => {
-        handleIsMobile();
+        const currentWidth = window.innerWidth;
+        console.log(currentWidth);
+        setWindowWidth(currentWidth);
+        if (currentWidth <= 480) {
+            setIsMobile(true);
+            setIsSidebarOpen(false);
+            return;
+        }
+        if (currentWidth <= 700) {
+            setIsMobile(false);
+            setIsSidebarOpen(false);
+            return;
+        }
+
+        setIsMobile(false);
+        setIsSidebarOpen(true);
+        return;
     }, []);
 
     useEffect(() => {
         console.log("New State: ", state);
+        state && localStorage.setItem("state", JSON.stringify(state));
     }, [state]);
+
+    useEffect(() => {
+        selectedBoard && localStorage.setItem("selectedBoard", selectedBoard);
+    }, [selectedBoard]);
+
+    useEffect(() => {
+        const localState = JSON.parse(localStorage.getItem("state"));
+        const localSelectedBoard = localStorage.getItem("selectedBoard");
+
+        localState ? setState(localState) : setState(initialState.data);
+        localSelectedBoard
+            ? setSelectedBoard(localSelectedBoard)
+            : setSelectedBoard(localState[0].id);
+    }, []);
 
     useEffect(() => {
         window.addEventListener("resize", handleIsMobile);
@@ -347,195 +377,224 @@ function App() {
         return () => window.removeEventListener("resize", handleIsMobile);
     }, []);
 
-    useEffect(() => {
-        console.log("isMobile: ", isMobile);
-    }, [isMobile]);
-
-    useEffect(() => {
-        console.log("isSidebarOpen:", isSidebarOpen);
-    }, [isSidebarOpen]);
-
     return (
         <ThemeContext.Provider value={theme}>
-            <InspectTaskContext.Provider value={handleInspectTask}>
-                <main
-                    className={`App ${theme}`}
-                    onKeyDown={(e) => {
-                        if (e.key === "Escape") {
-                            setIsAddNewTaskShown(false);
-                            setIsAddNewBoardShown(false);
-                        }
-                    }}
-                    ref={ref}
-                >
-                    {isSidebarOpen && (
-                        <Sidebar
-                            // boards={state.data}
-                            boards={state}
-                            selectBoard={handleSelectBoard}
-                            selectedId={selectedBoard}
-                            toggleTheme={toggleTheme}
-                            hideSidebar={() => setIsSidebarOpen(false)}
-                            // isSidebarOpen={!isMobile && isSidebarOpen}
-                            isSidebarOpen={false}
-                            setIsAddNewBoardShown={setIsAddNewBoardShown}
-                        />
-                    )}
-                    <div className="content">
-                        {isMobile ? (
-                            <HeaderMobile
-                                addNewTask={() => setIsAddNewTaskShown(true)}
-                                boardName={
-                                    state.find(({ id }) => id === selectedBoard)
-                                        .boardName
-                                }
-                                isBoardEmpty={
-                                    state.find(({ id }) => id === selectedBoard)
-                                        .columns.length === 0
-                                }
-                                setIsEditBoardShown={setIsEditBoardShown}
-                                setIsDeleteBoardShown={setIsDeleteBoardShown}
-                                setIsMobileSelectBoardShown={
-                                    setIsMobileSelectBoardShown
-                                }
-                            />
-                        ) : (
-                            <Header
-                                isSidebarOpen={isSidebarOpen}
-                                addNewTask={() => setIsAddNewTaskShown(true)}
-                                boardName={
-                                    state.find(({ id }) => id === selectedBoard)
-                                        .boardName
-                                }
-                                isBoardEmpty={
-                                    state.find(({ id }) => id === selectedBoard)
-                                        .columns.length === 0
-                                }
-                                setIsEditBoardShown={setIsEditBoardShown}
-                                setIsDeleteBoardShown={setIsDeleteBoardShown}
-                                isMobile={isMobile}
+            {state ? (
+                <InspectTaskContext.Provider value={handleInspectTask}>
+                    <main
+                        className={`App ${theme}`}
+                        onKeyDown={(e) => {
+                            if (e.key === "Escape") {
+                                setIsAddNewTaskShown(false);
+                                setIsAddNewBoardShown(false);
+                            }
+                        }}
+                        ref={ref}
+                    >
+                        {isSidebarOpen && (
+                            <Sidebar
+                                // boards={state.data}
+                                boards={state}
+                                selectBoard={handleSelectBoard}
+                                selectedId={selectedBoard}
+                                toggleTheme={toggleTheme}
+                                hideSidebar={() => setIsSidebarOpen(false)}
+                                // isSidebarOpen={!isMobile && isSidebarOpen}
+                                isSidebarOpen={false}
+                                setIsAddNewBoardShown={setIsAddNewBoardShown}
                             />
                         )}
-                        <Board
+                        <div className="content">
+                            {isMobile ? (
+                                <HeaderMobile
+                                    boardName={
+                                        state.find(
+                                            ({ id }) => id === selectedBoard,
+                                        ).boardName
+                                    }
+                                    isBoardEmpty={
+                                        state.find(
+                                            ({ id }) => id === selectedBoard,
+                                        ).columns.length === 0
+                                    }
+                                    setIsEditBoardShown={setIsEditBoardShown}
+                                    setIsDeleteBoardShown={
+                                        setIsDeleteBoardShown
+                                    }
+                                    setIsMobileSelectBoardShown={
+                                        setIsMobileSelectBoardShown
+                                    }
+                                    isMobileSelectBoardShown={
+                                        isMobileSelectBoardShown
+                                    }
+                                    setIsAddNewTaskShown={setIsAddNewTaskShown}
+                                    setIsEditTaskShown={setIsEditTaskShown}
+                                    setIsDeleteTaskShown={setIsDeleteTaskShown}
+                                />
+                            ) : (
+                                <Header
+                                    isSidebarOpen={isSidebarOpen}
+                                    addNewTask={() =>
+                                        setIsAddNewTaskShown(true)
+                                    }
+                                    boardName={
+                                        state.find(
+                                            ({ id }) => id === selectedBoard,
+                                        ).boardName
+                                    }
+                                    isBoardEmpty={
+                                        state.find(
+                                            ({ id }) => id === selectedBoard,
+                                        ).columns.length === 0
+                                    }
+                                    setIsEditBoardShown={setIsEditBoardShown}
+                                    setIsDeleteBoardShown={
+                                        setIsDeleteBoardShown
+                                    }
+                                    isMobile={isMobile}
+                                />
+                            )}
+                            <Board
+                                columns={
+                                    state.find(({ id }) => id === selectedBoard)
+                                        .columns
+                                }
+                                isSidebarOpen={isSidebarOpen}
+                                setIsSidebarOpen={setIsSidebarOpen}
+                                addNewColumn={handleAddColumn}
+                                setIsAddNewColumnShown={setIsAddNewColumnShown}
+                                isMobile={isMobile}
+                                popups={{
+                                    isAddNewTaskShown,
+                                    isEditTaskShown,
+                                    isAddNewBoardShown,
+                                    isInspectTaskShown,
+                                    isAddNewColumnShown,
+                                    isEditBoardShown,
+                                    isDeleteBoardShown,
+                                    isDeleteTaskShown,
+                                    isMobileSelectBoardShown,
+                                }}
+                            />
+                        </div>
+                    </main>
+                    {isAddNewTaskShown && (
+                        <NewTaskForm
                             columns={
                                 state.find(({ id }) => id === selectedBoard)
                                     .columns
                             }
-                            isSidebarOpen={isSidebarOpen}
-                            setIsSidebarOpen={setIsSidebarOpen}
-                            addNewColumn={handleAddColumn}
+                            setIsAddNewTaskShown={setIsAddNewTaskShown}
+                            handleAddTask={handleAddTask}
+                        />
+                        // <EditTaskForm
+                        //     columns={state[selectedBoard].columns}
+                        //     setIsEditTaskShown={setIsAddNewTaskShown}
+                        //     columnName="Todo"
+                        //     columnId={1}
+                        //     task={state[selectedBoard].columns[0].tasks[0]}
+                        //     handleEditTask={handleEditTask}
+                        // />
+                    )}
+
+                    {isEditTaskShown && (
+                        <EditTaskForm
+                            columns={
+                                state.find(({ id }) => id === selectedBoard)
+                                    .columns
+                            }
+                            setIsEditTaskShown={setIsEditTaskShown}
+                            columnName={
+                                state
+                                    .find(({ id }) => id === selectedBoard)
+                                    .columns.find(
+                                        ({ id }) =>
+                                            id === inspectedTask.columnId,
+                                    ).columnName
+                            }
+                            columnId={inspectedTask.columnId}
+                            task={inspectedTask.task}
+                            handleEditTask={handleEditTask}
+                        />
+                    )}
+
+                    {isAddNewBoardShown && (
+                        <NewBoard
+                            setIsAddNewBoardShown={setIsAddNewBoardShown}
+                            handleAddBoard={handleAddBoard}
+                        />
+                    )}
+                    {isInspectTaskShown && inspectedTask !== null && (
+                        <InspectTask
+                            task={inspectedTask?.task}
+                            columns={
+                                state.find(
+                                    (board) => board.id === selectedBoard,
+                                ).columns
+                            }
+                            status={{
+                                columnId: inspectedTask?.columnId,
+                                columnName: state
+                                    .find(({ id }) => id === selectedBoard)
+                                    .columns.find(
+                                        ({ id }) =>
+                                            id === inspectedTask?.columnId,
+                                    ).columnName,
+                            }}
+                            setIsInspectTaskShown={setIsInspectTaskShown}
+                            handleEditTask={handleEditTask}
+                            setIsDeleteTaskShown={setIsDeleteTaskShown}
+                            setIsEditTaskShown={setIsEditTaskShown}
+                        />
+                    )}
+                    {isAddNewColumnShown && (
+                        <NewColumn
                             setIsAddNewColumnShown={setIsAddNewColumnShown}
+                            handleAddColumn={handleAddColumn}
+                        />
+                    )}
+
+                    {isEditBoardShown && (
+                        <EditBoardForm
+                            setIsEditBoardShown={setIsEditBoardShown}
+                            handleEditBoard={handleEditBoard}
+                            board={state.find(({ id }) => id === selectedBoard)}
+                        />
+                    )}
+                    {isDeleteBoardShown && (
+                        <DeleteBoard
+                            board={state.find(({ id }) => id === selectedBoard)}
+                            handleDeleteBoard={handleDeleteBoard}
+                            setIsDeleteBoardShown={setIsDeleteBoardShown}
+                            numberOfBoards={state.length}
                             isMobile={isMobile}
                         />
-                    </div>
-                </main>
-                {isAddNewTaskShown && (
-                    <NewTaskForm
-                        columns={
-                            state.find(({ id }) => id === selectedBoard).columns
-                        }
-                        setIsAddNewTaskShown={setIsAddNewTaskShown}
-                        handleAddTask={handleAddTask}
-                    />
-                    // <EditTaskForm
-                    //     columns={state[selectedBoard].columns}
-                    //     setIsEditTaskShown={setIsAddNewTaskShown}
-                    //     columnName="Todo"
-                    //     columnId={1}
-                    //     task={state[selectedBoard].columns[0].tasks[0]}
-                    //     handleEditTask={handleEditTask}
-                    // />
-                )}
-
-                {isEditTaskShown && (
-                    <EditTaskForm
-                        columns={
-                            state.find(({ id }) => id === selectedBoard).columns
-                        }
-                        setIsEditTaskShown={setIsEditTaskShown}
-                        columnName={
-                            state
-                                .find(({ id }) => id === selectedBoard)
-                                .columns.find(
-                                    ({ id }) => id === inspectedTask.columnId,
-                                ).columnName
-                        }
-                        columnId={inspectedTask.columnId}
-                        task={inspectedTask.task}
-                        handleEditTask={handleEditTask}
-                    />
-                )}
-
-                {isAddNewBoardShown && (
-                    <NewBoard
-                        setIsAddNewBoardShown={setIsAddNewBoardShown}
-                        handleAddBoard={handleAddBoard}
-                    />
-                )}
-                {isInspectTaskShown && inspectedTask !== null && (
-                    <InspectTask
-                        task={inspectedTask?.task}
-                        columns={
-                            state.find((board) => board.id === selectedBoard)
-                                .columns
-                        }
-                        status={{
-                            columnId: inspectedTask?.columnId,
-                            columnName: state
-                                .find(({ id }) => id === selectedBoard)
-                                .columns.find(
-                                    ({ id }) => id === inspectedTask?.columnId,
-                                ).columnName,
-                        }}
-                        setIsInspectTaskShown={setIsInspectTaskShown}
-                        handleEditTask={handleEditTask}
-                        setIsDeleteTaskShown={setIsDeleteTaskShown}
-                        setIsEditTaskShown={setIsEditTaskShown}
-                    />
-                )}
-                {isAddNewColumnShown && (
-                    <NewColumn
-                        setIsAddNewColumnShown={setIsAddNewColumnShown}
-                        handleAddColumn={handleAddColumn}
-                    />
-                )}
-
-                {isEditBoardShown && (
-                    <EditBoardForm
-                        setIsEditBoardShown={setIsEditBoardShown}
-                        handleEditBoard={handleEditBoard}
-                        board={state.find(({ id }) => id === selectedBoard)}
-                    />
-                )}
-                {isDeleteBoardShown && (
-                    <DeleteBoard
-                        board={state.find(({ id }) => id === selectedBoard)}
-                        handleDeleteBoard={handleDeleteBoard}
-                        setIsDeleteBoardShown={setIsDeleteBoardShown}
-                        numberOfBoards={state.length}
-                    />
-                )}
-                {isDeleteTaskShown && (
-                    <DeleteTask
-                        task={inspectedTask?.task}
-                        setIsDeleteTaskShown={setIsDeleteTaskShown}
-                        handleDeleteTask={handleDeleteTask}
-                        columnId={inspectedTask?.columnId}
-                    />
-                )}
-                {isMobileSelectBoardShown && (
-                    <MobileSelectBoard
-                        boards={state}
-                        selectBoard={handleSelectBoard}
-                        selectedId={selectedBoard}
-                        toggleTheme={toggleTheme}
-                        setIsAddNewBoardShown={setIsAddNewBoardShown}
-                        setIsMobileSelectBoardShown={
-                            setIsMobileSelectBoardShown
-                        }
-                    />
-                )}
-            </InspectTaskContext.Provider>
+                    )}
+                    {isDeleteTaskShown && (
+                        <DeleteTask
+                            task={inspectedTask?.task}
+                            setIsDeleteTaskShown={setIsDeleteTaskShown}
+                            handleDeleteTask={handleDeleteTask}
+                            columnId={inspectedTask?.columnId}
+                            isMobile={isMobile}
+                        />
+                    )}
+                    {isMobileSelectBoardShown && (
+                        <MobileSelectBoard
+                            boards={state}
+                            selectBoard={handleSelectBoard}
+                            selectedId={selectedBoard}
+                            toggleTheme={toggleTheme}
+                            setIsAddNewBoardShown={setIsAddNewBoardShown}
+                            setIsMobileSelectBoardShown={
+                                setIsMobileSelectBoardShown
+                            }
+                        />
+                    )}
+                </InspectTaskContext.Provider>
+            ) : (
+                "Loading"
+            )}
         </ThemeContext.Provider>
     );
 }

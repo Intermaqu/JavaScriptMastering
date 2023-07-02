@@ -27,3 +27,9 @@
     display: flex;
     justify-content: space-between;
 }
+
+.delete-task-buttons-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}

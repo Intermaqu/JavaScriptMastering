@@ -26,4 +26,11 @@
 .delete-board-buttons {
     display: flex;
     justify-content: space-between;
+    width: 100%;
+}
+
+.delete-board-buttons-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }

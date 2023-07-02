@@ -7,15 +7,18 @@ import ThemeContext from "../ThemeContext";
 import CustomButton from "./CustomButton";
 
 const Header = ({
-    addNewTask,
     boardName,
     isBoardEmpty,
+    setIsAddNewTaskShown,
     setIsEditBoardShown,
     setIsDeleteBoardShown,
+    setIsDeleteTaskShown,
+    isMobileSelectBoardShown,
+    setIsMobileSelectBoardShown,
+    setIsEditTaskShown,
 }) => {
     const theme = useContext(ThemeContext);
     const [isMenuShown, setIsMenuShown] = useState(false);
-    const [isMenuBoardShown, setIsMenuBoardShown] = useState(false);
 
     const handleMenuClick = () => {
         setIsMenuShown(false);
@@ -23,10 +26,23 @@ const Header = ({
     };
 
     return (
-        <div className={`mobile-header mobile-header-${theme}`}>
+        <div
+            className={`mobile-header mobile-header-${theme}`}
+            onMouseDown={() => {
+                isMobileSelectBoardShown && setIsMobileSelectBoardShown(false);
+                setIsAddNewTaskShown(false);
+                setIsEditTaskShown(false);
+                setIsEditBoardShown(false);
+                setIsDeleteTaskShown(false);
+                setIsDeleteBoardShown(false);
+            }}
+        >
             <img src={mobileLogo} alt="logo" className="mobile-logo" />
             <div
                 className={`mobile-header-title-${theme} headingXL mobile-header-title`}
+                onMouseDown={() =>
+                    setIsMobileSelectBoardShown(!isMobileSelectBoardShown)
+                }
             >
                 {boardName}
                 <img
@@ -39,7 +55,7 @@ const Header = ({
                 <CustomButton
                     type="PrimaryL"
                     text=""
-                    onClick={addNewTask}
+                    onClick={() => setIsAddNewTaskShown(true)}
                     plus={true}
                     width="48px"
                     customStyles={{
@@ -91,7 +107,6 @@ const Header = ({
                     )}
                 </div>
             </div>
-            {isMenuBoardShown && <></>}
         </div>
     );
 };

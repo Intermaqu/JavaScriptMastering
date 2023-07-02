@@ -6,6 +6,7 @@
     padding: 16px;
     gap: 16px;
     position: relative;
+    z-index: 101;
 }
 
 .mobile-header-light {

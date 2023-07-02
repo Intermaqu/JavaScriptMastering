@@ -11,6 +11,7 @@ const Board = ({
     setIsSidebarOpen,
     setIsAddNewColumnShown,
     isMobile,
+    popups,
 }) => {
     const [isMouseDown, setIsMouseDown] = useState(false);
     const [isSpaceClicked, setIsSpaceClicked] = useState(false);
@@ -19,6 +20,7 @@ const Board = ({
     const [scrollLeft, setScrollLeft] = useState(null);
     const [scrollTop, setScrollTop] = useState(null);
     const boardRef = useRef(null);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
 
     const theme = useContext(ThemeContext);
 
@@ -38,6 +40,24 @@ const Board = ({
         setIsMouseDown(false);
     };
 
+    const getIsPopupOpen = () => {
+        for (const key of Object.keys(popups)) {
+            if (popups[key]) {
+                setIsPopupOpen(true);
+                return;
+            }
+        }
+        setIsPopupOpen(false);
+    };
+
+    useEffect(() => {
+        console.log("isPopupOpen", isPopupOpen);
+    }, [isPopupOpen]);
+
+    useEffect(() => {
+        getIsPopupOpen();
+    }, []);
+
     const handleMouseMove = (e) => {
         if (!isMouseDown) return;
         if (!isSpaceClicked) return;
@@ -52,13 +72,21 @@ const Board = ({
 
     useEffect(() => {
         const handleSpacePressed = (e) => {
-            if (e.key === " " || e.code === "Space" || e.keyCode === 32) {
+            if (
+                (e.key === " " || e.code === "Space" || e.keyCode === 32) &&
+                !isPopupOpen
+            ) {
                 e.preventDefault();
+                console.log("space pressed");
                 setIsSpaceClicked(true);
             }
         };
         const handleSpaceReleased = (e) => {
-            if (e.key === " " || e.code === "Space" || e.keyCode === 32) {
+            if (
+                (e.key === " " || e.code === "Space" || e.keyCode === 32) &&
+                !isPopupOpen
+            ) {
+                console.log("space released");
                 setIsSpaceClicked(false);
             }
         };
