@@ -56,7 +56,7 @@ const Board = ({
 
     useEffect(() => {
         getIsPopupOpen();
-    }, []);
+    }, [popups]);
 
     const handleMouseMove = (e) => {
         if (!isMouseDown) return;
@@ -97,7 +97,7 @@ const Board = ({
             document.removeEventListener("keydown", handleSpacePressed);
             document.removeEventListener("keyup", handleSpaceReleased);
         };
-    }, []);
+    }, [isPopupOpen]);
 
     return (
         <div className="board-wrapper">

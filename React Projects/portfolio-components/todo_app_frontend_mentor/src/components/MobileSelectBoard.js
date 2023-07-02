@@ -15,8 +15,6 @@ const MobileSelectBoard = ({
 }) => {
     const theme = useContext(ThemeContext);
 
-    console.log(boards);
-
     return (
         <div
             className="overlay"

@@ -29,7 +29,7 @@ import MobileSelectBoard from "./components/MobileSelectBoard";
 // INSPECT THAT IN GOOGLE
 
 function App() {
-    const [theme, setTheme] = useState("light");
+    const [theme, setTheme] = useState(null);
     const [state, setState] = useState(null);
     const [isMobile, setIsMobile] = useState(false);
     const [windowWidth, setWindowWidth] = useState(null);
@@ -56,6 +56,7 @@ function App() {
     // FORM VALIDATION
     // Confirm form with enter key
     // Inspect Task description theme based color
+    // SAVE THEME TO LOCAL STORAGE
 
     // 480px BREAKPOINT MOBILE
 
@@ -362,13 +363,19 @@ function App() {
     }, [selectedBoard]);
 
     useEffect(() => {
+        theme && localStorage.setItem("theme", theme);
+    }, [theme]);
+
+    useEffect(() => {
         const localState = JSON.parse(localStorage.getItem("state"));
         const localSelectedBoard = localStorage.getItem("selectedBoard");
+        const localTheme = localStorage.getItem("theme");
 
         localState ? setState(localState) : setState(initialState.data);
         localSelectedBoard
             ? setSelectedBoard(localSelectedBoard)
             : setSelectedBoard(localState[0].id);
+        localTheme ? setTheme(localTheme) : setTheme("light");
     }, []);
 
     useEffect(() => {
@@ -579,7 +586,7 @@ function App() {
                             isMobile={isMobile}
                         />
                     )}
-                    {isMobileSelectBoardShown && (
+                    {isMobileSelectBoardShown && isMobile && (
                         <MobileSelectBoard
                             boards={state}
                             selectBoard={handleSelectBoard}
