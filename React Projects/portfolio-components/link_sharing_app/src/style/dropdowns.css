@@ -45,6 +45,7 @@
     top: calc(100% + 0.5rem);
     border: 1px solid var(--borders);
     box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.1);
+    z-index: 10;
 }
 
 .custom-dropdown-option {
@@ -53,6 +54,15 @@
     background: inherit;
     padding: 0.75rem 0;
     border-bottom: 1px solid var(--borders);
+    display: flex;
+    align-items: center;
+    user-select: none;
+}
+
+.custom-dropdown-option > img {
+    margin-right: 0.75rem;
+    width: 1rem;
+    height: 1rem;
 }
 
 .custom-dropdown-option:first-child {
@@ -66,4 +76,8 @@
 
 .custom-dropdown-option-selected {
     color: var(--purple) !important;
+}
+.custom-dropdown-option-selected > img {
+    filter: invert(25%) sepia(48%) saturate(10000%) hue-rotate(247deg)
+        brightness(99%) contrast(104%);
 }

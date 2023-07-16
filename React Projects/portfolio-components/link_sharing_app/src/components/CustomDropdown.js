@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../style/dropdowns.css";
 import arrowDown from "../assets/images/icon-chevron-down.svg";
-import iconLink from "../assets/images/icon-link.svg";
+import { handleIcon } from "../utils/handleIcon";
 
 const CustomDropdown = ({ value, setValue, options, width = "100%" }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +18,7 @@ const CustomDropdown = ({ value, setValue, options, width = "100%" }) => {
                 }`}
             >
                 <img
-                    src={iconLink}
+                    src={handleIcon(value.icon)}
                     alt="icon-ling"
                     className="custom-input-icon"
                 />
@@ -43,8 +43,12 @@ const CustomDropdown = ({ value, setValue, options, width = "100%" }) => {
                             }}
                             key={option.id}
                         >
+                            <img
+                                src={handleIcon(option.icon)}
+                                alt="icon-ling"
+                            />
                             {`${option.name} ${
-                                value.id === option.id && "(Selected)"
+                                value.id === option.id ? "(Selected)" : ""
                             }`}
                         </span>
                     ))}
