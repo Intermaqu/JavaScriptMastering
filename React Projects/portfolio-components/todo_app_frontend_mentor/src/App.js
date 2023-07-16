@@ -374,7 +374,9 @@ function App() {
         localState ? setState(localState) : setState(initialState.data);
         localSelectedBoard
             ? setSelectedBoard(localSelectedBoard)
-            : setSelectedBoard(localState[0].id);
+            : localState
+            ? setSelectedBoard(localState[0].id)
+            : setSelectedBoard(initialState.data[0].id);
         localTheme ? setTheme(localTheme) : setTheme("light");
     }, []);
 

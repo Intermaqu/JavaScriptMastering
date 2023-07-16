@@ -1,0 +1,40 @@
+.custom-input-wrapper {
+    border: 1px solid var(--borders);
+    border-radius: 0.5rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+    padding: 0.75rem 1rem;
+    position: relative;
+}
+
+.custom-input-input {
+    width: 100%;
+    outline: none;
+    border: 0;
+    background: inherit;
+    color: var(--dark-grey);
+}
+
+.custom-input-wrapper-invalid {
+    border: 1px solid var(--red) !important;
+}
+.custom-input-wrapper-invalid > input {
+    color: var(--red);
+}
+
+.custom-input-invalid-text {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 16px;
+    color: var(--red);
+}
+
+.custom-input-wrapper:focus-within {
+    border: 1px solid var(--purple);
+    box-shadow: 0 0 2rem 0 rgba(99, 60, 255, 0.25);
+    caret-color: var(--purple);
+}
