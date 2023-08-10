@@ -7,6 +7,8 @@ import largeLogo from "../assets/images/logo-devlinks-large.svg";
 import smallLogo from "../assets/images/logo-devlinks-small.svg";
 import email from "../assets/images/icon-email.svg";
 import password from "../assets/images/icon-password.svg";
+import profile from "../assets/images/icon-profile-details-header.svg";
+import arrowRight from "../assets/images/icon-arrow-right.svg";
 
 export const handleIcon = (icon: string) => {
   switch (icon) {
@@ -26,6 +28,10 @@ export const handleIcon = (icon: string) => {
       return email;
     case "password":
       return password;
+    case "profile":
+      return profile;
+    case "arrowRight":
+      return arrowRight;
     default:
       return iconLink;
   }

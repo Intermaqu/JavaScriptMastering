@@ -9,11 +9,16 @@
       "sourceMap": true,
       "forceConsistentCasingInFileNames": true,
       "outDir": "dist",
-      "declaration": true
+      "declaration": true,
+      "esModuleInterop": true,
+      "resolveJsonModule": true,
+      "allowJs": true,
+      "strict": true,
+      "jsx": "react-jsx",
     },
     "include": [
-      "src/**/*.ts",
-      
+      "src/*",
+      "src/custom.d.ts"
     ],
     "exclude": [
       "src/**/*.spec.ts",
