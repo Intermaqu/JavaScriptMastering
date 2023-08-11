@@ -46,13 +46,13 @@
 
 .link-component-links {
   width: 16.5rem;
-  height: 21.5rem;
+  height: 19rem;
   background: var(--white);
   display: flex;
   flex-direction: column;
   gap: 1.3rem;
   align-items: center;
-  padding-top: 2.5rem;
+  margin-top: 2.5rem;
   overflow-y: scroll;
 }
 

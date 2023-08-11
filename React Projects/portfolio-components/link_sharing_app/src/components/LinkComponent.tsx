@@ -19,7 +19,6 @@ const LinkComponent = ({ profileImage, name, email, links }: Props) => {
   return (
     <div className="link-component">
       <div className="link-component-content-content">
-        {profileImage ? (
           <div
             style={
               profileImage !== ""
@@ -34,9 +33,6 @@ const LinkComponent = ({ profileImage, name, email, links }: Props) => {
             }
             className="link-component-content-content-profile"
           />
-        ) : (
-          <div className="link-component-content-content-profile-placeholder"></div>
-        )}
         {name && (
           <div
             style={{

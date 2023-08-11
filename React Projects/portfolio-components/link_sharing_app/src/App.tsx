@@ -11,6 +11,7 @@ import React from "react";
 import RegisterPage from "./Pages/RegisterPage";
 import Header from "./components/Header";
 import LinkComponent from "./components/LinkComponent";
+import CustomizeLinksComponent from './components/CustomizeLinksComponent';
 
 function App() {
   const [inputValue, setInputValue] = useState<string>("");
@@ -134,7 +135,7 @@ function App() {
             },
           ]}
         />
-        <div className="right"></div>
+        <CustomizeLinksComponent />
       </div>
     </div>
   );
