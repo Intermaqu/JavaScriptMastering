@@ -5,12 +5,17 @@
     width: 100%;
     padding: 1.5rem;
     border-radius: 0.75rem;
+    background: pink;
 }
 
 .add-link-component-header{
     width: 100%;
     display: flex;
     justify-content: space-between;
+}
+
+.add-link-component-header > .bodyM{
+    cursor: pointer;
 }
 
 .add-link-component-header-index{

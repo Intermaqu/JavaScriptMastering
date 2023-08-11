@@ -17,7 +17,17 @@ const CustomizeLinksComponent = (props: Props) => {
             link: "",
             icon: "github",
             id: "123456"
-        }
+        },
+        {
+            link: "Github.com/",
+            icon: "github",
+            id: "1234567"
+        },
+        {
+            link: "LinkedIn.com/",
+            icon: "github",
+            id: "12345678"
+        },
     ])
     const handleRemove = (id: string) => {
         const newLinks = links.filter((link) => link.id !== id)
