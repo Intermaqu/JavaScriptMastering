@@ -1,0 +1,50 @@
+.customize-links-wrapper{
+    width: calc(100% - 32rem);
+    
+}
+
+.customize-links{
+    width: 100%;
+    height: calc(800px - 3rem);
+    background: red;
+    padding: 2.5rem;
+    border-radius: 0.75rem;
+}
+
+.customize-links > .bodyM{
+    margin-bottom: 2.5rem;
+}
+
+.customize-links > .bodyM{
+    color: var(--grey)
+}
+
+
+
+.customize-links-links{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    overflow-y: scroll;
+    height: 550px;
+    padding-right: 0.5rem;
+}
+
+.customize-links-links::-webkit-scrollbar {
+    width: 0.25rem;
+}
+  
+.customize-links-links::-webkit-scrollbar-thumb {
+    background: var(--dark-grey);
+    border-radius: 0.125rem;
+    height: 5rem;
+}
+  
+
+.customize-links-buttons{
+    padding: 1.5rem 2.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
