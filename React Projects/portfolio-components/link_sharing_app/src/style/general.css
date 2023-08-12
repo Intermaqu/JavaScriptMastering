@@ -19,6 +19,16 @@
   font-family: var(--font-family);
 }
 
+/* *::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--dark-grey);
+  border-radius: 0.125rem;
+  height: 5rem;
+} */
+
 body {
   height: 100vh;
   width: 100vw;
@@ -26,8 +36,8 @@ body {
 }
 
 #root {
-  width: 100%;
-  height: 100%;
+  height: 100vh;
+  width: 100vw;
   background: var(--light-grey);
   display: flex;
   justify-content: center;

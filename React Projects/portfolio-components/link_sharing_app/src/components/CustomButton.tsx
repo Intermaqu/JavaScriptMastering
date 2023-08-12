@@ -1,6 +1,15 @@
 import React from "react";
 import "../style/buttons.css";
 
+interface IProps {
+  isDisabled?: boolean;
+  type?: "primary" | "secondary";
+  text: string;
+  onClick: () => void;
+  width?: string;
+  customStyles?: React.CSSProperties;
+}
+
 const CustomButton = ({
   isDisabled = false,
   type = "primary",
@@ -8,7 +17,7 @@ const CustomButton = ({
   onClick,
   width = "100%",
   customStyles = {},
-}) => {
+}: IProps) => {
   let classes =
     type === "primary"
       ? "custom-button primary"

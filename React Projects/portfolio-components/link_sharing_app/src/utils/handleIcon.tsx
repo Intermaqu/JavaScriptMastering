@@ -9,6 +9,18 @@ import email from "../assets/images/icon-email.svg";
 import password from "../assets/images/icon-password.svg";
 import profile from "../assets/images/icon-profile-details-header.svg";
 import arrowRight from "../assets/images/icon-arrow-right.svg";
+import codepen from "../assets/images/icon-codepen.svg";
+import codewars from "../assets/images/icon-codewars.svg";
+import devTo from "../assets/images/icon-devto.svg";
+import facebook from "../assets/images/icon-facebook.svg";
+import frontendMentor from "../assets/images/icon-frontend-mentor.svg";
+import twitch from "../assets/images/icon-twitch.svg";
+import twitter from "../assets/images/icon-twitter.svg";
+import gitlab from "../assets/images/icon-gitlab.svg";
+import freeCodeCamp from "../assets/images/icon-freecodecamp.svg";
+import hashnode from "../assets/images/icon-hashnode.svg";
+import stackoverflow from "../assets/images/icon-stack-overflow.svg";
+import emptyPhone from "../assets/images/illustration-empty.svg";
 
 export const handleIcon = (icon: string) => {
   switch (icon) {
@@ -32,7 +44,66 @@ export const handleIcon = (icon: string) => {
       return profile;
     case "arrowRight":
       return arrowRight;
+    case "codepen":
+      return codepen;
+    case "codewars":
+      return codewars;
+    case "devTo":
+      return devTo;
+    case "facebook":
+      return facebook;
+    case "frontendMentor":
+      return frontendMentor;
+    case "twitch":
+      return twitch;
+    case "twitter":
+      return twitter;
+    case "gitlab":
+      return gitlab;
+    case "freeCodeCamp":
+      return freeCodeCamp;
+    case "hashnode":
+      return hashnode;
+    case "stackoverflow":
+      return stackoverflow;
+    case "empty-board":
+      return emptyPhone;
     default:
       return iconLink;
+  }
+};
+
+export const handleFormatName = (name: string) => {
+  switch (name) {
+    case "youtube":
+      return "Youtube";
+    case "github":
+      return "Github";
+    case "linkedin":
+      return "LinkedIn";
+    case "codepen":
+      return "Codepen";
+    case "codewars":
+      return "Codewars";
+    case "devTo":
+      return "Dev.to";
+    case "facebook":
+      return "Facebook";
+    case "frontendMentor":
+      return "Frontend Mentor";
+    case "twitch":
+      return "Twitch";
+    case "twitter":
+      return "Twitter";
+    case "gitlab":
+      return "Gitlab";
+    case "freeCodeCamp":
+      return "FreeCodeCamp";
+    case "hashnode":
+      return "Hashnode";
+    case "stackoverflow":
+      return "Stack Overflow";
+    default:
+      return "ERROR";
   }
 };

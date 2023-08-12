@@ -1,7 +1,7 @@
 .link-component {
   width: 32rem;
   padding: 1.5rem;
-  height: 800px;
+  height: 100%;
   background: var(--white);
   border-radius: 0.75rem;
   display: flex;
@@ -73,8 +73,10 @@
   align-items: center;
   justify-content: space-between;
   padding: 0.75rem 1rem;
-  background: red;
   gap: 0.5rem;
+  border-color: var(--borders);
+  border-style: solid;
+  border-width: 1px;
 }
 
 .link-component-link > div {

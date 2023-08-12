@@ -8,6 +8,11 @@
   max-width: 1400px;
   padding: 1.5rem;
   gap: 1.5rem;
-  overflow-x: hidden;
 }
 
+.app-main {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 10rem);
+  gap: 1.5rem;
+}

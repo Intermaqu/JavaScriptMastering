@@ -18,7 +18,7 @@ const CustomUploadPhoto = ({ onChange }: CustomUploadPhotoProps) => {
     });
   };
 
-  const handleUploadPhoto = (e) => {
+  const handleUploadPhoto = (e: any) => {
     const image = e.target.files[0];
     getBase64(image).then((base64: any) => {
       localStorage.setItem("photo", base64);

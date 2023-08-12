@@ -2,6 +2,19 @@ import React, { useRef, useState, useEffect } from "react";
 import "../style/inputs.css";
 import { handleIcon } from "../utils/handleIcon";
 
+interface IProps {
+  value: string;
+  onChangeValue: (name: string, value: string) => void;
+  placeholder?: string;
+  width?: string;
+  type?: string;
+  customStyles?: any;
+  isValid?: boolean;
+  name: string;
+  icon: string;
+  errorMessage?: string;
+}
+
 const CustomInput = ({
   value,
   onChangeValue,
@@ -13,7 +26,7 @@ const CustomInput = ({
   name,
   icon,
   errorMessage = "Please check again",
-}) => {
+}: IProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [error, setError] = useState<boolean>(!isValid);

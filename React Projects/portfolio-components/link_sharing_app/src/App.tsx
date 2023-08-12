@@ -11,23 +11,62 @@ import React from "react";
 import RegisterPage from "./Pages/RegisterPage";
 import Header from "./components/Header";
 import LinkComponent from "./components/LinkComponent";
-import CustomizeLinksComponent from './components/CustomizeLinksComponent';
+import CustomizeLinksComponent from "./components/CustomizeLinksComponent";
+import { nanoid } from "nanoid";
 
+interface ILink {
+  link: string;
+  icon: string;
+  id: string;
+}
 function App() {
   const [inputValue, setInputValue] = useState<string>("");
-  const dropdownOptions = [
-    { id: 1, name: "Option 1", icon: "github" },
-    { id: 2, name: "Option 2", icon: "youtube" },
-    { id: 3, name: "Option 3", icon: "linkedin" },
-  ];
-  const [dropdownValue, setDropdownValue] = useState(dropdownOptions[0]);
+  // const [dropdownValue, setDropdownValue] = useState(dropdownOptions[0]);
   const [photo, setPhoto] = useState<string>("");
+
+  const [links, setLinks] = useState<ILink[]>([]);
+
+  const handleRemoveLink = (id: string) => {
+    console.log("id:", id);
+    const newLinks = links.filter((link) => link.id !== id);
+    console.log(links, newLinks);
+    setLinks(newLinks);
+  };
+
+  const handleChangeLink = (id: string, newLink: ILink) => {
+    const newLinks = links.map((link) => {
+      if (link.id === id) {
+        return newLink;
+      }
+      return link;
+    });
+    setLinks(newLinks);
+  };
+
+  const handleAddNewLink = () => {
+    const newLink = {
+      link: "",
+      icon: "github",
+      id: nanoid(),
+    };
+    const newLinks = [...links, newLink];
+    setLinks(newLinks);
+  };
+
+  const saveLinksToLocalStorage = () => {
+    localStorage.setItem("links", JSON.stringify(links));
+  };
 
   useEffect(() => {
     const localPhoto = localStorage.getItem("photo");
+    const localLinks = localStorage.getItem("links");
     // console.log("localPhoto:", localPhoto);
     if (localPhoto && Object.keys(localPhoto).length > 0) {
       setPhoto(localPhoto);
+    }
+
+    if (localLinks && Object.keys(localLinks).length > 0) {
+      setLinks(JSON.parse(localLinks));
     }
   }, []);
 
@@ -97,46 +136,21 @@ function App() {
       {/* <LoginPage /> */}
       {/* <RegisterPage /> */}
       <Header />
-      <div style={{ display: "flex", gap: "1.5rem" }}>
+      <main className="app-main">
         <LinkComponent
           profileImage={photo}
           name="Jakub Raczkiewicz"
           email="intermaqu@gmail.com"
-          links={[
-            {
-              link: "github.com",
-              icon: "github",
-              id: "1",
-            },
-            {
-              link: "github.com",
-              icon: "github",
-              id: "2",
-            },
-            {
-              link: "github.com",
-              icon: "github",
-              id: "3",
-            },
-            {
-              link: "github.com",
-              icon: "github",
-              id: "4",
-            },
-            {
-              link: "github.com",
-              icon: "github",
-              id: "5",
-            },
-            {
-              link: "github.com",
-              icon: "github",
-              id: "6",
-            },
-          ]}
+          links={links}
         />
-        <CustomizeLinksComponent />
-      </div>
+        <CustomizeLinksComponent
+          links={links}
+          handleRemoveLink={handleRemoveLink}
+          handleChangeLink={handleChangeLink}
+          handleAddNewLink={handleAddNewLink}
+          saveLinksToLocalStorage={saveLinksToLocalStorage}
+        />
+      </main>
     </div>
   );
 }

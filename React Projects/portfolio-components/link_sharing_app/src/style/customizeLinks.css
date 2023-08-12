@@ -1,50 +1,66 @@
-.customize-links-wrapper{
-    width: calc(100% - 32rem);
-    
+.customize-links-wrapper {
+  width: calc(100% - 32rem);
+  height: calc(100vh - 10rem);
 }
 
-.customize-links{
-    width: 100%;
-    height: calc(800px - 3rem);
-    background: red;
-    padding: 2.5rem;
-    border-radius: 0.75rem;
+.customize-links {
+  width: 100%;
+  height: 90%;
+  background: var(--white);
+  padding: 2.5rem;
+  border-radius: 0.75rem 0.75rem 0 0;
 }
 
-.customize-links > .bodyM{
-    margin-bottom: 2.5rem;
+.customize-links > .bodyM {
+  margin-bottom: 2.5rem;
 }
 
-.customize-links > .bodyM{
-    color: var(--grey)
+.customize-links > .bodyM {
+  color: var(--grey);
 }
 
+.customize-links-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  overflow-y: scroll;
+  height: 80%;
+  padding-right: 0.5rem;
+}
 
+.customize-links-links-empty {
+  justify-content: center;
+  padding: 2rem;
+  align-items: center;
+  background: var(--light-grey);
+  overflow: hidden !important;
+}
 
-.customize-links-links{
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    width: 100%;
-    overflow-y: scroll;
-    height: 550px;
-    padding-right: 0.5rem;
+.customize-links-links-empty > .bodyM {
+  width: 90%;
+  text-align: center;
+  color: var(--grey);
 }
 
 .customize-links-links::-webkit-scrollbar {
-    width: 0.25rem;
+  width: 0.25rem;
 }
-  
-.customize-links-links::-webkit-scrollbar-thumb {
-    background: var(--dark-grey);
-    border-radius: 0.125rem;
-    height: 5rem;
-}
-  
 
-.customize-links-buttons{
-    padding: 1.5rem 2.5rem;
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
+.customize-links-links::-webkit-scrollbar-thumb {
+  background: var(--dark-grey);
+  border-radius: 0.125rem;
+  height: 5rem;
+}
+
+.customize-links-buttons {
+  background: var(--white);
+  width: 100%;
+  height: 10%;
+  display: flex;
+  padding: 0 1.5rem;
+  justify-content: flex-end;
+  align-items: center;
+  border-radius: 0 0 0.75rem 0.75rem;
+  border-top: 1px solid var(--borders);
 }
