@@ -4,7 +4,9 @@ import { handleIcon } from "../utils/handleIcon";
 import "../style/loginPage.css";
 import CustomButton from "../components/CustomButton";
 
-type Props = {};
+type Props = {
+  setIsRegisterShown: (isRegisterShown: boolean) => void;
+};
 
 interface RegisterData {
   email: string;
@@ -12,7 +14,7 @@ interface RegisterData {
   password2: string;
 }
 
-const RegisterPage = (props: Props) => {
+const RegisterPage = ({ setIsRegisterShown }: Props) => {
   const [registerData, setRegisterData] = useState<RegisterData>({
     email: "",
     password: "",
@@ -90,9 +92,21 @@ const RegisterPage = (props: Props) => {
       registerData.password2.length < 8
     ) {
       setIsValidForm(false);
-    } else {
-      setIsValidForm(true);
+      return;
     }
+
+    const userDataStringified = JSON.stringify({
+      email: registerData.email,
+      password: registerData.password,
+      name: "",
+      surname: "",
+      photo: "",
+      links: [],
+    });
+
+    setIsValidForm(true);
+    localStorage.setItem(registerData.email, userDataStringified);
+    setIsRegisterShown(false);
   };
 
   return (
@@ -102,10 +116,8 @@ const RegisterPage = (props: Props) => {
       </div>
       <div className="loginPage-form-container">
         <div className="loginPage-form-container-header">
-          <p className="headingM">Login</p>
-          <p className="bodyM">
-            Add your details below to get back into the app
-          </p>
+          <p className="headingM">Create account</p>
+          <p className="bodyM">Let's get you started sharing your links!</p>
         </div>
         <div className="loginPage-form-container-body">
           <div>
@@ -158,6 +170,7 @@ const RegisterPage = (props: Props) => {
                 registerData.password2,
                 registerData.password
               )}
+              onKeyPress={validateForm}
             />
           </div>
           <p className="bodyS">Password must contains at least 8 characters</p>
@@ -168,7 +181,12 @@ const RegisterPage = (props: Props) => {
           />
           <p className="bodyM loginPage-form-container-body-register">
             Already have an account?{" "}
-            <span className="register-link">Login</span>
+            <span
+              className="register-link"
+              onClick={() => setIsRegisterShown(false)}
+            >
+              Login
+            </span>
           </p>
         </div>
       </div>

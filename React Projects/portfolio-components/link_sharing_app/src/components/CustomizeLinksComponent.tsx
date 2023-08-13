@@ -46,7 +46,7 @@ const CustomizeLinksComponent = ({
             }}
           />
           {links.length > 0 ? (
-            links.map((link, index) => (
+            links.map((link: ILink, index: number) => (
               <AddLinkComponent
                 link={link}
                 index={index + 1}

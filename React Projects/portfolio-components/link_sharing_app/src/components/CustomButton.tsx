@@ -3,7 +3,7 @@ import "../style/buttons.css";
 
 interface IProps {
   isDisabled?: boolean;
-  type?: "primary" | "secondary";
+  type?: "primary" | "secondary" | "dangerous";
   text: string;
   onClick: () => void;
   width?: string;
@@ -23,8 +23,9 @@ const CustomButton = ({
       ? "custom-button primary"
       : type === "secondary"
       ? "custom-button secondary"
-      : "custom-button wrong-type";
-
+      : type === "dangerous"
+      ? "custom-button dangerous"
+      : "WRONG TYPE";
   if (isDisabled) classes += " disabled";
 
   return (

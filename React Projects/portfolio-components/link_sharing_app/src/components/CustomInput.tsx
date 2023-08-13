@@ -13,6 +13,7 @@ interface IProps {
   name: string;
   icon: string;
   errorMessage?: string;
+  onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 const CustomInput = ({
@@ -26,6 +27,7 @@ const CustomInput = ({
   name,
   icon,
   errorMessage = "Please check again",
+  onKeyPress,
 }: IProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -45,7 +47,7 @@ const CustomInput = ({
 
   useEffect(() => {
     setCurrentError(errorMessage);
-    console.log("error message", errorMessage);
+    // console.log("error message", errorMessage);
   }, [errorMessage]);
 
   return (
@@ -67,6 +69,9 @@ const CustomInput = ({
         style={{ width: width }}
         className="custom-input-input bodyM"
         ref={inputRef}
+        onKeyPress={(e) => {
+          onKeyPress !== undefined && e.key === "Enter" && onKeyPress(e);
+        }}
       />
       {error && (
         <p className="custom-input-invalid-text bodyS">{currentError}</p>

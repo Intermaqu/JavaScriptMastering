@@ -4,14 +4,37 @@ import { handleIcon } from "../utils/handleIcon";
 import "../style/loginPage.css";
 import CustomButton from "../components/CustomButton";
 
-type Props = {};
+type Props = {
+  setIsLoggedIn: (isLogin: boolean) => void;
+  setUserData: (userData: IUserData) => void;
+  setIsRegisterShown: (isRegisterShown: boolean) => void;
+};
+
+interface IUserData {
+  name?: string;
+  surname?: string;
+  email: string;
+  password: string;
+  photo?: string;
+  links?: ILink[];
+}
+
+interface ILink {
+  link: string;
+  icon: string;
+  id: string;
+}
 
 type LoginData = {
   email: string;
   password: string;
 };
 
-const LoginPage = (props: Props) => {
+const LoginPage = ({
+  setIsLoggedIn,
+  setUserData,
+  setIsRegisterShown,
+}: Props) => {
   const [loginData, setLoginData] = useState<LoginData>({
     email: "",
     password: "",
@@ -33,9 +56,24 @@ const LoginPage = (props: Props) => {
 
     if (loginData.email === "" || loginData.password === "") {
       setIsValidForm(false);
-    } else {
-      setIsValidForm(true);
+      return;
     }
+
+    const localStorageData = localStorage.getItem(loginData.email);
+
+    if (localStorageData === null) {
+      setIsValidForm(false);
+      return;
+    }
+
+    const parsedData = JSON.parse(localStorageData);
+    if (parsedData.password !== loginData.password) {
+      setIsValidForm(false);
+      return;
+    }
+
+    setIsLoggedIn(true);
+    setUserData(parsedData);
   };
 
   const isValid = (name: string, value: string) => {
@@ -86,8 +124,10 @@ const LoginPage = (props: Props) => {
       </div>
       <div className="loginPage-form-container">
         <div className="loginPage-form-container-header">
-          <p className="headingM">Create account</p>
-          <p className="bodyM">Let'’'s get you started sharing your links!</p>
+          <p className="headingM">Login</p>
+          <p className="bodyM">
+            Add your details below to get back into the app
+          </p>
         </div>
         <div className="loginPage-form-container-body">
           <div>
@@ -116,12 +156,18 @@ const LoginPage = (props: Props) => {
               isValid={isValidForm || isValid("email", loginData.password)}
               icon="password"
               errorMessage={handlePasswordErrorMessage(loginData.password)}
+              onKeyPress={validateForm}
             />
           </div>
           <CustomButton text="Login" width="100%" onClick={validateForm} />
           <p className="bodyM loginPage-form-container-body-register">
             Don't have an account?{" "}
-            <span className="register-link">Create account</span>
+            <span
+              className="register-link"
+              onClick={() => setIsRegisterShown(true)}
+            >
+              Create account
+            </span>
           </p>
         </div>
       </div>

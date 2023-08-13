@@ -16,3 +16,8 @@
   height: calc(100vh - 10rem);
   gap: 1.5rem;
 }
+
+.App__form {
+  width: 100%;
+  max-width: 600px;
+}

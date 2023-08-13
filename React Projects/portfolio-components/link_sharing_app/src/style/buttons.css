@@ -41,3 +41,15 @@
   opacity: 0.25;
   cursor: not-allowed;
 }
+
+.custom-button.dangerous {
+  background-color: var(--red);
+}
+
+.custom-button.dangerous:hover {
+  background-color: #ff8585;
+}
+
+.custom-button.dangerous > p {
+  color: var(--white);
+}

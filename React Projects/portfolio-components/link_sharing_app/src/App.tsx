@@ -13,18 +13,32 @@ import Header from "./components/Header";
 import LinkComponent from "./components/LinkComponent";
 import CustomizeLinksComponent from "./components/CustomizeLinksComponent";
 import { nanoid } from "nanoid";
+import ProfileDetails from "./components/ProfileDetails";
 
 interface ILink {
   link: string;
   icon: string;
   id: string;
 }
+
+interface IUserData {
+  name?: string;
+  surname?: string;
+  email: string;
+  password: string;
+  photo?: string;
+  links?: ILink[];
+}
+
 function App() {
-  const [inputValue, setInputValue] = useState<string>("");
+  // const [inputValue, setInputValue] = useState<string>("");
   // const [dropdownValue, setDropdownValue] = useState(dropdownOptions[0]);
   const [photo, setPhoto] = useState<string>("");
-
   const [links, setLinks] = useState<ILink[]>([]);
+  const [activeTab, setActiveTab] = useState<string>("links");
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [userData, setUserData] = useState<IUserData>();
+  const [isRegisterShown, setIsRegisterShown] = useState<boolean>(true);
 
   const handleRemoveLink = (id: string) => {
     console.log("id:", id);
@@ -57,6 +71,11 @@ function App() {
     localStorage.setItem("links", JSON.stringify(links));
   };
 
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setUserData(undefined);
+  };
+
   useEffect(() => {
     const localPhoto = localStorage.getItem("photo");
     const localLinks = localStorage.getItem("links");
@@ -69,6 +88,26 @@ function App() {
       setLinks(JSON.parse(localLinks));
     }
   }, []);
+
+  if (isRegisterShown) {
+    return (
+      <div className="App App__form">
+        <RegisterPage setIsRegisterShown={setIsRegisterShown} />
+      </div>
+    );
+  }
+
+  if (!isLoggedIn) {
+    return (
+      <div className="App App__form">
+        <LoginPage
+          setIsLoggedIn={setIsLoggedIn}
+          setUserData={setUserData}
+          setIsRegisterShown={setIsRegisterShown}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="App">
@@ -135,7 +174,7 @@ function App() {
       /> */}
       {/* <LoginPage /> */}
       {/* <RegisterPage /> */}
-      <Header />
+      <Header activeTab={activeTab} setActiveTab={setActiveTab} />
       <main className="app-main">
         <LinkComponent
           profileImage={photo}
@@ -143,13 +182,18 @@ function App() {
           email="intermaqu@gmail.com"
           links={links}
         />
-        <CustomizeLinksComponent
-          links={links}
-          handleRemoveLink={handleRemoveLink}
-          handleChangeLink={handleChangeLink}
-          handleAddNewLink={handleAddNewLink}
-          saveLinksToLocalStorage={saveLinksToLocalStorage}
-        />
+        {activeTab === "links" && (
+          <CustomizeLinksComponent
+            links={links}
+            handleRemoveLink={handleRemoveLink}
+            handleChangeLink={handleChangeLink}
+            handleAddNewLink={handleAddNewLink}
+            saveLinksToLocalStorage={saveLinksToLocalStorage}
+          />
+        )}
+        {activeTab === "profile" && (
+          <ProfileDetails handleLogout={handleLogout} />
+        )}
       </main>
     </div>
   );

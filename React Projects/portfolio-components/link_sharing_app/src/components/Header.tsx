@@ -3,13 +3,12 @@ import { handleIcon } from "../utils/handleIcon";
 import CustomButton from "./CustomButton";
 import "../style/header.css";
 
-type Props = {};
+type Props = {
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
+};
 
-const Header = (props: Props) => {
-  const [activeTab, setActiveTab] = React.useState("links");
-  const handleChangeTab = (tab: string) => {
-    setActiveTab(tab);
-  };
+const Header = ({ activeTab, setActiveTab }: Props) => {
   return (
     <header>
       <img src={handleIcon("largeLogo")} alt="DevLinks Logo" />
@@ -18,7 +17,7 @@ const Header = (props: Props) => {
           className={`header-tab-container ${
             activeTab === "links" && "header-tab-container-active"
           }`}
-          onClick={() => handleChangeTab("links")}
+          onClick={() => setActiveTab("links")}
         >
           <img src={handleIcon("links")} alt="Links" />
           <p className="headingS">Links</p>
@@ -27,7 +26,7 @@ const Header = (props: Props) => {
           className={`header-tab-container ${
             activeTab === "profile" && "header-tab-container-active"
           }`}
-          onClick={() => handleChangeTab("profile")}
+          onClick={() => setActiveTab("profile")}
         >
           <img src={handleIcon("profile")} alt="Profile" />
           <p className="headingS">Profile</p>
