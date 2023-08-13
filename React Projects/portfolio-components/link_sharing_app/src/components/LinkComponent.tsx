@@ -6,8 +6,9 @@ import allDropdownOptions from "../utils/allDropdownOptions";
 type Props = {
   profileImage?: string;
   name?: string;
-  email?: string;
-  links?: ILink[];
+  surname?: string;
+  email: string;
+  links: ILink[];
 };
 
 interface ILink {
@@ -16,7 +17,26 @@ interface ILink {
   id: string;
 }
 
-const LinkComponent = ({ profileImage, name, email, links }: Props) => {
+const LinkComponent = ({
+  profileImage,
+  name,
+  surname,
+  email,
+  links,
+}: Props) => {
+  const openInNewTab = (url: string) => {
+    if (url === "") return;
+    if (url.includes("http://") || url.includes("https://"))
+      return window.open(url, "_blank", "noopener,noreferrer");
+
+    const newWindow = window.open(
+      `http://${url}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
+    if (newWindow) newWindow.opener = null;
+  };
+
   return (
     <div className="link-component">
       <div className="link-component-content-content">
@@ -34,17 +54,19 @@ const LinkComponent = ({ profileImage, name, email, links }: Props) => {
           }
           className="link-component-content-content-profile"
         />
-        {name && (
-          <div
-            style={{
-              width: "16rem",
-              background: "#fff",
-              textAlign: "center",
-            }}
-          >
-            <p className="link-component-name">{name}</p>
-          </div>
-        )}
+
+        <div
+          style={{
+            width: "16rem",
+            background: surname && name ? "#fff" : "transparent",
+            textAlign: "center",
+            height: "2.5rem",
+          }}
+        >
+          {name && surname && (
+            <p className="link-component-name">{`${name} ${surname}`}</p>
+          )}
+        </div>
         {email && (
           <div
             style={{
@@ -73,6 +95,7 @@ const LinkComponent = ({ profileImage, name, email, links }: Props) => {
                   }`,
                 }}
                 key={link.id}
+                onClick={() => openInNewTab(link.link)}
               >
                 <img
                   src={handleIcon(link.icon)}

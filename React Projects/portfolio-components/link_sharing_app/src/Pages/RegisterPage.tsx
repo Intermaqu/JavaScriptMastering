@@ -78,10 +78,10 @@ const RegisterPage = ({ setIsRegisterShown }: Props) => {
   };
 
   const validateForm = () => {
-    console.log("validate");
-    console.log(registerData.email);
-    console.log(registerData.password);
-    console.log(registerData.password2);
+    // console.log("validate");
+    // console.log(registerData.email);
+    // console.log(registerData.password);
+    // console.log(registerData.password2);
 
     if (
       registerData.email === "" ||

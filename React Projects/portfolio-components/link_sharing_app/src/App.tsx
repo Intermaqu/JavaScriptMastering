@@ -27,48 +27,53 @@ interface IUserData {
   email: string;
   password: string;
   photo?: string;
-  links?: ILink[];
+  links: ILink[];
 }
 
 function App() {
   // const [inputValue, setInputValue] = useState<string>("");
   // const [dropdownValue, setDropdownValue] = useState(dropdownOptions[0]);
-  const [photo, setPhoto] = useState<string>("");
-  const [links, setLinks] = useState<ILink[]>([]);
   const [activeTab, setActiveTab] = useState<string>("links");
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [userData, setUserData] = useState<IUserData>();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isRegisterShown, setIsRegisterShown] = useState<boolean>(true);
 
   const handleRemoveLink = (id: string) => {
-    console.log("id:", id);
-    const newLinks = links.filter((link) => link.id !== id);
-    console.log(links, newLinks);
-    setLinks(newLinks);
+    if (!userData) return;
+
+    const newLinks = userData.links.filter((link) => link.id !== id);
+    setUserData({ ...userData, links: newLinks });
   };
 
   const handleChangeLink = (id: string, newLink: ILink) => {
-    const newLinks = links.map((link) => {
+    const newLinks = userData!.links.map((link) => {
       if (link.id === id) {
         return newLink;
       }
       return link;
     });
-    setLinks(newLinks);
+    setUserData({ ...userData!, links: newLinks });
   };
 
   const handleAddNewLink = () => {
+    if (!userData) return;
+
     const newLink = {
       link: "",
       icon: "github",
       id: nanoid(),
     };
-    const newLinks = [...links, newLink];
-    setLinks(newLinks);
+    const newUserData = {
+      ...userData,
+      links: [...userData.links, newLink],
+    };
+    setUserData(newUserData);
   };
 
-  const saveLinksToLocalStorage = () => {
-    localStorage.setItem("links", JSON.stringify(links));
+  const saveUserDataToLocalStorage = () => {
+    if (!userData) return;
+    localStorage.setItem(userData.email, JSON.stringify(userData));
   };
 
   const handleLogout = () => {
@@ -76,18 +81,59 @@ function App() {
     setUserData(undefined);
   };
 
+  const handleChangePhoto = (photo: string) => {
+    if (!userData) return;
+    setUserData({ ...userData, photo: photo });
+  };
+
+  const handleChangeUserData = (name: string, value: string) => {
+    if (!userData) return;
+    setUserData({ ...userData, [name]: value });
+  };
+
   useEffect(() => {
-    const localPhoto = localStorage.getItem("photo");
-    const localLinks = localStorage.getItem("links");
-    // console.log("localPhoto:", localPhoto);
-    if (localPhoto && Object.keys(localPhoto).length > 0) {
-      setPhoto(localPhoto);
+    const localUserLogin = localStorage.getItem("userLoggedIn");
+    if (!localUserLogin || Object.keys(localUserLogin).length === 0) {
+      setIsRegisterShown(false);
+      setIsLoading(false);
+      setIsLoggedIn(false);
+      return;
+    }
+    const localUserData = localStorage.getItem(localUserLogin);
+    if (localUserData && Object.keys(localUserData).length > 0) {
+      setUserData(JSON.parse(localUserData));
+      setIsLoggedIn(true);
+      setIsRegisterShown(false);
+      setIsLoading(false);
+      return;
     }
 
-    if (localLinks && Object.keys(localLinks).length > 0) {
-      setLinks(JSON.parse(localLinks));
-    }
+    setIsLoggedIn(false);
+    setIsRegisterShown(false);
+    setIsLoading(false);
   }, []);
+
+  useEffect(() => {
+    console.log(userData);
+  }, [userData]);
+
+  if (isLoading) {
+    return (
+      <div className="App">
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100%",
+            width: "100%",
+          }}
+        >
+          <p className="headingM">Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (isRegisterShown) {
     return (
@@ -111,88 +157,33 @@ function App() {
 
   return (
     <div className="App">
-      {/*       
-      <CustomButton
-        type="primary"
-        text="Button"
-        width="200px"
-        isDisabled
-        onClick={undefined}
-      />
-      <CustomButton
-        type="primary"
-        text="Button"
-        width="200px"
-        onClick={undefined}
-      />
-      <br />
-      <CustomButton
-        type="secondary"
-        text="Button"
-        width="200px"
-        isDisabled
-        onClick={undefined}
-      />
-      <CustomButton
-        type="secondary"
-        text="Button"
-        width="200px"
-        onClick={undefined}
-      />
-      <br />
-      <CustomInput
-        value={inputValue}
-        onChangeValue={setInputValue}
-        width="400px"
-        // isValid={false}
-        icon="github"
-      />
-      <CustomDropdown
-        value={dropdownValue}
-        setValue={setDropdownValue}
-        options={dropdownOptions}
-        width="400px"
-      />
-      <CustomTab
-        text="Tab 1"
-        icon=""
-        active={true}
-        onClick={() => console.log("Tab 1 clicked")}
-      />
-      <CustomTab
-        text="Tab 2"
-        icon=""
-        active={false}
-        onClick={() => console.log("Tab 1 clicked")}
-      />
-      <CustomUploadPhoto
-        onChange={(e) =>
-          e.target === null
-            ? console.log("ABC")
-            : console.log(e.target.files?.[0])
-        }
-      /> */}
-      {/* <LoginPage /> */}
-      {/* <RegisterPage /> */}
       <Header activeTab={activeTab} setActiveTab={setActiveTab} />
       <main className="app-main">
         <LinkComponent
-          profileImage={photo}
-          name="Jakub Raczkiewicz"
-          email="intermaqu@gmail.com"
-          links={links}
+          profileImage={userData?.photo}
+          name={userData?.name}
+          surname={userData?.surname}
+          email={userData ? userData.email : ""}
+          links={userData ? userData.links : []}
         />
         {activeTab === "links" && (
           <CustomizeLinksComponent
-            links={links}
+            links={userData ? userData.links : []}
             handleRemoveLink={handleRemoveLink}
             handleChangeLink={handleChangeLink}
             handleAddNewLink={handleAddNewLink}
-            saveLinksToLocalStorage={saveLinksToLocalStorage}
+            saveUserDataToLocalStorage={saveUserDataToLocalStorage}
           />
         )}
         {activeTab === "profile" && (
-          <ProfileDetails handleLogout={handleLogout} />
+          <ProfileDetails
+            photo={userData ? userData.photo : ""}
+            handleLogout={handleLogout}
+            email={userData ? userData.email : ""}
+            handleChangeUserData={handleChangeUserData}
+            handleChangePhoto={handleChangePhoto}
+            saveUserDataToLocalStorage={saveUserDataToLocalStorage}
+          />
         )}
       </main>
     </div>

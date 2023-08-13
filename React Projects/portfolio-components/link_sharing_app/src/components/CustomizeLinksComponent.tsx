@@ -10,7 +10,7 @@ type Props = {
   handleRemoveLink: (id: string) => void;
   handleChangeLink: (id: string, link: ILink) => void;
   handleAddNewLink: () => void;
-  saveLinksToLocalStorage: () => void;
+  saveUserDataToLocalStorage: () => void;
 };
 
 interface ILink {
@@ -24,7 +24,7 @@ const CustomizeLinksComponent = ({
   handleRemoveLink,
   handleChangeLink,
   handleAddNewLink,
-  saveLinksToLocalStorage,
+  saveUserDataToLocalStorage,
 }: Props) => {
   // const [links, setLinks] = useState<ILink[]>(props.links);
   console.log("links:", links);
@@ -81,7 +81,7 @@ const CustomizeLinksComponent = ({
           text="Save"
           type="primary"
           width="fit-content"
-          onClick={() => saveLinksToLocalStorage()}
+          onClick={() => saveUserDataToLocalStorage()}
           isDisabled={links.length === 0}
         />
       </div>

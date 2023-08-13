@@ -1,8 +1,8 @@
 .custom-upload-photo {
-  width: 480px;
+  width: 100%;
   background: var(--light-grey);
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .custom-upload-photo-label {
@@ -46,6 +46,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: 1;
 }
 
 .custom-upload-photo-image {

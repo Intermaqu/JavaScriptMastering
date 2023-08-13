@@ -39,17 +39,23 @@
   height: 5rem;
 }
 
-.profile-details-content-user-image,
+.profile-details-content-image,
 .profile-details-content-user-data {
   width: 100%;
   padding: 1.25rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  gap: 1rem;
   border-radius: 0.75rem;
   background: var(--light-grey);
 }
+.profile-details-content-image {
+  display: grid !important;
+  grid-template-columns: 1fr 2fr;
+}
 .profile-details-content-user-data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .profile-details-buttons {
@@ -62,4 +68,12 @@
   align-items: center;
   border-radius: 0 0 0.75rem 0.75rem;
   border-top: 1px solid var(--borders);
+}
+
+.profile-details-user-input-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
 }

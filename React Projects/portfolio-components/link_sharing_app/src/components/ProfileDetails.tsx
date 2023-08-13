@@ -1,16 +1,19 @@
 import React from "react";
 import "../style/profileDetails.css";
 import CustomButton from "./CustomButton";
+import CustomInput from "./CustomInput";
 import CustomUploadPhoto from "./CustomUploadPhoto";
 
 type Props = {
   image?: string;
   name?: string;
   surname?: string;
-  email?: string;
-  handleChangeUserData?: (name: string, value: string) => void;
-  saveUserDataToLocalStorage?: () => void;
+  email: string;
+  photo?: string;
+  handleChangeUserData: (name: string, value: string) => void;
+  saveUserDataToLocalStorage: () => void;
   handleLogout: () => void;
+  handleChangePhoto: (photo: string) => void;
 };
 
 const ProfileDetails = ({
@@ -18,10 +21,25 @@ const ProfileDetails = ({
   name,
   surname,
   email,
+  photo,
   handleChangeUserData,
   saveUserDataToLocalStorage,
   handleLogout,
+  handleChangePhoto,
 }: Props) => {
+  const [localName, setLocalName] = React.useState<string>(name || "");
+  const [localSurname, setLocalSurname] = React.useState<string>(surname || "");
+
+  const handleLocalNameChange = (name: string, value: string) => {
+    setLocalName(value);
+    handleChangeUserData("name", value);
+  };
+
+  const handleLocalSurnameChange = (name: string, value: string) => {
+    setLocalSurname(value);
+    handleChangeUserData("surname", value);
+  };
+
   return (
     <div className="profile-details-wrapper">
       <div className="profile-details">
@@ -31,9 +49,32 @@ const ProfileDetails = ({
         </p>
         <div className="profile-details-content">
           <div className="profile-details-content-image">
-            <CustomUploadPhoto />
+            <p className="bodyS">Profile picture</p>
+            <CustomUploadPhoto
+              handleChangePhoto={handleChangePhoto}
+              photo={photo}
+            />
           </div>
-          <div className="profile-details-content-user-data"></div>
+          <div className="profile-details-content-user-data">
+            <div className="profile-details-user-input-wrapper">
+              <p className="bodyM">Name</p>
+              <CustomInput
+                value={localName}
+                onChangeValue={handleLocalNameChange}
+                name={"name"}
+                placeholder={"Name"}
+              />
+            </div>
+            <div className="profile-details-user-input-wrapper">
+              <p className="bodyM">Surname</p>
+              <CustomInput
+                value={localSurname}
+                onChangeValue={handleLocalSurnameChange}
+                name={"surname"}
+                placeholder={"Surname"}
+              />
+            </div>
+          </div>
         </div>
       </div>
       <div className="profile-details-buttons">
@@ -47,7 +88,7 @@ const ProfileDetails = ({
           text="Save"
           type="primary"
           width="fit-content"
-          onClick={() => saveUserDataToLocalStorage!()}
+          onClick={() => saveUserDataToLocalStorage()}
         />
       </div>
     </div>

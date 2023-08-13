@@ -16,7 +16,7 @@ interface IUserData {
   email: string;
   password: string;
   photo?: string;
-  links?: ILink[];
+  links: ILink[];
 }
 
 interface ILink {
@@ -50,9 +50,9 @@ const LoginPage = ({
   };
 
   const validateForm = () => {
-    console.log("validate");
-    console.log(loginData.email);
-    console.log(loginData.password);
+    // console.log("validate");
+    // console.log(loginData.email);
+    // console.log(loginData.password);
 
     if (loginData.email === "" || loginData.password === "") {
       setIsValidForm(false);
@@ -74,6 +74,7 @@ const LoginPage = ({
 
     setIsLoggedIn(true);
     setUserData(parsedData);
+    localStorage.setItem("userLoggedIn", loginData.email);
   };
 
   const isValid = (name: string, value: string) => {

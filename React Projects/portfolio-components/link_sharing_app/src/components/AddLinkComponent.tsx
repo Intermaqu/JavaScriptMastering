@@ -31,13 +31,13 @@ const AddLinkComponent = ({
   index,
 }: Props) => {
   const handleLocalChangeLink = (name: string, value: string) => {
-    console.log("handleLocalChangeLink");
+    // console.log("handleLocalChangeLink");
     setLocalLink({ link: value });
     handleChangeLink(link.id, { ...link, [name]: value });
   };
 
   const handleLocalChangePlatform = (option: IOption) => {
-    console.log("handleLocalChangePlatform");
+    // console.log("handleLocalChangePlatform");
     setLocalState(option);
     handleChangeLink(link.id, { ...link, icon: option.icon });
   };

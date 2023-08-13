@@ -11,7 +11,7 @@ interface IProps {
   customStyles?: any;
   isValid?: boolean;
   name: string;
-  icon: string;
+  icon?: string;
   errorMessage?: string;
   onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
@@ -56,11 +56,13 @@ const CustomInput = ({
       style={{ width: width, ...customStyles }}
       onClick={handleClickParent}
     >
-      <img
-        src={handleIcon(icon)}
-        alt="icon-ling"
-        className="custom-input-icon"
-      />
+      {icon && (
+        <img
+          src={handleIcon(icon)}
+          alt="icon-ling"
+          className="custom-input-icon"
+        />
+      )}
       <input
         type={type}
         onChange={(e) => onChangeValue(name, e.target.value)}
