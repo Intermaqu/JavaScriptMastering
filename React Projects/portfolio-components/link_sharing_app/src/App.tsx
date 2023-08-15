@@ -180,6 +180,8 @@ function App() {
             photo={userData ? userData.photo : ""}
             handleLogout={handleLogout}
             email={userData ? userData.email : ""}
+            name={userData ? userData.name : ""}
+            surname={userData ? userData.surname : ""}
             handleChangeUserData={handleChangeUserData}
             handleChangePhoto={handleChangePhoto}
             saveUserDataToLocalStorage={saveUserDataToLocalStorage}

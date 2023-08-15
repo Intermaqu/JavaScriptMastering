@@ -96,6 +96,10 @@ const LinkComponent = ({
                 }}
                 key={link.id}
                 onClick={() => openInNewTab(link.link)}
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                  e.button === 1 && openInNewTab(link.link);
+                }}
               >
                 <img
                   src={handleIcon(link.icon)}

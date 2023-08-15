@@ -28,7 +28,7 @@ const RegisterPage = ({ setIsRegisterShown }: Props) => {
     if (text.length < 8) return "Password must be at least 8 characters";
 
     if (text2 !== undefined && text !== text2)
-      return "Password is not the same";
+      return "Password should be identical";
 
     return "Please check again";
   };
