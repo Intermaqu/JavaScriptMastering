@@ -14,6 +14,7 @@ type Props = {
   saveUserDataToLocalStorage: () => void;
   handleLogout: () => void;
   handleChangePhoto: (photo: string) => void;
+  view: string;
 };
 
 const ProfileDetails = ({
@@ -26,6 +27,7 @@ const ProfileDetails = ({
   saveUserDataToLocalStorage,
   handleLogout,
   handleChangePhoto,
+  view
 }: Props) => {
   const [localName, setLocalName] = React.useState<string>(name || "");
   const [localSurname, setLocalSurname] = React.useState<string>(surname || "");
@@ -41,7 +43,7 @@ const ProfileDetails = ({
   };
 
   return (
-    <div className="profile-details-wrapper">
+    <div className={view === "desktop" ? "profile-details-wrapper-desktop" : "profile-details-wrapper-mobile" }>
       <div className="profile-details">
         <p className="headingM">Profile Details</p>
         <p className="bodyM">

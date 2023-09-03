@@ -11,6 +11,7 @@ type Props = {
   handleChangeLink: (id: string, link: ILink) => void;
   handleAddNewLink: () => void;
   saveUserDataToLocalStorage: () => void;
+  view: string;
 };
 
 interface ILink {
@@ -25,12 +26,12 @@ const CustomizeLinksComponent = ({
   handleChangeLink,
   handleAddNewLink,
   saveUserDataToLocalStorage,
+  view
 }: Props) => {
   // const [links, setLinks] = useState<ILink[]>(props.links);
-  console.log("links:", links);
 
   return (
-    <div className="customize-links-wrapper">
+    <div className={view === "desktop" ? "customize-links-wrapper-desktop" : "customize-links-wrapper-mobile" }>
       <div className="customize-links">
         <p className="headingM">Customize your links</p>
         <p className="bodyM">

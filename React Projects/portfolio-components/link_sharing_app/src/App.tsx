@@ -2,7 +2,7 @@ import "./App.css";
 import CustomButton from "./components/CustomButton";
 import CustomInput from "./components/CustomInput";
 import "./style/general.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import CustomDropdown from "./components/CustomDropdown";
 import CustomTab from "./components/CustomTab";
 import CustomUploadPhoto from "./components/CustomUploadPhoto";
@@ -14,6 +14,7 @@ import LinkComponent from "./components/LinkComponent";
 import CustomizeLinksComponent from "./components/CustomizeLinksComponent";
 import { nanoid } from "nanoid";
 import ProfileDetails from "./components/ProfileDetails";
+import PreviewPage from "./Pages/PreviewPage";
 
 interface ILink {
   link: string;
@@ -38,6 +39,10 @@ function App() {
   const [userData, setUserData] = useState<IUserData>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isRegisterShown, setIsRegisterShown] = useState<boolean>(true);
+  const [isPreviewShown, setIsPreviewShown] = useState<boolean>(true);
+  const [view, setView] = useState<string>("desktop");
+  const [width, setWidth] = useState<number>(0);
+  const ref = React.useRef<HTMLDivElement>(null);
 
   const handleRemoveLink = (id: string) => {
     if (!userData) return;
@@ -91,6 +96,42 @@ function App() {
     setUserData({ ...userData, [name]: value });
   };
 
+  const handleResize = () => {
+    if(!ref.current) return;
+
+    const currentWidth = ref.current.clientWidth;
+    setWidth(currentWidth);
+
+    if (currentWidth < 768) {
+      setView("mobile");
+      return;
+    }
+
+    if (currentWidth < 1024) {
+      setView("tablet");
+      return;
+    }
+
+    setView("desktop");
+  };
+
+  useLayoutEffect(() => {
+    const currentWidth = window.innerWidth;
+    setWidth(currentWidth);
+
+    if (currentWidth < 768) {
+      setView("mobile");
+      return;
+    }
+
+    if (currentWidth < 1024) {
+      setView("tablet");
+      return;
+    }
+
+    setView("desktop");
+  })
+
   useEffect(() => {
     const localUserLogin = localStorage.getItem("userLoggedIn");
     if (!localUserLogin || Object.keys(localUserLogin).length === 0) {
@@ -114,12 +155,19 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log(userData);
-  }, [userData]);
+    console.log(view)
+  }
+  , [view])
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   if (isLoading) {
     return (
-      <div className="App">
+      <div className="App" ref={ref}>
         <div
           style={{
             display: "flex",
@@ -137,7 +185,7 @@ function App() {
 
   if (isRegisterShown) {
     return (
-      <div className="App App__form">
+      <div className="App App__form" ref={ref}>
         <RegisterPage setIsRegisterShown={setIsRegisterShown} />
       </div>
     );
@@ -145,7 +193,7 @@ function App() {
 
   if (!isLoggedIn) {
     return (
-      <div className="App App__form">
+      <div className="App App__form" ref={ref}>
         <LoginPage
           setIsLoggedIn={setIsLoggedIn}
           setUserData={setUserData}
@@ -155,17 +203,36 @@ function App() {
     );
   }
 
+  if (isPreviewShown) {
+    return (
+      <div className="App App__no-top-padding" ref={ref}>
+        <PreviewPage
+          profileImage={userData?.photo || ""}
+          name={userData?.name || ""}
+          surname={userData?.surname || ""}
+          email={userData ? userData.email : ""}
+          links={userData ? userData.links : []}
+          setIsPreviewShown={setIsPreviewShown}
+        />
+      </div>
+    );
+  }
+
   return (
-    <div className="App">
-      <Header activeTab={activeTab} setActiveTab={setActiveTab} />
+    <div className="App" ref={ref}>
+      <Header
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        setIsPreviewShown={setIsPreviewShown}
+      />
       <main className="app-main">
-        <LinkComponent
+        {view == "desktop" && <LinkComponent
           profileImage={userData?.photo}
           name={userData?.name}
           surname={userData?.surname}
           email={userData ? userData.email : ""}
           links={userData ? userData.links : []}
-        />
+        />}
         {activeTab === "links" && (
           <CustomizeLinksComponent
             links={userData ? userData.links : []}
@@ -173,6 +240,7 @@ function App() {
             handleChangeLink={handleChangeLink}
             handleAddNewLink={handleAddNewLink}
             saveUserDataToLocalStorage={saveUserDataToLocalStorage}
+            view = {view}
           />
         )}
         {activeTab === "profile" && (
@@ -185,6 +253,7 @@ function App() {
             handleChangeUserData={handleChangeUserData}
             handleChangePhoto={handleChangePhoto}
             saveUserDataToLocalStorage={saveUserDataToLocalStorage}
+            view = {view}
           />
         )}
       </main>
