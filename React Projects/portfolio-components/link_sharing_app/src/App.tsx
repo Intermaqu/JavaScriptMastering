@@ -40,9 +40,9 @@ function App() {
   const [isPreviewShown, setIsPreviewShown] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isRegisterShown, setIsRegisterShown] = useState<boolean>(true);
-  const [display, setDisplay] = useState<string>("");
-  const [windowWidth, setWindowWidth] = useState<number>(0);
-  const appRef = React.useRef<HTMLDivElement>(null);
+  const [view, setView] = useState<string>("desktop");
+  const [width, setWidth] = useState<number>(0);
+  const ref = React.useRef<HTMLDivElement>(null);
 
   const handleRemoveLink = (id: string) => {
     if (!userData) return;
@@ -96,26 +96,41 @@ function App() {
     setUserData({ ...userData, [name]: value });
   };
 
-  const handleTogglePreview = () => {
-    setIsPreviewShown(!isPreviewShown);
-  };
-
   const handleResize = () => {
-    if (!appRef.current) return;
-    const currentWidth = appRef.current?.clientWidth;
-    setWindowWidth(currentWidth);
-    if (currentWidth <= 650) {
-      setDisplay("mobile");
-      return;
-    }
-    if (currentWidth <= 1000) {
-      setDisplay("tablet");
+    if (!ref.current) return;
+
+    const currentWidth = ref.current.clientWidth;
+    setWidth(currentWidth);
+
+    if (currentWidth < 768) {
+      setView("mobile");
       return;
     }
 
-    setDisplay("desktop");
-    return;
+    if (currentWidth < 1024) {
+      setView("tablet");
+      return;
+    }
+
+    setView("desktop");
   };
+
+  useLayoutEffect(() => {
+    const currentWidth = window.innerWidth;
+    setWidth(currentWidth);
+
+    if (currentWidth < 768) {
+      setView("mobile");
+      return;
+    }
+
+    if (currentWidth < 1024) {
+      setView("tablet");
+      return;
+    }
+
+    setView("desktop");
+  });
 
   useEffect(() => {
     const localUserLogin = localStorage.getItem("userLoggedIn");
@@ -139,35 +154,14 @@ function App() {
     setIsLoading(false);
   }, []);
 
-  useLayoutEffect(() => {
-    const currentWidth = window.innerWidth;
-    setWindowWidth(currentWidth);
-    if (currentWidth <= 650) {
-      setDisplay("mobile");
-      return;
-    }
-    if (currentWidth <= 1050) {
-      setDisplay("tablet");
-      return;
-    }
-
-    setDisplay("desktop");
-    return;
-  }, []);
-
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  useEffect(() => {
-    // console.log(windowWidth);
-    console.log(display);
-  }, [windowWidth]);
-
   if (isLoading) {
     return (
-      <div className="App" ref={appRef}>
+      <div className="App" ref={ref}>
         <div
           style={{
             display: "flex",
@@ -185,7 +179,7 @@ function App() {
 
   if (isRegisterShown) {
     return (
-      <div className="App App__form" ref={appRef}>
+      <div className="App App__form" ref={ref}>
         <RegisterPage setIsRegisterShown={setIsRegisterShown} />
       </div>
     );
@@ -193,7 +187,7 @@ function App() {
 
   if (!isLoggedIn) {
     return (
-      <div className="App App__form" ref={appRef}>
+      <div className="App App__form" ref={ref}>
         <LoginPage
           setIsLoggedIn={setIsLoggedIn}
           setUserData={setUserData}
@@ -205,34 +199,36 @@ function App() {
 
   if (isPreviewShown) {
     return (
-      <div className="App App__no_padding" ref={appRef}>
+      <div className="App App__no-top-padding" ref={ref}>
         <PreviewPage
-          email={userData?.email || ""}
-          links={userData?.links || []}
           profileImage={userData?.photo || ""}
           name={userData?.name || ""}
           surname={userData?.surname || ""}
-          handleClosePreview={setIsPreviewShown}
+          email={userData ? userData.email : ""}
+          links={userData ? userData.links : []}
+          setIsPreviewShown={setIsPreviewShown}
         />
       </div>
     );
   }
 
   return (
-    <div className="App" ref={appRef}>
+    <div className="App" ref={ref}>
       <Header
         activeTab={activeTab}
         setActiveTab={setActiveTab}
-        togglePreview={handleTogglePreview}
+        setIsPreviewShown={setIsPreviewShown}
       />
       <main className="app-main">
-        <LinkComponent
-          profileImage={userData?.photo}
-          name={userData?.name}
-          surname={userData?.surname}
-          email={userData ? userData.email : ""}
-          links={userData ? userData.links : []}
-        />
+        {view == "desktop" && (
+          <LinkComponent
+            profileImage={userData?.photo}
+            name={userData?.name}
+            surname={userData?.surname}
+            email={userData ? userData.email : ""}
+            links={userData ? userData.links : []}
+          />
+        )}
         {activeTab === "links" && (
           <CustomizeLinksComponent
             links={userData ? userData.links : []}
@@ -240,6 +236,7 @@ function App() {
             handleChangeLink={handleChangeLink}
             handleAddNewLink={handleAddNewLink}
             saveUserDataToLocalStorage={saveUserDataToLocalStorage}
+            view={view}
           />
         )}
         {activeTab === "profile" && (
@@ -252,6 +249,7 @@ function App() {
             handleChangeUserData={handleChangeUserData}
             handleChangePhoto={handleChangePhoto}
             saveUserDataToLocalStorage={saveUserDataToLocalStorage}
+            view={view}
           />
         )}
       </main>

@@ -10,7 +10,11 @@
   gap: 1.5rem;
 }
 
-.app-main {
+.App__no-top-padding{
+  padding-top: 0rem !important
+}
+
+.app-main{
   display: flex;
   width: 100%;
   height: calc(100vh - 10rem);
@@ -20,6 +24,7 @@
 .App__form {
   width: 100%;
   max-width: 600px;
+  justify-content: center;
 }
 
 .App__no_padding {

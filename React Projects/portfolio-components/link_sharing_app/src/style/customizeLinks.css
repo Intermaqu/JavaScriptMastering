@@ -1,5 +1,10 @@
-.customize-links-wrapper {
+.customize-links-wrapper-desktop {
   width: calc(100% - 32rem);
+  height: calc(100vh - 10rem);
+}
+
+.customize-links-wrapper-mobile {
+  width: 100%;
   height: calc(100vh - 10rem);
 }
 

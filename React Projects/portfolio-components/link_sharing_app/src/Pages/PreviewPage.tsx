@@ -1,32 +1,30 @@
 import React from "react";
-import CustomButton from "../components/CustomButton";
-import LinkComponent from "../components/LinkComponent";
+import "../style/linkComponent.css";
 import { handleIcon } from "../utils/handleIcon";
-import "../style/previewPage.css";
 import allDropdownOptions from "../utils/allDropdownOptions";
+import CustomButton from "../components/CustomButton";
+import "../style/previewPage.css";
 
-interface Props {
+type Props = {
+  profileImage: string;
+  name: string;
+  surname: string;
   email: string;
-  links: ILink[];
-  name?: string;
-  profileImage?: string;
-  surname?: string;
-  handleClosePreview: (value: boolean) => void;
-}
-
-interface ILink {
-  link: string;
-  icon: string;
-  id: string;
-}
+  links: Array<{
+    link: string;
+    icon: string;
+    id: string;
+  }>;
+  setIsPreviewShown: (value: boolean) => void;
+};
 
 const PreviewPage = ({
+  profileImage,
+  name,
+  surname,
   email,
   links,
-  name,
-  profileImage,
-  surname,
-  handleClosePreview,
+  setIsPreviewShown,
 }: Props) => {
   const openInNewTab = (url: string) => {
     if (url === "") return;
@@ -45,16 +43,16 @@ const PreviewPage = ({
     <div className="preview-page">
       <div className="preview-page-header-wrapper">
         <div className="preview-page-header">
-          <img src={handleIcon("largeLogo")} alt="DevLinks Logo" />
+          <img src={handleIcon("largeLogo")} alt="logo" />
           <CustomButton
+            text="Back to editor"
             type="secondary"
-            text="Edit"
+            onClick={() => setIsPreviewShown(false)}
             width="fit-content"
-            onClick={() => handleClosePreview(false)}
           />
         </div>
       </div>
-      <div className="preview-page-content">
+      <div className="link-component-content-content-without-background">
         <div
           style={
             profileImage !== ""
@@ -70,12 +68,31 @@ const PreviewPage = ({
           className="link-component-content-content-profile"
         />
 
-        {name && surname && (
-          <p className="headingM preview-page-name">{`${name} ${surname}`}</p>
+        <div
+          style={{
+            width: "16rem",
+            background: surname && name ? "#fff" : "transparent",
+            textAlign: "center",
+            height: "2.5rem",
+          }}
+        >
+          {name && surname && (
+            <p className="link-component-name">{`${name} ${surname}`}</p>
+          )}
+        </div>
+        {email && (
+          <div
+            style={{
+              width: "16rem",
+              background: "#fff",
+              textAlign: "center",
+            }}
+          >
+            <p className="link-component-email">{email}</p>
+          </div>
         )}
-        {email && <p className="bodyM preview-page-mail">{email}</p>}
         {links && links.length > 0 && (
-          <div className="preview-page-links">
+          <div className="link-component-links">
             {links.map((link) => (
               <div
                 className="link-component-link"
