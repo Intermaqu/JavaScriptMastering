@@ -27,7 +27,6 @@ const CustomizeLinksComponent = ({
   saveUserDataToLocalStorage,
 }: Props) => {
   // const [links, setLinks] = useState<ILink[]>(props.links);
-  console.log("links:", links);
 
   return (
     <div className="customize-links-wrapper">

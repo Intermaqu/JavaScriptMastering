@@ -6,9 +6,10 @@ import "../style/header.css";
 type Props = {
   activeTab: string;
   setActiveTab: (tab: string) => void;
+  togglePreview: () => void;
 };
 
-const Header = ({ activeTab, setActiveTab }: Props) => {
+const Header = ({ activeTab, setActiveTab, togglePreview }: Props) => {
   return (
     <header>
       <img src={handleIcon("largeLogo")} alt="DevLinks Logo" />
@@ -36,7 +37,7 @@ const Header = ({ activeTab, setActiveTab }: Props) => {
         type="secondary"
         text="Preview"
         width="fit-content"
-        onClick={() => console.log("Preview clicked")}
+        onClick={() => togglePreview()}
       />
     </header>
   );

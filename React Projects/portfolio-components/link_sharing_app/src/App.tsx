@@ -2,7 +2,7 @@ import "./App.css";
 import CustomButton from "./components/CustomButton";
 import CustomInput from "./components/CustomInput";
 import "./style/general.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import CustomDropdown from "./components/CustomDropdown";
 import CustomTab from "./components/CustomTab";
 import CustomUploadPhoto from "./components/CustomUploadPhoto";
@@ -14,6 +14,7 @@ import LinkComponent from "./components/LinkComponent";
 import CustomizeLinksComponent from "./components/CustomizeLinksComponent";
 import { nanoid } from "nanoid";
 import ProfileDetails from "./components/ProfileDetails";
+import PreviewPage from "./Pages/PreviewPage";
 
 interface ILink {
   link: string;
@@ -36,8 +37,12 @@ function App() {
   const [activeTab, setActiveTab] = useState<string>("links");
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [userData, setUserData] = useState<IUserData>();
+  const [isPreviewShown, setIsPreviewShown] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isRegisterShown, setIsRegisterShown] = useState<boolean>(true);
+  const [display, setDisplay] = useState<string>("");
+  const [windowWidth, setWindowWidth] = useState<number>(0);
+  const appRef = React.useRef<HTMLDivElement>(null);
 
   const handleRemoveLink = (id: string) => {
     if (!userData) return;
@@ -91,6 +96,27 @@ function App() {
     setUserData({ ...userData, [name]: value });
   };
 
+  const handleTogglePreview = () => {
+    setIsPreviewShown(!isPreviewShown);
+  };
+
+  const handleResize = () => {
+    if (!appRef.current) return;
+    const currentWidth = appRef.current?.clientWidth;
+    setWindowWidth(currentWidth);
+    if (currentWidth <= 650) {
+      setDisplay("mobile");
+      return;
+    }
+    if (currentWidth <= 1000) {
+      setDisplay("tablet");
+      return;
+    }
+
+    setDisplay("desktop");
+    return;
+  };
+
   useEffect(() => {
     const localUserLogin = localStorage.getItem("userLoggedIn");
     if (!localUserLogin || Object.keys(localUserLogin).length === 0) {
@@ -113,13 +139,35 @@ function App() {
     setIsLoading(false);
   }, []);
 
+  useLayoutEffect(() => {
+    const currentWidth = window.innerWidth;
+    setWindowWidth(currentWidth);
+    if (currentWidth <= 650) {
+      setDisplay("mobile");
+      return;
+    }
+    if (currentWidth <= 1050) {
+      setDisplay("tablet");
+      return;
+    }
+
+    setDisplay("desktop");
+    return;
+  }, []);
+
   useEffect(() => {
-    console.log(userData);
-  }, [userData]);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    // console.log(windowWidth);
+    console.log(display);
+  }, [windowWidth]);
 
   if (isLoading) {
     return (
-      <div className="App">
+      <div className="App" ref={appRef}>
         <div
           style={{
             display: "flex",
@@ -137,7 +185,7 @@ function App() {
 
   if (isRegisterShown) {
     return (
-      <div className="App App__form">
+      <div className="App App__form" ref={appRef}>
         <RegisterPage setIsRegisterShown={setIsRegisterShown} />
       </div>
     );
@@ -145,7 +193,7 @@ function App() {
 
   if (!isLoggedIn) {
     return (
-      <div className="App App__form">
+      <div className="App App__form" ref={appRef}>
         <LoginPage
           setIsLoggedIn={setIsLoggedIn}
           setUserData={setUserData}
@@ -155,9 +203,28 @@ function App() {
     );
   }
 
+  if (isPreviewShown) {
+    return (
+      <div className="App App__no_padding" ref={appRef}>
+        <PreviewPage
+          email={userData?.email || ""}
+          links={userData?.links || []}
+          profileImage={userData?.photo || ""}
+          name={userData?.name || ""}
+          surname={userData?.surname || ""}
+          handleClosePreview={setIsPreviewShown}
+        />
+      </div>
+    );
+  }
+
   return (
-    <div className="App">
-      <Header activeTab={activeTab} setActiveTab={setActiveTab} />
+    <div className="App" ref={appRef}>
+      <Header
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        togglePreview={handleTogglePreview}
+      />
       <main className="app-main">
         <LinkComponent
           profileImage={userData?.photo}
