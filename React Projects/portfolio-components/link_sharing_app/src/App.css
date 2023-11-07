@@ -3,18 +3,22 @@
   flex-direction: column;
   /* align-items: center;
   justify-content: center; */
-  width: 100%;
+  width: 100vw;
   height: 100%;
   max-width: 1400px;
   padding: 1.5rem;
   gap: 1.5rem;
 }
 
-.App__no-top-padding{
-  padding-top: 0rem !important
+.App__no-top-padding {
+  padding-top: 0rem !important;
 }
 
-.app-main{
+.App__no-padding {
+  padding: 0 !important;
+}
+
+.app-main {
   display: flex;
   width: 100%;
   height: calc(100vh - 10rem);

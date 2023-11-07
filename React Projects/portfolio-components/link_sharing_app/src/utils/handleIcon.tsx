@@ -21,6 +21,7 @@ import freeCodeCamp from "../assets/images/icon-freecodecamp.svg";
 import hashnode from "../assets/images/icon-hashnode.svg";
 import stackoverflow from "../assets/images/icon-stack-overflow.svg";
 import emptyPhone from "../assets/images/illustration-empty.svg";
+import previewHeader from "../assets/images/icon-preview-header.svg";
 
 export const handleIcon = (icon: string) => {
   switch (icon) {
@@ -68,6 +69,8 @@ export const handleIcon = (icon: string) => {
       return stackoverflow;
     case "empty-board":
       return emptyPhone;
+    case "eye":
+      return previewHeader;
     default:
       return iconLink;
   }

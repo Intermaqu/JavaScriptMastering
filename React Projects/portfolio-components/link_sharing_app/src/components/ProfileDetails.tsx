@@ -27,7 +27,7 @@ const ProfileDetails = ({
   saveUserDataToLocalStorage,
   handleLogout,
   handleChangePhoto,
-  view
+  view,
 }: Props) => {
   const [localName, setLocalName] = React.useState<string>(name || "");
   const [localSurname, setLocalSurname] = React.useState<string>(surname || "");
@@ -43,18 +43,31 @@ const ProfileDetails = ({
   };
 
   return (
-    <div className={view === "desktop" ? "profile-details-wrapper-desktop" : "profile-details-wrapper-mobile" }>
+    <div
+      className={
+        view === "desktop"
+          ? "profile-details-wrapper-desktop"
+          : "profile-details-wrapper-mobile"
+      }
+    >
       <div className="profile-details">
         <p className="headingM">Profile Details</p>
         <p className="bodyM">
           Add your details to create a personal touch to your profile.
         </p>
         <div className="profile-details-content">
-          <div className="profile-details-content-image">
-            <p className="bodyS">Profile picture</p>
+          <div
+            className={
+              view === "mobile"
+                ? "profile-details-content-image-mobile"
+                : "profile-details-content-image"
+            }
+          >
+            {view !== "mobile" && <p className="bodyS">Profile picture</p>}
             <CustomUploadPhoto
               handleChangePhoto={handleChangePhoto}
               photo={photo}
+              isMobile={view === "mobile"}
             />
           </div>
           <div className="profile-details-content-user-data">

@@ -1,11 +1,6 @@
 import "./App.css";
-import CustomButton from "./components/CustomButton";
-import CustomInput from "./components/CustomInput";
 import "./style/general.css";
 import { useState, useEffect, useLayoutEffect } from "react";
-import CustomDropdown from "./components/CustomDropdown";
-import CustomTab from "./components/CustomTab";
-import CustomUploadPhoto from "./components/CustomUploadPhoto";
 import LoginPage from "./Pages/LoginPage";
 import React from "react";
 import RegisterPage from "./Pages/RegisterPage";
@@ -15,21 +10,9 @@ import CustomizeLinksComponent from "./components/CustomizeLinksComponent";
 import { nanoid } from "nanoid";
 import ProfileDetails from "./components/ProfileDetails";
 import PreviewPage from "./Pages/PreviewPage";
-
-interface ILink {
-  link: string;
-  icon: string;
-  id: string;
-}
-
-interface IUserData {
-  name?: string;
-  surname?: string;
-  email: string;
-  password: string;
-  photo?: string;
-  links: ILink[];
-}
+import { IUserData } from "./Interfaces/user";
+import { ILink } from "./Interfaces/link";
+import MobileHeader from "./components/MobileHeader";
 
 function App() {
   // const [inputValue, setInputValue] = useState<string>("");
@@ -41,7 +24,7 @@ function App() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isRegisterShown, setIsRegisterShown] = useState<boolean>(true);
   const [view, setView] = useState<string>("desktop");
-  const [width, setWidth] = useState<number>(0);
+  const [, setWidth] = useState<number>(0);
   const ref = React.useRef<HTMLDivElement>(null);
 
   const handleRemoveLink = (id: string) => {
@@ -130,7 +113,7 @@ function App() {
     }
 
     setView("desktop");
-  });
+  }, []);
 
   useEffect(() => {
     const localUserLogin = localStorage.getItem("userLoggedIn");
@@ -199,7 +182,7 @@ function App() {
 
   if (isPreviewShown) {
     return (
-      <div className="App App__no-top-padding" ref={ref}>
+      <div className={`App App__no-padding`} ref={ref}>
         <PreviewPage
           profileImage={userData?.photo || ""}
           name={userData?.name || ""}
@@ -214,13 +197,21 @@ function App() {
 
   return (
     <div className="App" ref={ref}>
-      <Header
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        setIsPreviewShown={setIsPreviewShown}
-      />
+      {view === "mobile" ? (
+        <MobileHeader
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          setIsPreviewShown={setIsPreviewShown}
+        />
+      ) : (
+        <Header
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          setIsPreviewShown={setIsPreviewShown}
+        />
+      )}
       <main className="app-main">
-        {view == "desktop" && (
+        {view === "desktop" && (
           <LinkComponent
             profileImage={userData?.photo}
             name={userData?.name}

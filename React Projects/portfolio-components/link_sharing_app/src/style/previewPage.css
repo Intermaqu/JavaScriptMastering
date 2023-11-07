@@ -12,6 +12,7 @@
   justify-content: space-between;
   background: var(--white);
   border-radius: 0.5rem;
+  gap: 1rem;
 }
 
 .preview-page-header-wrapper {
@@ -27,9 +28,24 @@
   width: 100%;
   content: "";
   position: absolute;
-  top: 8rem;
+  top: 7rem;
   left: 0;
   background: var(--purple);
   z-index: 1;
   border-radius: 0 0 2rem 2rem;
+}
+
+.preview-page-header-button {
+  background: var(--white);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  color: var(--purple);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  border: 1px solid var(--purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }

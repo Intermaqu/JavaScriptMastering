@@ -5,11 +5,13 @@ import { handleIcon } from "../utils/handleIcon";
 interface CustomUploadPhotoProps {
   handleChangePhoto: (image: string) => void;
   photo?: string;
+  isMobile?: boolean;
 }
 
 const CustomUploadPhoto = ({
   handleChangePhoto,
   photo,
+  isMobile = true,
 }: CustomUploadPhotoProps) => {
   const [localPhoto, setLocalPhoto] = useState<string>(photo || "");
 
@@ -33,7 +35,11 @@ const CustomUploadPhoto = ({
   };
 
   return (
-    <div className="custom-upload-photo">
+    <div
+      className={
+        isMobile ? "custom-upload-photo-mobile" : "custom-upload-photo"
+      }
+    >
       <label
         className={`custom-upload-photo-label custom-upload-photo-label-${
           localPhoto ? "uploaded" : "not-uploaded"
@@ -64,12 +70,14 @@ const CustomUploadPhoto = ({
           {localPhoto ? "Change Photo" : "+ Upload Photo"}
         </p>
       </label>
-      <div className="custom-upload-photo-text">
-        <span className="bodyS">
-          {/* {localPhoto ? "Image Uploaded" : "Image Not Uploaded"} */}
-          Image must be below 1024x1024px. Use PNG or JPG format.
-        </span>
-      </div>
+      {!isMobile && (
+        <div className="custom-upload-photo-text">
+          <span className="bodyS">
+            {/* {localPhoto ? "Image Uploaded" : "Image Not Uploaded"} */}
+            Image must be below 1024x1024px. Use PNG or JPG format.
+          </span>
+        </div>
+      )}
     </div>
   );
 };

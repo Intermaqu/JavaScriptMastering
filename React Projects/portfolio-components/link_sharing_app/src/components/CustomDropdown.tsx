@@ -2,13 +2,7 @@ import React, { useState } from "react";
 import "../style/dropdowns.css";
 import arrowDown from "../assets/images/icon-chevron-down.svg";
 import { handleIcon } from "../utils/handleIcon";
-
-interface IOption {
-  name: string;
-  icon: string;
-  id: string;
-  color?: string;
-}
+import { IOption } from "../Interfaces/link";
 
 interface IProps {
   value: IOption;

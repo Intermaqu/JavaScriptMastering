@@ -4,6 +4,7 @@ import CustomDropdown from "./CustomDropdown";
 import CustomInput from "./CustomInput";
 import allDropdownOptions from "../utils/allDropdownOptions";
 import { handleFormatName } from "../utils/handleIcon";
+import { ILink, IOption } from "../Interfaces/link";
 
 type Props = {
   handleRemove: (id: string) => void;
@@ -11,18 +12,6 @@ type Props = {
   link: ILink;
   index: number;
 };
-
-interface IOption {
-  name: string;
-  icon: string;
-  id: string;
-}
-
-interface ILink {
-  link: string;
-  icon: string;
-  id: string;
-}
 
 const AddLinkComponent = ({
   link,

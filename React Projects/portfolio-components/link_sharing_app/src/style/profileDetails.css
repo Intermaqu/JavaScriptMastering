@@ -58,7 +58,19 @@
   align-items: center;
   grid-template-columns: 1fr 2fr;
 }
-.profile-details-content-user-data {
+
+.profile-details-content-image-mobile {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 0.75rem;
+  background: var(--light-grey);
+  padding: 1.25rem;
+}
+
+profile-details-content-image-mobile .profile-details-content-user-data {
   display: flex;
   justify-content: center;
   align-items: center;
