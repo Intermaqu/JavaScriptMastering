@@ -29,7 +29,7 @@ class binaryTree{
         return lheight > rheight ? lheight + 1 : rheight + 1;
     }
 
-    public find(value: number): node | undefined{
+    public findNode(value: number): node | undefined{
         let current: node | undefined = this.root;
 
         while(current != undefined){
@@ -115,7 +115,28 @@ class binaryTree{
         this.printCurrentLevel(node.left, level - 1)
         this.printCurrentLevel(node.right, level - 1)
     }
+
     
+    private print2DUtil(node: node | undefined, space:number):void{
+        const COUNT = 5
+        if(!node) return;
+
+        space += COUNT;
+
+        this.print2DUtil(node.right, space)
+        
+        process.stdout.write("\n")
+
+        for(let i = COUNT; i < space; i++){
+            process.stdout.write(" ")
+        }
+        process.stdout.write(node.value + "\n")
+        this.print2DUtil(node.left, space)
+    }
+
+    public print2D(){
+        this.print2DUtil(this.root, 0)
+    }
 
 }
 
@@ -161,3 +182,6 @@ class node{
 
 
 export default binaryTree
+
+
+// TODO  BALANCING
