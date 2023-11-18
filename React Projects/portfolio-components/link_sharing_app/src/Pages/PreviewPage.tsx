@@ -4,17 +4,14 @@ import { handleIcon } from "../utils/handleIcon";
 import allDropdownOptions from "../utils/allDropdownOptions";
 import CustomButton from "../components/CustomButton";
 import "../style/previewPage.css";
+import { ILink } from "../Models/interfaces";
 
 type Props = {
   profileImage: string;
   name: string;
   surname: string;
   email: string;
-  links: Array<{
-    link: string;
-    icon: string;
-    id: string;
-  }>;
+  links: ILink[];
   setIsPreviewShown: (value: boolean) => void;
 };
 

@@ -4,6 +4,7 @@ import "../style/customizeLinks.css";
 // import {nanoid} from nanoid
 import AddLinkComponent from "./AddLinkComponent";
 import { handleIcon } from "../utils/handleIcon";
+import { ILink } from "../Models/interfaces";
 
 type Props = {
   links: ILink[];
@@ -13,12 +14,6 @@ type Props = {
   saveUserDataToLocalStorage: () => void;
   view: string;
 };
-
-interface ILink {
-  link: string;
-  icon: string;
-  id: string;
-}
 
 const CustomizeLinksComponent = ({
   links,

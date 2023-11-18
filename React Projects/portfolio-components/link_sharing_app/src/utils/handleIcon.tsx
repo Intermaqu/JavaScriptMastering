@@ -5,6 +5,7 @@ import linkedin from "../assets/images/icon-linkedin.svg";
 import upload from "../assets/images/icon-upload-image.svg";
 import largeLogo from "../assets/images/logo-devlinks-large.svg";
 import smallLogo from "../assets/images/logo-devlinks-small.svg";
+import eye from "../assets/images/icon-profile-details-header.svg"
 import email from "../assets/images/icon-email.svg";
 import password from "../assets/images/icon-password.svg";
 import profile from "../assets/images/icon-profile-details-header.svg";
@@ -68,6 +69,8 @@ export const handleIcon = (icon: string) => {
       return stackoverflow;
     case "empty-board":
       return emptyPhone;
+    case "eye":
+      return eye;
     default:
       return iconLink;
   }

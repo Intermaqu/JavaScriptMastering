@@ -15,21 +15,8 @@ import CustomizeLinksComponent from "./components/CustomizeLinksComponent";
 import { nanoid } from "nanoid";
 import ProfileDetails from "./components/ProfileDetails";
 import PreviewPage from "./Pages/PreviewPage";
-
-interface ILink {
-  link: string;
-  icon: string;
-  id: string;
-}
-
-interface IUserData {
-  name?: string;
-  surname?: string;
-  email: string;
-  password: string;
-  photo?: string;
-  links: ILink[];
-}
+import { IUserData, ILink } from "./Models/interfaces";
+import HeaderMobile from "./components/HeaderMobile";
 
 function App() {
   // const [inputValue, setInputValue] = useState<string>("");
@@ -37,10 +24,10 @@ function App() {
   const [activeTab, setActiveTab] = useState<string>("links");
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [userData, setUserData] = useState<IUserData>();
-  const [isPreviewShown, setIsPreviewShown] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isRegisterShown, setIsRegisterShown] = useState<boolean>(true);
-  const [view, setView] = useState<string>("desktop");
+  const [isPreviewShown, setIsPreviewShown] = useState<boolean>(true);
+  const [view, setView] = useState<"desktop" | "tablet" | "mobile">("desktop");
   const [width, setWidth] = useState<number>(0);
   const ref = React.useRef<HTMLDivElement>(null);
 
@@ -154,8 +141,13 @@ function App() {
     setIsLoading(false);
   }, []);
 
+  // useEffect(() => {
+  //   console.log(width, view);
+  // }, [width]);
+
   useEffect(() => {
     window.addEventListener("resize", handleResize);
+
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -214,11 +206,17 @@ function App() {
 
   return (
     <div className="App" ref={ref}>
-      <Header
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        setIsPreviewShown={setIsPreviewShown}
-      />
+      {
+        view === "mobile" ? 
+        <HeaderMobile
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          setIsPreviewShown={setIsPreviewShown}/>
+      : <Header
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          setIsPreviewShown={setIsPreviewShown}/>
+      }
       <main className="app-main">
         {view == "desktop" && (
           <LinkComponent

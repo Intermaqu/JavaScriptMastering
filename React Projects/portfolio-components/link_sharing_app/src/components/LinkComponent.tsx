@@ -2,6 +2,7 @@ import React from "react";
 import "../style/linkComponent.css";
 import { handleIcon } from "../utils/handleIcon";
 import allDropdownOptions from "../utils/allDropdownOptions";
+import { ILink } from "../Models/interfaces";
 
 type Props = {
   profileImage?: string;
@@ -11,11 +12,6 @@ type Props = {
   links: ILink[];
 };
 
-interface ILink {
-  link: string;
-  icon: string;
-  id: string;
-}
 
 const LinkComponent = ({
   profileImage,

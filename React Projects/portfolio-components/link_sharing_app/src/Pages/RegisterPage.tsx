@@ -3,19 +3,15 @@ import CustomInput from "../components/CustomInput";
 import { handleIcon } from "../utils/handleIcon";
 import "../style/loginPage.css";
 import CustomButton from "../components/CustomButton";
+import { IRegisterData } from "../Models/interfaces";
 
 type Props = {
   setIsRegisterShown: (isRegisterShown: boolean) => void;
 };
 
-interface RegisterData {
-  email: string;
-  password: string;
-  password2: string;
-}
 
 const RegisterPage = ({ setIsRegisterShown }: Props) => {
-  const [registerData, setRegisterData] = useState<RegisterData>({
+  const [registerData, setRegisterData] = useState<IRegisterData>({
     email: "",
     password: "",
     password2: "",
