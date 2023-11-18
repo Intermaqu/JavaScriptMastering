@@ -4,7 +4,7 @@ import "../style/customizeLinks.css";
 // import {nanoid} from nanoid
 import AddLinkComponent from "./AddLinkComponent";
 import { handleIcon } from "../utils/handleIcon";
-import { ILink } from "../Models/interfaces";
+import { ILink } from "../Interfaces/link";
 
 type Props = {
   links: ILink[];
@@ -21,12 +21,18 @@ const CustomizeLinksComponent = ({
   handleChangeLink,
   handleAddNewLink,
   saveUserDataToLocalStorage,
-  view
+  view,
 }: Props) => {
   // const [links, setLinks] = useState<ILink[]>(props.links);
 
   return (
-    <div className={view === "desktop" ? "customize-links-wrapper-desktop" : "customize-links-wrapper-mobile" }>
+    <div
+      className={
+        view === "desktop"
+          ? "customize-links-wrapper-desktop"
+          : "customize-links-wrapper-mobile"
+      }
+    >
       <div className="customize-links">
         <p className="headingM">Customize your links</p>
         <p className="bodyM">

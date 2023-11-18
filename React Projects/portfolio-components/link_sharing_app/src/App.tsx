@@ -1,11 +1,6 @@
 import "./App.css";
-import CustomButton from "./components/CustomButton";
-import CustomInput from "./components/CustomInput";
 import "./style/general.css";
 import { useState, useEffect, useLayoutEffect } from "react";
-import CustomDropdown from "./components/CustomDropdown";
-import CustomTab from "./components/CustomTab";
-import CustomUploadPhoto from "./components/CustomUploadPhoto";
 import LoginPage from "./Pages/LoginPage";
 import React from "react";
 import RegisterPage from "./Pages/RegisterPage";
@@ -15,8 +10,9 @@ import CustomizeLinksComponent from "./components/CustomizeLinksComponent";
 import { nanoid } from "nanoid";
 import ProfileDetails from "./components/ProfileDetails";
 import PreviewPage from "./Pages/PreviewPage";
-import { IUserData, ILink } from "./Models/interfaces";
-import HeaderMobile from "./components/HeaderMobile";
+import { IUserData } from "./Interfaces/user";
+import { ILink } from "./Interfaces/link";
+import MobileHeader from "./components/MobileHeader";
 
 function App() {
   // const [inputValue, setInputValue] = useState<string>("");
@@ -117,7 +113,7 @@ function App() {
     }
 
     setView("desktop");
-  });
+  }, []);
 
   useEffect(() => {
     const localUserLogin = localStorage.getItem("userLoggedIn");
@@ -191,7 +187,7 @@ function App() {
 
   if (isPreviewShown) {
     return (
-      <div className="App App__no-top-padding" ref={ref}>
+      <div className={`App App__no-padding`} ref={ref}>
         <PreviewPage
           profileImage={userData?.photo || ""}
           name={userData?.name || ""}
@@ -208,7 +204,7 @@ function App() {
     <div className="App" ref={ref}>
       {
         view === "mobile" ? 
-        <HeaderMobile
+        <MobileHeader
           activeTab={activeTab}
           setActiveTab={setActiveTab}
           setIsPreviewShown={setIsPreviewShown}/>
@@ -218,7 +214,7 @@ function App() {
           setIsPreviewShown={setIsPreviewShown}/>
       }
       <main className="app-main">
-        {view == "desktop" && (
+        {view === "desktop" && (
           <LinkComponent
             profileImage={userData?.photo}
             name={userData?.name}

@@ -1,8 +1,12 @@
 .custom-upload-photo {
-  width: 100%;
   background: var(--light-grey);
   display: flex;
   gap: 1.5rem;
+  width: 100%;
+}
+
+.custom-upload-photo-mobile {
+  width: fit-content !important;
 }
 
 .custom-upload-photo-label {

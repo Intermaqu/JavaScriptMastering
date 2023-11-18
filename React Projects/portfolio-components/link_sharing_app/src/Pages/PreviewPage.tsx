@@ -40,13 +40,19 @@ const PreviewPage = ({
     <div className="preview-page">
       <div className="preview-page-header-wrapper">
         <div className="preview-page-header">
-          <img src={handleIcon("largeLogo")} alt="logo" />
-          <CustomButton
-            text="Back to editor"
-            type="secondary"
-            onClick={() => setIsPreviewShown(false)}
-            width="fit-content"
+          <img
+            src={handleIcon("largeLogo")}
+            alt="logo"
+            style={{
+              width: `min(12rem, 50%)`,
+            }}
           />
+          <div
+            onClick={() => setIsPreviewShown(false)}
+            className="preview-page-header-button"
+          >
+            Back to editor
+          </div>
         </div>
       </div>
       <div className="link-component-content-content-without-background">

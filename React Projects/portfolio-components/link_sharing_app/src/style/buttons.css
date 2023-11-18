@@ -3,6 +3,7 @@
   border-radius: 0.5rem;
   border: none;
   cursor: pointer;
+  text-align: center;
 }
 
 .custom-button.primary {

@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import "../style/dropdowns.css";
 import arrowDown from "../assets/images/icon-chevron-down.svg";
 import { handleIcon } from "../utils/handleIcon";
-import { IOption } from "../Models/interfaces";
-
+import { IOption } from "../Interfaces/link";
 
 interface IProps {
   value: IOption;
