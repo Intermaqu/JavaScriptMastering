@@ -20,11 +20,11 @@ function App() {
   const [activeTab, setActiveTab] = useState<string>("links");
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [userData, setUserData] = useState<IUserData>();
-  const [isPreviewShown, setIsPreviewShown] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isRegisterShown, setIsRegisterShown] = useState<boolean>(true);
-  const [view, setView] = useState<string>("desktop");
-  const [, setWidth] = useState<number>(0);
+  const [isPreviewShown, setIsPreviewShown] = useState<boolean>(true);
+  const [view, setView] = useState<"desktop" | "tablet" | "mobile">("desktop");
+  const [width, setWidth] = useState<number>(0);
   const ref = React.useRef<HTMLDivElement>(null);
 
   const handleRemoveLink = (id: string) => {
@@ -137,8 +137,13 @@ function App() {
     setIsLoading(false);
   }, []);
 
+  // useEffect(() => {
+  //   console.log(width, view);
+  // }, [width]);
+
   useEffect(() => {
     window.addEventListener("resize", handleResize);
+
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -197,19 +202,17 @@ function App() {
 
   return (
     <div className="App" ref={ref}>
-      {view === "mobile" ? (
+      {
+        view === "mobile" ? 
         <MobileHeader
           activeTab={activeTab}
           setActiveTab={setActiveTab}
-          setIsPreviewShown={setIsPreviewShown}
-        />
-      ) : (
-        <Header
+          setIsPreviewShown={setIsPreviewShown}/>
+      : <Header
           activeTab={activeTab}
           setActiveTab={setActiveTab}
-          setIsPreviewShown={setIsPreviewShown}
-        />
-      )}
+          setIsPreviewShown={setIsPreviewShown}/>
+      }
       <main className="app-main">
         {view === "desktop" && (
           <LinkComponent

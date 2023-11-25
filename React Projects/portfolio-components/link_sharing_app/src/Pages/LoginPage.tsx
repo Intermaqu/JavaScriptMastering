@@ -3,6 +3,7 @@ import CustomInput from "../components/CustomInput";
 import { handleIcon } from "../utils/handleIcon";
 import "../style/loginPage.css";
 import CustomButton from "../components/CustomButton";
+import { IUserData, ILoginData } from "../Models/interfaces";
 
 type Props = {
   setIsLoggedIn: (isLogin: boolean) => void;
@@ -10,32 +11,13 @@ type Props = {
   setIsRegisterShown: (isRegisterShown: boolean) => void;
 };
 
-interface IUserData {
-  name?: string;
-  surname?: string;
-  email: string;
-  password: string;
-  photo?: string;
-  links: ILink[];
-}
-
-interface ILink {
-  link: string;
-  icon: string;
-  id: string;
-}
-
-type LoginData = {
-  email: string;
-  password: string;
-};
 
 const LoginPage = ({
   setIsLoggedIn,
   setUserData,
   setIsRegisterShown,
 }: Props) => {
-  const [loginData, setLoginData] = useState<LoginData>({
+  const [loginData, setLoginData] = useState<ILoginData>({
     email: "",
     password: "",
   });
