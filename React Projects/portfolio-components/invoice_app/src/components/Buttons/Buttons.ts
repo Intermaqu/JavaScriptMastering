@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import colors from "../../themes/Colors.json"
 import plus from "../../assets/images/icon-plus.svg"
-import ThemeInterface from "../../models/interfaces/themeInterface";
+import { ThemeType } from "../../themes/themeType";
 
 export const DefaultButton = styled.div`
     border-radius: 1.5rem;
@@ -51,7 +51,7 @@ export const ButtonDotPlus = styled.div`
     background-size: 0.75rem;
 `
 
-export const Button3 = styled(DefaultButton)<ThemeInterface>(({ theme }) => `
+export const Button3 = styled(DefaultButton)<{theme: ThemeType}>(({ theme }) => `
     background-color:${theme === "light" ? colors["13"] : colors["04"]};
     color: ${theme === "light" ? colors["07"] : colors["05"]};
     
@@ -60,7 +60,7 @@ export const Button3 = styled(DefaultButton)<ThemeInterface>(({ theme }) => `
     }`
 )
 
-export const Button4 = styled(DefaultButton)<ThemeInterface>(({ theme }) => `
+export const Button4 = styled(DefaultButton)<{theme: ThemeType}>(({ theme }) => `
     background-color:${theme === "light" ? colors["14"] : colors["14"]};
     color: ${theme === "light" ? colors["06"] : colors["05"]};
     

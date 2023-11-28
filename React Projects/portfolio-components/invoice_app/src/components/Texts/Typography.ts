@@ -1,9 +1,14 @@
 import { styled } from "styled-components";
 
-export const DefaultText = styled.p`
+type DefaultTextType = {
+    color?: string;
+}
+
+export const DefaultText = styled.p<DefaultTextType>(({color}) =>`
     font-family: 'League Spartan', sans-serif;
     font-size: 16px;
-`
+    ${color ? `color: ${color}` : ""};
+`)
 
 export const DefaultHeader = styled(DefaultText)`
     font-weight: 700;

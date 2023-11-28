@@ -1,5 +1,6 @@
 import React from "react";
-import { HeadingSVariant } from "../Typography";
+import { useTheme } from "../../ThemeContext";
+import { HeadingSVariant } from "../Texts/Typography";
 import {
   Button1,
   Button2,
@@ -13,12 +14,14 @@ import {
 
 type Props = {
   type: "primary" | "secondary" | "edit" | "save" | "delete" | "add";
-  globalTheme?: "light" | "dark";
   text: string;
   onClick: () => void;
 };
 
-const CustomButton = ({ type, globalTheme, text, onClick }: Props) => {
+const CustomButton = ({ type, text, onClick }: Props) => {
+  const { theme } = useTheme();
+  const themeType = theme.type;
+
   if (type === "primary") {
     return (
       <Button1 onClick={() => onClick()}>
@@ -40,7 +43,7 @@ const CustomButton = ({ type, globalTheme, text, onClick }: Props) => {
 
   if (type === "edit") {
     return (
-      <Button3 theme={globalTheme || "light"} onClick={() => onClick()}>
+      <Button3 theme={themeType} onClick={() => onClick()}>
         <HeadingSVariant>{text}</HeadingSVariant>
       </Button3>
     );
@@ -48,7 +51,7 @@ const CustomButton = ({ type, globalTheme, text, onClick }: Props) => {
 
   if (type === "save") {
     return (
-      <Button4 theme={globalTheme || "light"} onClick={() => onClick()}>
+      <Button4 theme={themeType} onClick={() => onClick()}>
         <HeadingSVariant>{text}</HeadingSVariant>
       </Button4>
     );
