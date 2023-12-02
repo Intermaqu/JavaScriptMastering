@@ -4,6 +4,10 @@ import colors from "../../themes/Colors.json"
 export const SiderWrapper = styled.div<{theme: string}>(({theme}) =>`
     display: flex;
     width: 6.4375rem;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 101;
     height: 100%;
     flex-direction: column;
     border-radius: 0 1.25rem 1.25rem 0;

@@ -1,16 +1,8 @@
 import React from "react";
 import { useTheme } from "../../ThemeContext";
 import { HeadingSVariant } from "../Texts/Typography";
-import {
-  Button1,
-  Button2,
-  Button3,
-  Button4,
-  Button5,
-  Button6,
-  ButtonDot,
-  ButtonDotPlus,
-} from "./Buttons";
+import buttonColors from "./ButtonColors";
+import { ButtonDot, ButtonDotPlus, CustomButtonSC } from "./Buttons";
 
 type Props = {
   type: "primary" | "secondary" | "edit" | "save" | "delete" | "add";
@@ -24,52 +16,76 @@ const CustomButton = ({ type, text, onClick }: Props) => {
 
   if (type === "primary") {
     return (
-      <Button1 onClick={() => onClick()}>
+      <CustomButtonSC
+        theme={themeType}
+        colors={buttonColors.primary}
+        onClick={() => onClick()}
+      >
         <ButtonDot>
           <ButtonDotPlus />
         </ButtonDot>
         <HeadingSVariant>{text}</HeadingSVariant>
-      </Button1>
+      </CustomButtonSC>
     );
   }
 
   if (type === "secondary") {
     return (
-      <Button2 onClick={() => onClick()}>
+      <CustomButtonSC
+        colors={buttonColors.secondary}
+        onClick={() => onClick()}
+        theme={themeType}
+      >
         <HeadingSVariant>{text}</HeadingSVariant>
-      </Button2>
+      </CustomButtonSC>
     );
   }
 
   if (type === "edit") {
     return (
-      <Button3 theme={themeType} onClick={() => onClick()}>
+      <CustomButtonSC
+        colors={buttonColors.edit}
+        onClick={() => onClick()}
+        theme={themeType}
+      >
         <HeadingSVariant>{text}</HeadingSVariant>
-      </Button3>
+      </CustomButtonSC>
     );
   }
 
   if (type === "save") {
     return (
-      <Button4 theme={themeType} onClick={() => onClick()}>
+      <CustomButtonSC
+        colors={buttonColors.save}
+        onClick={() => onClick()}
+        theme={themeType}
+      >
         <HeadingSVariant>{text}</HeadingSVariant>
-      </Button4>
+      </CustomButtonSC>
     );
   }
 
   if (type === "delete") {
     return (
-      <Button5 onClick={() => onClick()}>
+      <CustomButtonSC
+        colors={buttonColors.delete}
+        onClick={() => onClick()}
+        theme={themeType}
+      >
         <HeadingSVariant>{text}</HeadingSVariant>
-      </Button5>
+      </CustomButtonSC>
     );
   }
 
   if (type === "add") {
     return (
-      <Button6 onClick={() => onClick()}>
-        <HeadingSVariant>{`+ ${text}`}</HeadingSVariant>
-      </Button6>
+      <CustomButtonSC
+        colors={buttonColors.add}
+        onClick={() => onClick()}
+        theme={themeType}
+      >
+        <HeadingSVariant>+ {text}</HeadingSVariant>
+      </CustomButtonSC>
     );
   }
 

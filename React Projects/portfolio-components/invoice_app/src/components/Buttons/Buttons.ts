@@ -2,6 +2,7 @@ import { styled } from "styled-components";
 import colors from "../../themes/Colors.json"
 import plus from "../../assets/images/icon-plus.svg"
 import { ThemeType } from "../../themes/themeType";
+import { ButtonColorsInterface } from "./ButtonColors";
 
 export const DefaultButton = styled.div`
     border-radius: 1.5rem;
@@ -15,20 +16,28 @@ export const DefaultButton = styled.div`
     user-select: none;
 `
 
-export const Button2 = styled(DefaultButton)`
-    background-color: ${colors["01"]};
-    &:hover {
-        background-color: ${colors["02"]};
-    }
-`
+export const CustomButtonSC = styled(DefaultButton)<{theme?: ThemeType, colors: ButtonColorsInterface}>(({ theme = "light", colors = {} }) => `
+    ${theme === "light" ? `
+        background-color: ${colors.lightBackground};
+        ${colors.lightColor ? `color: ${colors.lightColor};` : ""}
+
+        &:hover {
+            ${colors.lightHover ? `background-color: ${colors.lightHover};` : ""}
+        }
+
+        `: `
     
-export const Button1 = styled(DefaultButton)`
-    background-color: ${colors["01"]};
-    padding: 0 1rem 0 0.5rem;
-    &:hover {
-        background-color: ${colors["02"]};
-    }
-`
+        ${colors.darkBackground ? `background-color: ${colors.darkBackground};` : `background-color: ${colors.lightBackground};`}
+        ${colors.darkColor ? `color: ${colors.darkColor};` : `color: ${colors.lightColor};`}
+    
+        &:hover {
+            ${colors.darkHover ?  `background-color: ${colors.darkHover};` : `background-color: ${colors.lightHover};`}
+        }
+    `}
+    
+    ${colors.padding && `padding: 0 1rem 0 0.5rem;`}
+    `)
+    
 
 export const ButtonDot = styled.div`
     width: 2rem;
@@ -49,41 +58,4 @@ export const ButtonDotPlus = styled.div`
     background-repeat: no-repeat;
     background-position: center;
     background-size: 0.75rem;
-`
-
-export const Button3 = styled(DefaultButton)<{theme: ThemeType}>(({ theme }) => `
-    background-color:${theme === "light" ? colors["13"] : colors["04"]};
-    color: ${theme === "light" ? colors["07"] : colors["05"]};
-    
-    &:hover {
-        background-color: ${theme === "light" ? colors["05"] : "#fff"};
-    }`
-)
-
-export const Button4 = styled(DefaultButton)<{theme: ThemeType}>(({ theme }) => `
-    background-color:${theme === "light" ? colors["14"] : colors["14"]};
-    color: ${theme === "light" ? colors["06"] : colors["05"]};
-    
-    &:hover {
-        background-color: ${theme === "light" ? colors["08"] : colors["03"]};
-    }`
-)
-
-export const Button5 = styled(DefaultButton)`
-    background-color: ${colors["09"]};
-    
-    &:hover {
-        background-color: ${colors["10"]};
-    }
-`
-
-export const Button6 = styled(DefaultButton)`
-    background-color: ${colors["13"]};
-    color: ${colors["07"]};
-
-
-    &:hover {
-        background-color: ${colors["05"]};
-    }
-    
 `

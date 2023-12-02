@@ -19,6 +19,8 @@ import {
 import { GlobalStyles } from "./globalStyles";
 import { useTheme } from "./ThemeContext";
 import Sider from "./components/Sider/Sider";
+import { DrawerWrapperSC, OverlaySC } from "./components/Drawer/Drawer";
+import CustomDrawer from "./components/Drawer/CustomDrawer";
 
 const AppElement = styled.main(
   ({ theme }) => `
@@ -32,11 +34,20 @@ const AppElement = styled.main(
 function App() {
   const { theme, toggleTheme } = useTheme();
   const [inputValue, setInputValue] = useState<string>("");
+  const [overlayOpen, setOverlayOpen] = useState<boolean>(false);
+
+  const consoleLog = () => {
+    console.log("Clicked");
+  };
 
   return (
     <AppElement theme={theme}>
       <GlobalStyles theme={theme} />
       <Sider />
+      <CustomDrawer
+        isOpen={overlayOpen}
+        onClose={() => setOverlayOpen(false)}
+      />
       <div>
         <CustomButton type="edit" text="Theme Toggler" onClick={toggleTheme} />
         <HeadingL>HeadingL</HeadingL>
@@ -45,36 +56,21 @@ function App() {
         <BodyText>BodyText</BodyText>
         <BodyTextVariant>BodyTextVariant</BodyTextVariant>
         <DefaultText>DefaultText</DefaultText>
-        <CustomButton
-          type="primary"
-          text="Mark as Paid"
-          onClick={() => console.log("Clicked")}
-        />
+        <CustomButton type="primary" text="Mark as Paid" onClick={consoleLog} />
         <CustomButton
           type="secondary"
           text="Mark as Paid"
-          onClick={() => console.log("Clicked")}
+          onClick={consoleLog}
         />
         <CustomButton
-          type="edit"
-          text="Edit"
-          onClick={() => console.log("Clicked")}
+          type="secondary"
+          text="Open Overlay"
+          onClick={() => setOverlayOpen(true)}
         />
-        <CustomButton
-          type="save"
-          text="Save as Draft"
-          onClick={() => console.log("Clicked")}
-        />
-        <CustomButton
-          type="delete"
-          text="Delete"
-          onClick={() => console.log("Clicked")}
-        />
-        <CustomButton
-          type="add"
-          text="Add New Item"
-          onClick={() => console.log("Clicked")}
-        />
+        <CustomButton type="edit" text="Edit" onClick={consoleLog} />
+        <CustomButton type="save" text="Save as Draft" onClick={consoleLog} />
+        <CustomButton type="delete" text="Delete" onClick={consoleLog} />
+        <CustomButton type="add" text="Add New Item" onClick={consoleLog} />
         <CustomInput label="Name" value={inputValue} onChange={setInputValue} />
       </div>
     </AppElement>

@@ -16,7 +16,7 @@ export const darkTheme: ThemeTypeContext = {
     backgroundSecondary: colors["03"],
 }
 
-export type ThemeType = "light" | "dark"
+export type ThemeType = "light" | "dark";
 
 export interface ThemeTypeContext {
     type: ThemeType;
