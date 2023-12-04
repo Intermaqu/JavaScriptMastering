@@ -9,20 +9,24 @@ import {
   SiderThemeTogglerWrapper,
   SiderWrapper,
 } from "./SiderStyledComponents";
+import { useTheme } from "../../ThemeContext";
 
 type Props = {};
 
 const Sider = (props: Props) => {
+  const { theme, toggleTheme } = useTheme();
+  const themeType = theme.type;
+
   return (
     <SiderWrapper>
       <SiderLogoWrapper>
         <SiderLogo src={handleImage("logo")} alt="logo" />
       </SiderLogoWrapper>
       <SiderThemeTogglerWrapper>
-        <SiderThemeToggler />
+        <SiderThemeToggler src={handleImage( themeType === "light" ? "moon" : "sun")} alt="theme toggler icon" onClick={()=>{toggleTheme()}}/>
       </SiderThemeTogglerWrapper>
       <SiderImageWrapper>
-        <SiderImage />
+        <SiderImage src={handleImage("avatar")} alt="avatar icon" />
       </SiderImageWrapper>
     </SiderWrapper>
   );

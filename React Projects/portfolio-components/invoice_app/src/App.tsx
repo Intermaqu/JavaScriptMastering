@@ -71,7 +71,7 @@ function App() {
         <CustomButton type="save" text="Save as Draft" onClick={consoleLog} />
         <CustomButton type="delete" text="Delete" onClick={consoleLog} />
         <CustomButton type="add" text="Add New Item" onClick={consoleLog} />
-        <CustomInput label="Name" value={inputValue} onChange={setInputValue} />
+        {/* <CustomInput label="Name" value={inputValue} onChange={setInputValue} /> */}
       </div>
     </AppElement>
   );

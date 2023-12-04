@@ -4,13 +4,15 @@ import colors from "../../themes/Colors.json"
 interface DefaultInputInterface{
     theme: string;
     width?: string;
+    small?: boolean;
 }
 
-export const DefaultInput = styled.input<DefaultInputInterface>(({theme}) => `
+export const DefaultInput = styled.input<DefaultInputInterface>(({theme, small = false}) => `
     padding: 1.12rem 1.25rem;   
     border: 1px solid ${theme === "light" ? colors["05"] : colors["04"]};
     border-radius: 0.5rem;
-    width: min(100%, 15rem);
+    width: 100%;
+    box-sizing: border-box;
     font-family: 'League Spartan',sans-serif;
     font-weight: 700;
     font-size: 0.9375rem;
@@ -20,6 +22,12 @@ export const DefaultInput = styled.input<DefaultInputInterface>(({theme}) => `
     background-color: ${theme === "light" ? "#fff" : colors["03"]};
     caret-color: ${colors["01"]};
     
+    ${small ? `
+        padding: 0rem;
+        height: 3.5rem;   
+        text-align: center;
+        ` : ""}
+
     &:focus{
         outline: none;
         border: 1px solid ${theme === "light" ? colors["02"] : colors["04"]};

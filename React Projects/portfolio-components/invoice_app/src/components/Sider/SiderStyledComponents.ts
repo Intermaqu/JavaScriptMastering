@@ -46,10 +46,32 @@ export const SiderLogo = styled.img`
     z-index: 2;
 `
 
-export const SiderThemeTogglerWrapper = styled.div``
+export const SiderThemeTogglerWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 1;
+`
 
-export const SiderThemeToggler = styled.img``
+export const SiderThemeToggler = styled.img`
+    width: 1.25rem;
+    object-fit: cover;
+    cursor: pointer;
+`
 
-export const SiderImageWrapper = styled.div``
+export const SiderImageWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 1;
+    border-top: 1px solid ${colors["15"]}
+`
 
-export const SiderImage = styled.img``
+export const SiderImage = styled.img`
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+`
