@@ -23,7 +23,7 @@ export const DrawerWrapperSC = styled.aside<{isOpen: Boolean, theme: ThemeType}>
     left: ${isOpen ? "0rem" : "-45rem"};
     transition: 0.5s ease-in-out all; 
     height: 100vh;
-    padding: 3.75rem 3rem 2rem;
+    padding: 3.75rem 2.5rem 2rem 3rem;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -37,6 +37,7 @@ export const DrawerScrollableSectionSC = styled.section`
     width: 100%;
     overflow-y: auto;
     align-items: flex-end;
+    padding-right: 0.5rem;
 
     &::-webkit-scrollbar {
         width: 0.5rem;

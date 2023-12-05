@@ -1,8 +1,20 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "../../ThemeContext";
-import { DrawerMultiRow, DrawerScrollableSectionSC, DrawerSectionSC, DrawerTableGrid, DrawerWrapperSC, OverlaySC } from "./Drawer";
-import { BodyText, HeadingM, HeadingS, HeadingSVariant } from "../Texts/Typography";
-import colors from "../../themes/Colors.json"
+import {
+  DrawerMultiRow,
+  DrawerScrollableSectionSC,
+  DrawerSectionSC,
+  DrawerTableGrid,
+  DrawerWrapperSC,
+  OverlaySC,
+} from "./Drawer";
+import {
+  BodyText,
+  HeadingM,
+  HeadingS,
+  HeadingSVariant,
+} from "../Texts/Typography";
+import colors from "../../themes/Colors.json";
 import CustomInput from "../Inputs/CustomInput";
 import { InvoiceInterface, emptyInvoiceData } from "./invoiceModel";
 import { DefaultInputLabel } from "../Inputs/Inputs";
@@ -16,136 +28,201 @@ type Props = {
 };
 
 const CustomDrawer = ({ isOpen, onClose, invoiceData }: Props) => {
-  const [localInvoiceData, setLocalInvoiceData] = useState(invoiceData || emptyInvoiceData);
+  const [localInvoiceData, setLocalInvoiceData] = useState(
+    invoiceData || emptyInvoiceData
+  );
   const { theme } = useTheme();
   const themeType = theme.type;
 
   const handleChangeInvoiceData = (value: string, name: string) => {
-    setLocalInvoiceData({...localInvoiceData, [name]: value});
-  }
-  
-  useEffect(()=>{
-    console.log(localInvoiceData)
-  },[localInvoiceData])
+    setLocalInvoiceData({ ...localInvoiceData, [name]: value });
+  };
+
+  const handleChangeInvoiceDataItem = (
+    value: string,
+    name: string,
+    id: string
+  ) => {
+    if (name === "price" && parseFloat(value) < 0) {
+      console.log("Price", value);
+    }
+
+    const newItems = localInvoiceData.items.map((item) =>
+      id === item.id ? { ...item, [name]: value } : item
+    );
+    setLocalInvoiceData({ ...localInvoiceData, items: newItems });
+  };
+
+  useEffect(() => {
+    console.log(localInvoiceData);
+  }, [localInvoiceData]);
 
   return (
     <OverlaySC isOpen={isOpen} onClick={() => onClose()}>
-      <DrawerWrapperSC isOpen={isOpen} theme={themeType} onClick = {(e)=> {
-        e.stopPropagation()
-      }}>
+      <DrawerWrapperSC
+        isOpen={isOpen}
+        theme={themeType}
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
         <DrawerSectionSC>
           <HeadingM>New Invoice</HeadingM>
         </DrawerSectionSC>
         <DrawerScrollableSectionSC>
           <DrawerSectionSC>
             <HeadingS color={colors["01"]}>Bill From</HeadingS>
-            <CustomInput 
-              label="Street Address"  
-              value={localInvoiceData.streetAddress} 
-              onChange = {handleChangeInvoiceData}
-              name = "streetAddress"
+            <CustomInput
+              label="Street Address"
+              value={localInvoiceData.streetAddress}
+              onChange={handleChangeInvoiceData}
+              name="streetAddress"
             />
             <DrawerMultiRow>
-              <CustomInput 
-                label="City"  
-                value={localInvoiceData.city} 
-                onChange = {handleChangeInvoiceData}
-                name = "city"
-                />
-              <CustomInput 
-                label="Post Code"  
-                value={localInvoiceData.postCode} 
-                onChange = {handleChangeInvoiceData}
-                name = "postCode"
-                />
-              <CustomInput 
-                label="Country"  
-                value={localInvoiceData.country} 
-                onChange = {handleChangeInvoiceData}
-                name = "country"
+              <CustomInput
+                label="City"
+                value={localInvoiceData.city}
+                onChange={handleChangeInvoiceData}
+                name="city"
+              />
+              <CustomInput
+                label="Post Code"
+                value={localInvoiceData.postCode}
+                onChange={handleChangeInvoiceData}
+                name="postCode"
+              />
+              <CustomInput
+                label="Country"
+                value={localInvoiceData.country}
+                onChange={handleChangeInvoiceData}
+                name="country"
               />
             </DrawerMultiRow>
           </DrawerSectionSC>
           <DrawerSectionSC>
             <HeadingS color={colors["01"]}>Bill To</HeadingS>
-            <CustomInput 
-              label="Client's Name"  
-              value={localInvoiceData.clientName} 
-              onChange = {handleChangeInvoiceData}
-              name = "clientName"
+            <CustomInput
+              label="Client's Name"
+              value={localInvoiceData.clientName}
+              onChange={handleChangeInvoiceData}
+              name="clientName"
             />
-            <CustomInput 
-              label="Client's Email"  
-              value={localInvoiceData.clientEmail} 
-              onChange = {handleChangeInvoiceData}
-              name = "clientEmail"
+            <CustomInput
+              label="Client's Email"
+              value={localInvoiceData.clientEmail}
+              onChange={handleChangeInvoiceData}
+              name="clientEmail"
             />
-            <CustomInput 
-              label="Client's Street Address"  
-              value={localInvoiceData.clientStreetAddress} 
-              onChange = {handleChangeInvoiceData}
-              name = "clientStreetAddress"
+            <CustomInput
+              label="Client's Street Address"
+              value={localInvoiceData.clientStreetAddress}
+              onChange={handleChangeInvoiceData}
+              name="clientStreetAddress"
             />
             <DrawerMultiRow>
-              <CustomInput 
-                label="City"  
-                value={localInvoiceData.clientCity} 
-                onChange = {handleChangeInvoiceData}
-                name = "clientCity"
-                />
-              <CustomInput 
-                label="Post Code"  
-                value={localInvoiceData.clientPostCode} 
-                onChange = {handleChangeInvoiceData}
-                name = "clientPostCode"
-                />
-              <CustomInput 
-                label="Country"  
-                value={localInvoiceData.clientCountry} 
-                onChange = {handleChangeInvoiceData}
-                name = "clientCountry"
+              <CustomInput
+                label="City"
+                value={localInvoiceData.clientCity}
+                onChange={handleChangeInvoiceData}
+                name="clientCity"
+              />
+              <CustomInput
+                label="Post Code"
+                value={localInvoiceData.clientPostCode}
+                onChange={handleChangeInvoiceData}
+                name="clientPostCode"
+              />
+              <CustomInput
+                label="Country"
+                value={localInvoiceData.clientCountry}
+                onChange={handleChangeInvoiceData}
+                name="clientCountry"
               />
             </DrawerMultiRow>
             <DrawerMultiRow>
-              <CustomInput 
-                label="Invoice Date"  
-                value={localInvoiceData.invoiceDate} 
-                onChange = {handleChangeInvoiceData}
-                name = "invoiceDate"
-                />
-              <CustomInput 
-                label="Payment Terms"  
-                value={localInvoiceData.paymentTerms} 
-                onChange = {handleChangeInvoiceData}
-                name = "paymentTerms"
-                />
+              <CustomInput
+                label="Invoice Date"
+                value={localInvoiceData.invoiceDate}
+                onChange={handleChangeInvoiceData}
+                name="invoiceDate"
+              />
+              <CustomInput
+                label="Payment Terms"
+                value={localInvoiceData.paymentTerms}
+                onChange={handleChangeInvoiceData}
+                name="paymentTerms"
+              />
             </DrawerMultiRow>
-            <CustomInput 
-              label="Project Description"  
-              value={localInvoiceData.projectDescription} 
-              onChange = {handleChangeInvoiceData}
-              name = "projectDescription"
+            <CustomInput
+              label="Project Description"
+              value={localInvoiceData.projectDescription}
+              onChange={handleChangeInvoiceData}
+              name="projectDescription"
             />
             <HeadingS color={colors["01"]}>Item List</HeadingS>
             <DrawerTableGrid>
-              
-              <DefaultInputLabel theme={themeType}>Item Name</DefaultInputLabel >
-              <DefaultInputLabel theme={themeType}>Qty.</DefaultInputLabel >
-              <DefaultInputLabel theme={themeType}>Price</DefaultInputLabel >
-              <DefaultInputLabel theme={themeType}>Total</DefaultInputLabel >
+              <DefaultInputLabel theme={themeType}>Item Name</DefaultInputLabel>
+              <DefaultInputLabel theme={themeType}>Qty.</DefaultInputLabel>
+              <DefaultInputLabel theme={themeType}>Price</DefaultInputLabel>
+              <DefaultInputLabel theme={themeType}>Total</DefaultInputLabel>
               <HeadingS></HeadingS>
 
-
-
-
-
+              {localInvoiceData.items.map(({ id, name, quantity, price }) => (
+                <React.Fragment key={id}>
+                  <CustomInput
+                    value={name}
+                    onChange={(value) =>
+                      handleChangeInvoiceDataItem(value, "name", id)
+                    }
+                    name="name"
+                  />
+                  <CustomInput
+                    value={quantity}
+                    onChange={(value) =>
+                      handleChangeInvoiceDataItem(value, "quantity", id)
+                    }
+                    small={true}
+                    name="quantity"
+                    type="number"
+                  />
+                  <CustomInput
+                    value={price}
+                    onChange={(value) =>
+                      handleChangeInvoiceDataItem(value, "price", id)
+                    }
+                    name="price"
+                    type="number"
+                  />
+                  <HeadingS color={colors["01"]}>{price * quantity}</HeadingS>
+                  <HeadingS
+                    onClick={() => {
+                      const newItems = localInvoiceData.items.filter(
+                        (i) => i.id !== id
+                      );
+                      setLocalInvoiceData({
+                        ...localInvoiceData,
+                        items: newItems,
+                      });
+                    }}
+                  >
+                    X
+                  </HeadingS>
+                </React.Fragment>
+              ))}
             </DrawerTableGrid>
-            <CustomButton type="add" text="Add New Item" onClick={()=>{
-              setLocalInvoiceData({
-                ...localInvoiceData,
-                items: [...localInvoiceData.items, {name: "", quantity: 0, price: 0, id: nanoid()}]
-              })
-            }} />
+            <CustomButton
+              type="add"
+              text="Add New Item"
+              onClick={() => {
+                setLocalInvoiceData({
+                  ...localInvoiceData,
+                  items: [
+                    ...localInvoiceData.items,
+                    { name: "", quantity: 0, price: 0, id: nanoid() },
+                  ],
+                });
+              }}
+            />
           </DrawerSectionSC>
         </DrawerScrollableSectionSC>
       </DrawerWrapperSC>

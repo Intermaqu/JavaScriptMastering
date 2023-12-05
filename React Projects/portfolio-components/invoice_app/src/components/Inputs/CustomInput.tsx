@@ -9,9 +9,17 @@ type Props = {
   name: string;
   width?: string;
   small?: boolean;
+  type?: string;
 };
 
-const CustomInput = ({ label, value, onChange, name, width = "100%", small}: Props) => {
+const CustomInput = ({
+  label,
+  value,
+  onChange,
+  name,
+  width = "100%",
+  small,
+}: Props) => {
   const { theme } = useTheme();
   const themeType = theme.type;
   const [inputValue, setInputValue] = React.useState(value);
@@ -23,12 +31,17 @@ const CustomInput = ({ label, value, onChange, name, width = "100%", small}: Pro
 
   return (
     <DefaultInputWrapper theme={themeType} width={width}>
-      {label && <DefaultInputLabel theme={themeType}>{label}</DefaultInputLabel>}
+      {label && (
+        <DefaultInputLabel theme={themeType}>{label}</DefaultInputLabel>
+      )}
       <DefaultInput
         theme={themeType}
         value={inputValue}
         small={small}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e.target.value)}
+        type="text"
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          handleChange(e.target.value)
+        }
       />
     </DefaultInputWrapper>
   );
