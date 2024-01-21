@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTheme } from "../../ThemeContext";
 import {
+  DrawerImageSC,
   DrawerMultiRow,
   DrawerScrollableSectionSC,
   DrawerSectionSC,
@@ -20,6 +21,7 @@ import { InvoiceInterface, emptyInvoiceData } from "./invoiceModel";
 import { DefaultInputLabel } from "../Inputs/Inputs";
 import CustomButton from "../Buttons/CustomButton";
 import { nanoid } from "nanoid";
+import { handleImage } from "../../utils";
 
 type Props = {
   isOpen: boolean;
@@ -31,8 +33,12 @@ const CustomDrawer = ({ isOpen, onClose, invoiceData }: Props) => {
   const [localInvoiceData, setLocalInvoiceData] = useState(
     invoiceData || emptyInvoiceData
   );
+  const [isScrollable, setIsScrollable] = useState<Boolean>(false);
   const { theme } = useTheme();
   const themeType = theme.type;
+
+  const bottomRef = React.useRef<HTMLDivElement>(null);
+  const scrollableRef = React.useRef<HTMLDivElement>(null);
 
   const handleChangeInvoiceData = (value: string, name: string) => {
     setLocalInvoiceData({ ...localInvoiceData, [name]: value });
@@ -53,9 +59,37 @@ const CustomDrawer = ({ isOpen, onClose, invoiceData }: Props) => {
     setLocalInvoiceData({ ...localInvoiceData, items: newItems });
   };
 
+  const handleAddItem = () => {
+    setLocalInvoiceData({
+      ...localInvoiceData,
+      items: [
+        ...localInvoiceData.items,
+        { name: "", quantity: 0, price: 0, id: nanoid() },
+      ],
+    });
+
+    setTimeout(() => {
+      if (bottomRef.current) {
+        bottomRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 1);
+
+    if (scrollableRef.current) {
+      const { scrollHeight, clientHeight } = scrollableRef.current;
+      setIsScrollable(scrollHeight > clientHeight);
+    }
+  };
+
   useEffect(() => {
-    console.log(localInvoiceData);
-  }, [localInvoiceData]);
+    if (scrollableRef.current) {
+      const { scrollHeight, clientHeight } = scrollableRef.current;
+      setIsScrollable(scrollHeight > clientHeight);
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log(`isScrollable: ${isScrollable}`);
+  }, [isScrollable]);
 
   return (
     <OverlaySC isOpen={isOpen} onClick={() => onClose()}>
@@ -66,10 +100,10 @@ const CustomDrawer = ({ isOpen, onClose, invoiceData }: Props) => {
           e.stopPropagation();
         }}
       >
-        <DrawerSectionSC>
+        <DrawerSectionSC width="32.5rem">
           <HeadingM>New Invoice</HeadingM>
         </DrawerSectionSC>
-        <DrawerScrollableSectionSC>
+        <DrawerScrollableSectionSC ref={scrollableRef}>
           <DrawerSectionSC>
             <HeadingS color={colors["01"]}>Bill From</HeadingS>
             <CustomInput
@@ -193,8 +227,10 @@ const CustomDrawer = ({ isOpen, onClose, invoiceData }: Props) => {
                     name="price"
                     type="number"
                   />
-                  <HeadingS color={colors["01"]}>{price * quantity}</HeadingS>
-                  <HeadingS
+                  <HeadingS color={colors["06"]}>
+                    {(price * quantity).toFixed(2)}
+                  </HeadingS>
+                  <DrawerImageSC
                     onClick={() => {
                       const newItems = localInvoiceData.items.filter(
                         (i) => i.id !== id
@@ -204,27 +240,51 @@ const CustomDrawer = ({ isOpen, onClose, invoiceData }: Props) => {
                         items: newItems,
                       });
                     }}
-                  >
-                    X
-                  </HeadingS>
+                    src={handleImage("trashCan")}
+                  />
                 </React.Fragment>
               ))}
             </DrawerTableGrid>
             <CustomButton
               type="add"
               text="Add New Item"
+              width="100%"
               onClick={() => {
-                setLocalInvoiceData({
-                  ...localInvoiceData,
-                  items: [
-                    ...localInvoiceData.items,
-                    { name: "", quantity: 0, price: 0, id: nanoid() },
-                  ],
-                });
+                handleAddItem();
               }}
             />
+            <DrawerSectionSC
+              ref={bottomRef}
+              customStyles="height: 0; padding: 0;"
+            ></DrawerSectionSC>
           </DrawerSectionSC>
         </DrawerScrollableSectionSC>
+        <DrawerSectionSC
+          flexDirection="row"
+          customStyles={`padding: 2rem 1rem 2rem 0; border-radius: 0 1rem 1rem 0;
+          `}
+        >
+          <CustomButton
+            type="edit"
+            text="Discard"
+            onClick={() => onClose()}
+            customStyles={`margin-right: auto;`}
+          />
+          <CustomButton
+            type="save"
+            text="Save as Draft"
+            onClick={() => {
+              onClose();
+            }}
+          />
+          <CustomButton
+            type="secondary"
+            text="Save & Send"
+            onClick={() => {
+              onClose();
+            }}
+          />
+        </DrawerSectionSC>
       </DrawerWrapperSC>
     </OverlaySC>
   );

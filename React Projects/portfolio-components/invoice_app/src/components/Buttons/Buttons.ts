@@ -4,7 +4,7 @@ import plus from "../../assets/images/icon-plus.svg"
 import { ThemeType } from "../../themes/themeType";
 import { ButtonColorsInterface } from "./ButtonColors";
 
-export const DefaultButton = styled.div`
+export const DefaultButton = styled.button`
     border-radius: 1.5rem;
     height: 3rem;
     display: flex;
@@ -14,9 +14,12 @@ export const DefaultButton = styled.div`
     color: #fff;
     cursor: pointer;
     user-select: none;
+    outline: none;
+    border: none;
+    justify-content: center;
 `
 
-export const CustomButtonSC = styled(DefaultButton)<{theme?: ThemeType, colors: ButtonColorsInterface}>(({ theme = "light", colors = {} }) => `
+export const CustomButtonSC = styled(DefaultButton)<{theme?: ThemeType, width?: string, customStyles?: string, colors: ButtonColorsInterface}>(({ theme = "light", width, customStyles, colors = {} }) => `
     ${theme === "light" ? `
         background-color: ${colors.lightBackground};
         ${colors.lightColor ? `color: ${colors.lightColor};` : ""}
@@ -34,8 +37,9 @@ export const CustomButtonSC = styled(DefaultButton)<{theme?: ThemeType, colors: 
             ${colors.darkHover ?  `background-color: ${colors.darkHover};` : `background-color: ${colors.lightHover};`}
         }
     `}
-    
-    ${colors.padding && `padding: 0 1rem 0 0.5rem;`}
+    ${width ? `width: ${width}; ` : ""}
+    ${colors.padding ? `padding: 0 1rem 0 0.5rem; ` : ""}
+    ${customStyles}
     `)
     
 

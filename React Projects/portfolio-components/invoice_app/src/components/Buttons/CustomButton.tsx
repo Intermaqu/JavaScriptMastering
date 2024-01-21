@@ -8,9 +8,19 @@ type Props = {
   type: "primary" | "secondary" | "edit" | "save" | "delete" | "add";
   text: string;
   onClick: () => void;
+  width?: string;
+  customStyles?: string;
+  ref?: any;
 };
 
-const CustomButton = ({ type, text, onClick }: Props) => {
+const CustomButton = ({
+  type,
+  width,
+  text,
+  customStyles,
+  onClick,
+  ref,
+}: Props) => {
   const { theme } = useTheme();
   const themeType = theme.type;
 
@@ -20,6 +30,9 @@ const CustomButton = ({ type, text, onClick }: Props) => {
         theme={themeType}
         colors={buttonColors.primary}
         onClick={() => onClick()}
+        width={width}
+        customStyles={customStyles}
+        ref={ref}
       >
         <ButtonDot>
           <ButtonDotPlus />
@@ -35,6 +48,8 @@ const CustomButton = ({ type, text, onClick }: Props) => {
         colors={buttonColors.secondary}
         onClick={() => onClick()}
         theme={themeType}
+        width={width}
+        customStyles={customStyles}
       >
         <HeadingSVariant>{text}</HeadingSVariant>
       </CustomButtonSC>
@@ -47,6 +62,8 @@ const CustomButton = ({ type, text, onClick }: Props) => {
         colors={buttonColors.edit}
         onClick={() => onClick()}
         theme={themeType}
+        width={width}
+        customStyles={customStyles}
       >
         <HeadingSVariant>{text}</HeadingSVariant>
       </CustomButtonSC>
@@ -59,6 +76,8 @@ const CustomButton = ({ type, text, onClick }: Props) => {
         colors={buttonColors.save}
         onClick={() => onClick()}
         theme={themeType}
+        width={width}
+        customStyles={customStyles}
       >
         <HeadingSVariant>{text}</HeadingSVariant>
       </CustomButtonSC>
@@ -71,6 +90,8 @@ const CustomButton = ({ type, text, onClick }: Props) => {
         colors={buttonColors.delete}
         onClick={() => onClick()}
         theme={themeType}
+        width={width}
+        customStyles={customStyles}
       >
         <HeadingSVariant>{text}</HeadingSVariant>
       </CustomButtonSC>
@@ -83,6 +104,8 @@ const CustomButton = ({ type, text, onClick }: Props) => {
         colors={buttonColors.add}
         onClick={() => onClick()}
         theme={themeType}
+        width={width}
+        customStyles={customStyles}
       >
         <HeadingSVariant>+ {text}</HeadingSVariant>
       </CustomButtonSC>
