@@ -10,8 +10,10 @@ export const DefaultText = styled.p<DefaultTextType>(({color}) =>`
     ${color ? `color: ${color}` : ""};
 `)
 
-export const DefaultHeader = styled(DefaultText)`
+export const DefaultHeader = styled(DefaultText)<{ margin?: string, cursor?: string }>`
     font-weight: 700;
+    ${props => props.margin ? `margin: ${props.margin}` : ""};
+    ${props => props.cursor ? `cursor: ${props.cursor}` : ""};
 `
 
 export const DefaultBodyText = styled(DefaultText)`
@@ -22,6 +24,7 @@ export const HeadingL = styled(DefaultHeader)`
     font-size: 2.25rem;
     line-height: 2.0625rem;
     letter-spacing: -1px;
+
 `
 
 export const HeadingM = styled(DefaultHeader)`

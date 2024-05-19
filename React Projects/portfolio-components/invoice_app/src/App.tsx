@@ -21,6 +21,7 @@ import { useTheme } from "./ThemeContext";
 import Sider from "./components/Sider/Sider";
 import { DrawerWrapperSC, OverlaySC } from "./components/Drawer/Drawer";
 import CustomDrawer from "./components/Drawer/CustomDrawer";
+import InvoicePage from "./components/Invoices/InvoicePage";
 
 const AppElement = styled.main(
   ({ theme }) => `
@@ -48,7 +49,7 @@ function App() {
         isOpen={overlayOpen}
         onClose={() => setOverlayOpen(false)}
       />
-      <div>
+      {/* <div>
         <CustomButton type="edit" text="Theme Toggler" onClick={toggleTheme} />
         <HeadingL>HeadingL</HeadingL>
         <HeadingM>HeadingM</HeadingM>
@@ -71,8 +72,9 @@ function App() {
         <CustomButton type="save" text="Save as Draft" onClick={consoleLog} />
         <CustomButton type="delete" text="Delete" onClick={consoleLog} />
         <CustomButton type="add" text="Add New Item" onClick={consoleLog} />
-        {/* <CustomInput label="Name" value={inputValue} onChange={setInputValue} /> */}
-      </div>
+        //<CustomInput label="Name" value={inputValue} onChange={setInputValue} />
+      </div> */}
+      <InvoicePage />
     </AppElement>
   );
 }
