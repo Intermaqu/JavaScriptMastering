@@ -1,5 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { styled } from "styled-components";
+import { DATA } from "./data";
 import CustomButton from "./components/Buttons/CustomButton";
 import CustomInput from "./components/Inputs/CustomInput";
 import colors from "./themes/Colors.json";
@@ -22,24 +23,27 @@ import Sider from "./components/Sider/Sider";
 import { DrawerWrapperSC, OverlaySC } from "./components/Drawer/Drawer";
 import CustomDrawer from "./components/Drawer/CustomDrawer";
 import InvoicePage from "./components/Invoices/InvoicePage";
+import { InvoiceInterface } from "./models/interfaces/invoice";
 
 const AppElement = styled.main(
   ({ theme }) => `
   width: 100%;
   height: 100%; 
   display: flex;
-  
 `
 );
 
 function App() {
-  const { theme, toggleTheme } = useTheme();
-  const [inputValue, setInputValue] = useState<string>("");
+  const { theme } = useTheme();
   const [overlayOpen, setOverlayOpen] = useState<boolean>(false);
+  const [invoicesData, setInvoicesData] = useState<InvoiceInterface[]>(DATA);
 
-  const consoleLog = () => {
-    console.log("Clicked");
-  };
+  // useLayoutEffect(() => {
+  //   fetch("./data.json")
+  //     .then((res) => res.json())
+  //     .then((data) => setInvoicesData(data))
+  //     .catch((err) => console.log(err));
+  // }, []);
 
   return (
     <AppElement theme={theme}>
@@ -74,7 +78,14 @@ function App() {
         <CustomButton type="add" text="Add New Item" onClick={consoleLog} />
         //<CustomInput label="Name" value={inputValue} onChange={setInputValue} />
       </div> */}
-      <InvoicePage />
+      {invoicesData.length > 0 ? (
+        <InvoicePage
+          invoicesData={invoicesData}
+          openDrawer={() => setOverlayOpen(true)}
+        />
+      ) : (
+        "<div></div>"
+      )}
     </AppElement>
   );
 }
