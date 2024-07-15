@@ -17,11 +17,11 @@ import {
 } from "../Texts/Typography";
 import colors from "../../themes/Colors.json";
 import CustomInput from "../Inputs/CustomInput";
-import { InvoiceInterface, emptyInvoiceData } from "./invoiceModel";
 import { DefaultInputLabel } from "../Inputs/Inputs";
 import CustomButton from "../Buttons/CustomButton";
 import { nanoid } from "nanoid";
 import { handleImage } from "../../utils";
+import { InvoiceInterface } from "../../models/interfaces/invoice";
 
 type Props = {
   isOpen: boolean;
@@ -29,9 +29,34 @@ type Props = {
   invoiceData?: InvoiceInterface;
 };
 
+const EMPTY_INVOICE: InvoiceInterface = {
+  id: "",
+  address: {
+    street: "",
+    city: "",
+    postCode: "",
+    country: "",
+  },
+  client: {
+    name: "",
+    email: "",
+    address: {
+      street: "",
+      city: "",
+      postCode: "",
+      country: "",
+    },
+  },
+  invoiceDate: "",
+  paymentTerms: "Net 30 Days",
+  description: "",
+  items: [],
+  status: "draft",
+};
+
 const CustomDrawer = ({ isOpen, onClose, invoiceData }: Props) => {
   const [localInvoiceData, setLocalInvoiceData] = useState(
-    invoiceData || emptyInvoiceData
+    invoiceData || EMPTY_INVOICE
   );
   const [isScrollable, setIsScrollable] = useState<Boolean>(false);
   const { theme } = useTheme();
@@ -42,6 +67,30 @@ const CustomDrawer = ({ isOpen, onClose, invoiceData }: Props) => {
 
   const handleChangeInvoiceData = (value: string, name: string) => {
     setLocalInvoiceData({ ...localInvoiceData, [name]: value });
+  };
+
+  const handleChangeInvoiceClientData = (value: string, name: string) => {
+    const newInvoiceData = { ...localInvoiceData };
+    newInvoiceData.client = { ...newInvoiceData.client, [name]: value };
+    setLocalInvoiceData(newInvoiceData);
+  };
+
+  const handleChangeInvoiceClientAddressData = (
+    value: string,
+    name: string
+  ) => {
+    const newInvoiceData = { ...localInvoiceData };
+    newInvoiceData.client.address = {
+      ...newInvoiceData.client.address,
+      [name]: value,
+    };
+    setLocalInvoiceData(newInvoiceData);
+  };
+
+  const handleChangeInvoiceAddressData = (value: string, name: string) => {
+    const newInvoiceData = { ...localInvoiceData };
+    newInvoiceData.address = { ...newInvoiceData.address, [name]: value };
+    setLocalInvoiceData(newInvoiceData);
   };
 
   const handleChangeInvoiceDataItem = (
@@ -59,6 +108,13 @@ const CustomDrawer = ({ isOpen, onClose, invoiceData }: Props) => {
     setLocalInvoiceData({ ...localInvoiceData, items: newItems });
   };
 
+  const handleIsScrollable = () => {
+    if (scrollableRef.current) {
+      const { scrollHeight, clientHeight } = scrollableRef.current;
+      setIsScrollable(scrollHeight > clientHeight);
+    }
+  };
+
   const handleAddItem = () => {
     setLocalInvoiceData({
       ...localInvoiceData,
@@ -74,17 +130,11 @@ const CustomDrawer = ({ isOpen, onClose, invoiceData }: Props) => {
       }
     }, 1);
 
-    if (scrollableRef.current) {
-      const { scrollHeight, clientHeight } = scrollableRef.current;
-      setIsScrollable(scrollHeight > clientHeight);
-    }
+    handleIsScrollable();
   };
 
   useEffect(() => {
-    if (scrollableRef.current) {
-      const { scrollHeight, clientHeight } = scrollableRef.current;
-      setIsScrollable(scrollHeight > clientHeight);
-    }
+    handleIsScrollable();
   }, []);
 
   useEffect(() => {
@@ -108,27 +158,27 @@ const CustomDrawer = ({ isOpen, onClose, invoiceData }: Props) => {
             <HeadingS color={colors["01"]}>Bill From</HeadingS>
             <CustomInput
               label="Street Address"
-              value={localInvoiceData.streetAddress}
-              onChange={handleChangeInvoiceData}
-              name="streetAddress"
+              value={localInvoiceData.address.street}
+              onChange={handleChangeInvoiceAddressData}
+              name="street"
             />
             <DrawerMultiRow>
               <CustomInput
                 label="City"
-                value={localInvoiceData.city}
-                onChange={handleChangeInvoiceData}
+                value={localInvoiceData.address.city}
+                onChange={handleChangeInvoiceAddressData}
                 name="city"
               />
               <CustomInput
                 label="Post Code"
-                value={localInvoiceData.postCode}
-                onChange={handleChangeInvoiceData}
+                value={localInvoiceData.address.postCode}
+                onChange={handleChangeInvoiceAddressData}
                 name="postCode"
               />
               <CustomInput
                 label="Country"
-                value={localInvoiceData.country}
-                onChange={handleChangeInvoiceData}
+                value={localInvoiceData.address.country}
+                onChange={handleChangeInvoiceAddressData}
                 name="country"
               />
             </DrawerMultiRow>
@@ -137,39 +187,39 @@ const CustomDrawer = ({ isOpen, onClose, invoiceData }: Props) => {
             <HeadingS color={colors["01"]}>Bill To</HeadingS>
             <CustomInput
               label="Client's Name"
-              value={localInvoiceData.clientName}
-              onChange={handleChangeInvoiceData}
+              value={localInvoiceData.client.name}
+              onChange={handleChangeInvoiceClientData}
               name="clientName"
             />
             <CustomInput
               label="Client's Email"
-              value={localInvoiceData.clientEmail}
-              onChange={handleChangeInvoiceData}
+              value={localInvoiceData.client.email}
+              onChange={handleChangeInvoiceClientData}
               name="clientEmail"
             />
             <CustomInput
               label="Client's Street Address"
-              value={localInvoiceData.clientStreetAddress}
-              onChange={handleChangeInvoiceData}
+              value={localInvoiceData.client.address.street}
+              onChange={handleChangeInvoiceClientAddressData}
               name="clientStreetAddress"
             />
             <DrawerMultiRow>
               <CustomInput
                 label="City"
-                value={localInvoiceData.clientCity}
-                onChange={handleChangeInvoiceData}
+                value={localInvoiceData.client.address.city}
+                onChange={handleChangeInvoiceClientAddressData}
                 name="clientCity"
               />
               <CustomInput
                 label="Post Code"
-                value={localInvoiceData.clientPostCode}
-                onChange={handleChangeInvoiceData}
+                value={localInvoiceData.client.address.postCode}
+                onChange={handleChangeInvoiceClientAddressData}
                 name="clientPostCode"
               />
               <CustomInput
                 label="Country"
-                value={localInvoiceData.clientCountry}
-                onChange={handleChangeInvoiceData}
+                value={localInvoiceData.client.address.country}
+                onChange={handleChangeInvoiceClientAddressData}
                 name="clientCountry"
               />
             </DrawerMultiRow>
@@ -189,7 +239,7 @@ const CustomDrawer = ({ isOpen, onClose, invoiceData }: Props) => {
             </DrawerMultiRow>
             <CustomInput
               label="Project Description"
-              value={localInvoiceData.projectDescription}
+              value={localInvoiceData.description}
               onChange={handleChangeInvoiceData}
               name="projectDescription"
             />
