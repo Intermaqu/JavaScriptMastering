@@ -23,10 +23,17 @@ import CustomButton from "../Buttons/CustomButton";
 import arrowDown from "../../assets/images/icon-arrow-down.svg";
 import arrowRight from "../../assets/images/icon-arrow-right.svg";
 import { STATUS_COLORS } from "./Invoice";
+import { useTheme } from "../../ThemeContext";
+import { InvoiceInterface } from "../../models/interfaces/invoice";
 
-type Props = {};
+type props = {
+  invoicesData: InvoiceInterface[];
+  openDrawer: () => void;
+};
 
-const InvoicePage = (props: Props) => {
+const InvoicePage = ({ invoicesData, openDrawer }: props) => {
+  const { theme } = useTheme();
+
   return (
     <PageWrapper>
       <PageContent>
@@ -54,13 +61,17 @@ const InvoicePage = (props: Props) => {
           </HeadingSVariant>
           <CustomButton
             type="primary"
-            onClick={() => {}}
+            onClick={openDrawer}
             text="New Invoice"
             customStyles="margin-left: 40px;"
           />
         </PageHeader>
         <InvoicesContainer>
-          <InvoiceRow backgroundColor={"#fff"}>
+          <InvoiceRow
+            backgroundColor={`${
+              theme.type === "light" ? "#fff" : COLORS["03"]
+            }`}
+          >
             <HeadingS margin="0">
               <span
                 style={{
